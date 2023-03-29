@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/styles.css"></link>
+</head>
+<body>
+    <div class="container p-4">
+        <h1>Actualizacion productos</h1>
+        <div class="row">
+            <div class="col-md-4  offset-md-4" >
+               
+               <div class="card">
+                <div class="card-body">
+                    
+                    <form action="/update/<%= producto._id %>"  method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">  
+                            <input type="file" id="inputGroupFile01" name="image"class="form-control" placeholder=" chosee" aria-label="Example text with button addon"required >    
+                          </div>
+                          <div class="form-group">
+                            <input type="text" name="codigo" id="codigo" placeholder=" <%= producto.codigo %>"required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="nombre" id="nombre" placeholder="<%= producto.nombre %>"required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="valor" id="valor" placeholder="<%= producto.valor %>"required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="valor" id="valor" placeholder="<%= producto.categoria %>"required>
+                        </div>
+                        
+                        <div class="form-group my-3">
+                            <textarea name="descripcion" class="form-control" placeholder="<%= producto.descripcion %>" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button  type="submit" class="btn btn-success btn-block"> actualizar</button>
+                            
+                        </div>
+                        <div class="form-group"  >
+                            <img src="<%= producto.imagen %>" name="imagen2"id="previa"  >
+                        </div>
+                        
+                    </form>
+                    
+                   
+
+                    </div>
+                </div>
+             
+               </div>
+            </div>
+
+            <div class="container">
+                
+
+
+            </div>
+            <script>
+                // Variables
+                const inputFile = document.querySelector('#inputGroupFile01');
+                const image = document.querySelector('#previa');
+                const cod = document.querySelector('#codigoim');
+             
+                /**
+                 * Returns a file in Base64URL format.
+                 * @param {File} file
+                 * @return {Promise<string>}
+                 */
+        
+                
+                async function encodeFileAsBase64URL(file) {
+                    return new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.addEventListener('loadend', () => {
+                            resolve(reader.result);
+                        });
+                        reader.readAsDataURL(file);
+                        console.log(file);
+                    });
+                };
+        
+                // Eventos
+                inputFile.addEventListener('input', async (event) => {
+                    // Convierto la primera imagen del input en una ruta Base64
+                    const base64URL = await encodeFileAsBase64URL(inputFile.files[0]);
+                    // Anyado la ruta Base64 a la imagen
+                    image.setAttribute('src', base64URL);
+                    cod.innerHTML=inputFile;
+                    console.log();
+                });
+            </script>
+        </div>
+</body>
+</html>
