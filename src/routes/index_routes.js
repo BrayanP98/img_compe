@@ -3,6 +3,7 @@ const file = require('fs-extra/lib/ensure/file');
 const { base } = require('../models/IMAGE');
 const router=Router();
 const Image=require('../models/IMAGE')
+const Promo=require('../models/promos')
 const fs = require('fs');
 const IMAGE = require('../models/IMAGE');
 const { MulterError } = require('multer');
@@ -10,7 +11,11 @@ const multer = require('multer');
 
 
 router.get('/', async (req,res)=>{
-    res.render("index")
+    const prods= await Image.find().lean();
+    
+    const promo= await Promo.find().lean();
+    
+    res.render("catalogo.ejs", { prods, promo });
 });
 
 
@@ -26,8 +31,11 @@ router.get('/upload',async (req,res)=>{
 
 });
 router.get('/catalogo',async (req,res)=>{
+    var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos"]
     const prods= await Image.find().lean();
-    res.render("catalogo.ejs", { prods });
+    const promo= await Promo.find().lean();
+    
+    res.render("catalogo.ejs", { prods, promo });
    //console.log(prods)
 
 });
@@ -37,7 +45,30 @@ router.get('/update', (req,res)=>{
     res.render('update.ejs');
  
  });
+ router.get('/promo',async(req, res,)=>{
+    try{
+        const promo= new Promo();
+        promo.cantidad="122";
+        promo.categoria="bellezab";
+        promo.codigo="256b";
+        promo.nombre="aceite bebe";
+         promo.valor="12c000";
+         promo.descripcion="estab";
+         promo.promo="2222"
+     
+         promo.imagen='/img/logo.png';
+    
+     
+        await promo.save();
+    
+    
+       
+        res.redirect('/upload')
+    }catch{
+        res.send('<script>window.history.go(-1)</script>');
+    }
 
+ })
 router.post('/upload',async(req, res,)=>{
     const filein=(req.file.path);
     const cat="pollos";
@@ -51,7 +82,7 @@ try{
  img.nombre=req.body.nombre;
  img.valor=req.body.valor;
  img.descripcion=req.body.descripcion;
- 
+ img.medida=req.body.medida;
  img.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
 
  

@@ -1,3 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
+
+.caja{
+  
+   
+    flex-direction: row;
+    background-color:#16a07b81 ;
+    height: fit-content;
+   justify-content: center;
+    min-height: 50px;
+    backdrop-filter: blur(10px);
+    z-index: 99;
+     width:100%;
+    top: 0;
+    
+    padding-left: 15px;
+    padding-bottom: 10px;
+    position: fixed;
+    left: 0;
+}
+#logo_menu{
+  margin-top: 10px;
+  position: fixed;
+  
+}
+#logo_menu:hover{
+ filter: drop-shadow(8px 6px 4px  #3938388e);
+}
+#logo_menu::after{
+
+  transition: 5s all ease;
+}
+#toogle_menu{
+    position: relative;
+    border: 0;
+   visibility: hidden;
+    top: 15px;
+    cursor: pointer;
+    font-size: 25px; 
+    height: 1px;
+    width: 1px;
+    text-align: center;
+    line-height: 15px;
+    z-index: 1000;
+    
+  }
+.caja nav {
+    justify-content: center;
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+   
+    padding-left: 20px;
+}
+
+.menu{
+  
+  text-align: center;
+  display: flex;
+  width: 100%;
+ justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 20px;
+  gap: 2%;
+  list-style: none;
+  
+}
+
+.menu.active{ 
+ 
+  height: fit-content;
+  right: 40PX;
+  width: 100PX;
+  position: relative;    
+  visibility: visible;
+  display: flex;
+  flex-direction: column;
+  z-index:2000;
+  height: fit-content;
+ justify-content: center;
+ transition: 5s ease-in;
+}
+.caja nav li{
+  text-align: center;
+   width: 100px;
+    border-bottom: 1px  solid #c21117;
+    height: 30px;
+   
+}
+
+.caja nav li:hover{
+
+  border-bottom: 1px  solid #113dc2;
+}
+.caja nav li a{
+text-decoration: none;
+
+}
+
+#container{
+  width: 100%;
+  height: 500px;
+  background: #0099FF;
+  position: fixed;
+ 
+}
 
 .container h1{
 text-align: center;
@@ -9,7 +118,14 @@ text-align: center;
     display: flex;
 }
 
+ #titulo_cat
+{
+  margin-top: 80px;
+font-size: 40px;
+font-family: 'Fjalla One', sans-serif;
+color: #000;
 
+}
 .form-group{
     margin-top: 10px;
     display: flex;
@@ -218,7 +334,7 @@ width:fit-content;
 max-width: calc(100% - 10px);
 
 height: 50px;
-background: #89c8e3;
+
 display: flex;
 flex-wrap: wrap;
 gap: 5px;
@@ -292,35 +408,248 @@ padding-top: 10px;
   
     transition: 0.3s;
   }
-  #catalogo{ 
-    background: #e5f4f7ef;
-    padding-top:10px ;
-      margin-top: 10px;
-      width:150px;
-      height:200px;
-      position: relative;
-      border-radius: 4px;
-     
+
+  @keyframes slide {
+  
+    0% { transform: translateX(0); }
+    10% { transform: translateX(0); }
+  
+    15% { transform: translateX(-100%); }
+    30% { transform: translateX(-100%);   ;}
+  
+    35% { transform: translateX(-200%); }
+    50% { transform: translateX(-200%); }
+  
+    55% { transform: translateX(-300%); }
+    70% { transform: translateX(-300%);  ; }
+  
+    75% { transform: translateX(-400%); }
+    90% { transform: translateX(-400%); }
+  
+    90% { transform: translateX(-500%); }
+    100% { transform: translateX(-500%); }
+  }
+  #promos{
+    margin-top: 150px;
+    position: static;
+    display: flex;
+    transition: 0.5s all ease;
+    overflow: hidden;
+    height:  fit-content;
+    background: white;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom:1px solid  #000;
+    box-shadow: 2px solid red;
+   
+  }
+  .cont_slider{
+    animation-delay: 10s;
     
-    transition: 0.3s;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    flex-shrink: 0;
+   animation-name:slide;
+    animation-duration: 28s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
+    animation-direction: normal;
+    animation-timing-function: ease-in-out;
+    transition: 0.10s all ease;
+    height: 350px;
+   
+  
+    
+  }
+#img_slider4,#img_slider3{
+   
+    width: 30%;
+    margin-top: 40px;
+    transition: 0.5s all ease;
+    transform: scale(1);
+    
+  }
+  #caract_product{
+    flex-direction: column;
+    line-height: 50px;
+  background:white;
+   width:50%;
+  height: 100%;
+  position: static;
+  gap: 0;
+  justify-content: center;
+  text-align: center;
+  
+  }
+  #caract_product .nombre_prod_slide::first-letter,#caract_product .nombre_prod_slide{
+    width:80%;
+    font-size: 3.8vw;
+    text-transform: capitalize;
+    word-wrap: break-word;
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Fjalla One', sans-serif;
+    position: relative;
+    right: 200px;
+   
+  }
+  #caract_product .valor_prod_slide,#caract_product .valor_prod_slide::before{
+    text-decoration: line-through;
+    content: "$";
+    font-size: 3vw;
+    color: #000;
+    text-align: center;
+   margin-top: 80px;
+   margin-top: -35px;
+    
+  }
+  #caract_product h1:nth-child(3)::before,#caract_product h1:nth-child(3){
+    content: "$";
+    color: #14c211;
+    font-size: 55px;
+    margin: 0;
+    text-align: center;
+    }
+  
+    #caract_product p{
+      
+      transition: 0.5s all ease;
+    
+    }
+  
+    
+    @keyframes resaltar {
+      from{
+        transition: 0.5s all ease;
+        color: #14c211;
+      }to{
+        transition: 0.5s all ease;
+        color: #c21117;
+  
+  
+      }
+  }
+    .mensaje_prod_slide{
+      text-align: left;
+    font-size: 50px;
+    color: #c21117;
+    font-family: 'Fjalla One', sans-serif;
+    margin-top: 70px;
+    margin-left: 25%;
+    margin-bottom: 10px;
+    animation-name:resaltar ;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: backwards;
+    animation-direction: normal;
+    animation-timing-function: ease;
+    transition: 0.5s all ease;
+    }
+  
+  #catalogo{ 
+    overflow: hidden;
+    background-size: 150%;
+    background-repeat: round;
+    width: 150px;
+    height: 240px;
+    margin-top: 10px;
+   box-shadow: 1px 1px 1px solid rgba(0, 0, 0, 0.816);
+    word-wrap: break-word;
+    justify-content: center;
+    }
+    #catalogo:hover{
+      border: 1px solid rgba(0, 0, 0, 0.614);
+    }
+    #cont_product  section{
+      margin-top: 20px;
+      width:100%;
+      height: fit-content;
+     justify-content: center;
+     padding-bottom: 20px;
+      gap: 20px;
+    background: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    
+    }
+    #descript{
+    gap: 0;
+      display: flex;
+      flex-direction: column;
+      margin-top: -13%;
+      width: 150px;
+      height:100%;
+      background:white;
+      padding-top: 20px;
+      align-items: center;
+      position: static;
+      word-wrap: break-word;
+      overflow: hidden;
+      line-height:25px;
+   
+    }
+    #descript:hover{
+       background: #b0b4b642;
+
     }
     #catalogo img{
       
-      height: 55%;
-      width: 60%;
+      left: 0;
+      height: 60%;
+      width:100%;
       margin-top: 0px;
       transition: 0.3s;
-      -webkit-transform: translateX(15px);
-      -ms-transform: translateX(15px);
-      transform: translateX(15px);
-      right: 15px;
+
+     }
+     #catalogo p{
+     font-size: 10px;
+      position: relative;
+      margin-top: -16px;
+     }
+     #catalogo h3{
+      text-align: center;
+      width: 145px;
+     margin-top: -5px;
+      text-transform: capitalize;
+     font-size: 12px;
+     position: relative;
+     }
+     #catalogo  h4{
+     position: relative;
+      font-size: 20px;
+      font-family: 'Kanit', sans-serif;
+      text-transform: capitalize;
+      font-weight: bold;
+      margin-top: -8px;
+      
+     }
+     @keyframes hover {
+      from{
+        transform: scale(1);
+      }to{
+        transform: scale(1.15);
+      }
+  
+    }
+
+   
+     #revisar{
+background: transparent;
+position:absolute;width: 
+150px; height: 150px;
+  
+ border: 0;
      
      }
-
-     #catalogo img:hover{
-
-      transform: scale(1);
+     #revisar:hover{
+      /*animation-name: hover;
+      animation-duration: 1s;*/
+      background: #8e8e9824;
+      opacity: 0.5;
      }
+
 .col-md-12 img{
     height: 80%;
     width: 80%;
@@ -338,79 +667,89 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
    }
 
-
+#mostrar_pop{
+border: 0;
+  width: 500px;
+  height: 100%;
+  position: fixed;
+  background: transparent;
+}
    
      /*ventana modal*/
   
   .pop-up{
     background: rgba(48, 48, 48, 0.5);
     position: fixed;
-    top: 0;
+    top: 20px;
     bottom: 0;
     right: 0;
     left: 0;
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     visibility: hidden;
-  z-index: 999;
+    transition: 0.3s ease all;
+    position: fixed;
+    z-index: 2;
   }
   .pop-wrap{
-     margin-top: 60px;
+    
+     margin-top: 100px;
     display: flex;
-    transform: scale(0.6);
-    width: 500px;
-    height: fit-content;
-    max-width: 650px;
+    transform: scale(1);
+    width:90%;
+  
+    
     opacity: 0;
     align-items: center;
     transition: 0.3s ease all;
   }
-  .pop-up-title{
-    
+
   
-   flex-basis: 0;
-   flex-grow:1.5;
-  height: 380px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 165%;
-  position: relative;
-  
-  }
-  .pop-up-title::after{
-    content: '';
-    position: absolute;
-    background: rgba(198, 161, 161, 0.4);
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+  .pop-up.active   {
    
+    opacity: 1;
+    visibility: visible;
+    transition: 0.3s ease all;
   }
-  .pop-up-title p,
-  .pop-up-title h2{
-  
-    z-index: 10;
+  .pop-up.active   .pop-wrap{
+
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition: 0.8s ease all;
   }
-  
-  
+  .pop-up button{
+    position:absolute;
+    z-index: 33;
+     top: -10px;
+     right: -9px;
+     width: 80px;
+     height: 30px;
+    color: #faf7f6;
+    background: red;
+    border: 0;
+    font-size: 20px;
+    border-radius: 0px 15px 0px 0px;
+   }
   .subscription{
+
+    overflow: hidden;
     border-bottom: 4px solid  #1877F2;
     border-top: 4px solid  #1877F2;;
-    background: white;
+    background: rgb(255, 255, 255);
     flex-basis: 0;
     flex-grow:2;
-    height:390px;
+    margin-left: 20px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
+    flex-wrap: wrap;
+   top: 20px;
+   right: 150px;
+   left: 10px;
     position: relative;
+    width: 90%;
+    height: fit-content;
+    justify-content: center;
   
   }
   .subs-content{
@@ -420,89 +759,341 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-bottom: 200px;
     flex-direction:row;
   }
-  .subs-content p{
-    color: #62d5f4;
-    margin-top: 10px;
-  }
-  .subs-content input{
-    margin-top: 20px;
   
+  #cont_img{
+    width: 25%;
+    height: 500px;
+    background: white;
+   overflow: hidden;
+
+  }
+  #cont_img img{
+    
+    width: 100%;
+    height:80%;
+    border: 0;
+  }
+  #cont_img img:hover{
+    transition: 0.6s;
+    opacity: 0.8;
+     transform: scale(1.2);
+  }
+ 
+  #info_prod{
+    width: 34%;
+    height:500px;
+    background: transparent;
+    text-align: center;
+    align-items: center;
+
+  }
+  #info_prod h1:nth-child(2)::before{
+   
+  content: "$";
+  }
+  #info_prod h1:nth-child(1){
+    text-transform: capitalize;
+    margin-top: 22px;
+   font-size: 40px;
+   width: 90%;
+   word-wrap: break-word; 
+   font-family: 'Fjalla One', sans-serif;
+   hyphens: none;
+  }
+  #info_prod h1:nth-child(2){
+    margin-top: 40px;
+   font-size: 30px;
+   color: #189016;
+   text-align: center;
+   
+  }
+ #title_descript{
+  text-align: center;
+  margin-top: 4vw;
+   color: #4d4a4a;
+   font-size: 25px;
+  }
+  #info_prod  p{
+    
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+  font-size: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  text-align: justify;
+  line-height:25px;
+  word-spacing:-2px;
+  color: #4d4a4a;
+  }
+  #formulario_env{
+    width: 22%;
+    height: 500px;
+    background: white;
+    justify-content: center;
+   
+    position: sticky;
+  }
+
+  #title_form{
+    font-size: 20px;
+     margin-top: 25px;
+   text-align: center;
+  }
+  .formulario_cliente{
+
+
+    margin-left: 40px ;
+  }
+  .formulario_cliente label{
+     margin-top: 10px;
+     display: block;
+  }
+  .formulario_cliente label:nth-child(3)::after  {
+    content: "(no requerido)";
+   font-size: 14px;
+ }
+.formulario_cliente input{
+  
+     width: 70%;
+  
+  color: #000;
+     border-radius: 5px;
+    padding: 10px 25px;
+     margin:0 0 10px;
+     display: block;
+  }
+
+
+  /*whatsapp*/
+  .cont-whatsapp{
+
+    width: 200px;
+    height: 50px;
+    background: #0099FF;
+    
+    border-radius: 30px  ;
+   margin-left: 50px;
+   margin-top: 20px;
+    transition: all ease 2s;
+  /*;*/
+  }
+ .cont-whatsapp a img{
+  width: 100px;
+    margin-top: 0;
+    animation: anim_what 5s alternate infinite ease
+  }
+ #whatsapp{
+    
+    text-decoration: none;
+   
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+   
+  }
+
+  /*animacion boton whatsapp*/
+  @keyframes anim_what{
+
+    from    { transform: rotate(0deg); }
+    5%      { transform: rotate(10deg); }
+    12.5%   { transform: rotate(-10deg); }
+    21%     { transform: rotate(10deg); }
+    29%     { transform: rotate(-10deg); }
+    37.5%   { transform: rotate(10deg); }
+    46%     { transform: rotate(-10deg); }
+    50%,to  { transform: rotate(0deg); }
   
   }
-  .subs-content button{ 
-    margin-left:35%;
-    display: block;
-    width: fit-content;
-    margin-top: 20px;
-     background: #0099FF;
-     border-radius: 3px ;
-     border: 1px;
-     height: 35px;
-     transition: 0.25s;
-  
-  }
-  .subs-content button:hover{
-  color: #171718;
-    background-color: #18f2f2;
-    transform: scale(1.1);
-  }
-  .subs-content a{
-      margin-left: 120px;
+  .cont-whatsapp a span{
+    
+   
+    margin-top: 15px;
+    margin-left: 15px;
+    color: #171718;
+    transition: all ease 1s;
     
   }
-  .line{
-    width: 100%;
-    height: 20px;
-    background: #1877F2;
-  }
-  .lineR{
-    width: 100%;
-    height: 10%;
-    background: #1877F2;
-    border: 5px solid #1877F2;
-  }
-  #close{
-  position: absolute;
-  margin-top: 25px;
-  right: 26px;
-  font-size: 25px;
-  color: #1bc8e2;
-  cursor: pointer;
-  }
-  #close-reg{
-    position: absolute;
-    top: 30px;
-    right: 25px;
-    font-size: 25px;
-    color: #1bc8e2;
-    cursor: pointer;
-    }
+  .cont-whatsapp:hover,  .cont-whatsapp a{
   
-  .show{
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-  
+    transition: all ease 1s;
+    
+    animation-play-state: paused;
   }
+  .cont-whatsapp:hover   a span{
+    display:  inline-block;
+    color: #c21117;
+   opacity: 1;
+   transition: all ease 1s;
+   box-shadow: 3px solid rgba(0, 174, 255, 0.237);
+  }
+#title_fotter_pagos{
+  position:relative;
+  top:50px;text-align: center;
+}
+#fotter_pagos{
+  
+  display: block;
+   height: 50px;
+  width: 100%;
+  text-align: center;
+  
+  position:relative;
+  top:30px;
+  padding-top: 5px;
+  padding: 20px;
+}
+#fotter_pagos img{
+width: 55px;
+height: 55px;
+
+}
+
+
+
 
   /** media screen**/
   @media only screen
   and (min-device-width: 120px)
   and (max-device-width:768px)
   {
-    .col-md-12 img{
-      height: 50%;
-      width: 50%;
-      margin-top: 0px;
-      transition: 0.3s;
-      -webkit-transform: translateX(15px);
-      -ms-transform: translateX(15px);
-      transform: translateX(15px);
-      right: 15px;
+
+    .contenedor{
+
+      width: 150%;
+    }
+ 
+     #logo_menu{
+      position: fixed;
+     right: 30px;
+     position: absolute;
+     margin-top: 2px;
+
+    }
+.menu{
+
+  display: none;
+}
+     #caract_product .nombre_prod_slide::first-letter,#caract_product .nombre_prod_slide{
+     font-size: 15px;
+    right: 25%;
+     background: none;
+    }
+
+    #promos{
+      margin-top: 100px;
+    
+    
+    }
+    .cont_slider{
+    
+      height: 200px;
+    }
+    #caract_product .valor_prod_slide,#caract_product .valor_prod_slide::before{
+      margin-top: -30px;
+      font-size: 20px;
+      margin-left: 19px;
+    }
+    #items #titulo_cat{
+     margin-top: 50px;
+      
+      font-size: 5px;
+    }
+    #items section:nth-child(2){
+      margin-top: 30px;
+      
+  
+    }
+    .mensaje_prod_slide{
+      font-size: 20px;
+      word-wrap: break-word;
+      margin-top: -8px;
+      white-space: pre-line;
+     text-align: center;
+      line-height: 1.1;
+     word-break: break-word
+      
+      }
+    
+    #img_slider1,#img_slider2,#img_slider3,#img_slider4{
+      width: 35%;
+     height: 150px;
+      vertical-align: top;
+      transition: 0.5s all ease;
+      transform: scale(1);
+      
+      
+    }
+  
+   .img_logo{
+  
+     margin-left: 2000px;
+    }
+    #caract_product h1:nth-child(3)::before,#caract_product h1:nth-child(3){
+      content: "$";
+      color: #14c211;
+      font-size: 25px;
+      margin-top: -15px;
+      margin-left: 19px;
+      }
+    .caja nav ul{
+      visibility: hidden;
+    
+    gap: 25px;
+  }
+  #toogle_menu{
+  visibility: visible;
+  }
+  .caja nav li{
+    text-align: center;
+    width: 100px;
+    border: 0;
+   text-decoration-style:solid ;
+    height: 30px;
+    gap: 10px;
+     
+  }
+      .cont-map{
+          width: 80%;
+          height:calc(100%);
+      
+      }
+  
+      .subscription{
+        overflow-y: scroll;
+          height:530px;
+          
+      }
+  #cont_img{
+    width: 60%;
+    height:fit-content;
    
-     }
+  }
+  #cont_img img{
+    width: 100%;
+    height:70%;
 
+  }
+  
+  #info_prod, #formulario_env{
+  
+    width: 100%;
+    height:450px;
+  }
+  
+  #formulario_env{
+    width: 100%;
+    height:600px;
+  }
 
+  }#items{
+      width: 95vw;
+  }
+ 
+  
+  
+  /****redes sociales*/
+  
 .previa_cat
 {
 padding: 0;
@@ -538,27 +1129,29 @@ padding: 0;
 }
 
      #catalogo{ 
-      background: #00b3ff61;
-      padding-top:10px ;
+    
+      
         margin-top: 10px;
         width:150px;
-        height:200px;
+        height:230px;
         
       
       transition: 0.3s;
       }
-      #catalogo img{
-        
-        height: 55%;
-        width: 60%;
-        margin-top: 0px;
-        transition: 0.3s;
-        -webkit-transform: translateX(15px);
-        -ms-transform: translateX(15px);
-        transform: translateX(15px);
-        right: 15px;
-       
-       }
-  
+      #catalogo h4{
+      margin-top: -12px;
+      }  
+     
 
-  }
+  @media only screen
+  and (min-device-height: 320px)
+  and (max-device-height: 382px)
+
+{
+    .subscription{
+   overflow: scroll;
+        height:300px;
+        
+    }
+
+}

@@ -11,11 +11,6 @@ const imagSchema= new Schema({
         type:String,
         required:true,
         unique:false,
-    }, 
-    medida:{
-        type:String,
-        required:true,
-        unique:false,
     },
     codigo:{
         type:String,
@@ -40,8 +35,10 @@ const imagSchema= new Schema({
     descripcion:{
         type:String,
         required:true },
+    promo:{
+     type:String,
+     required:true },
 
-   
 
     imagen:{
         type:String
@@ -53,15 +50,4 @@ const imagSchema= new Schema({
      
 });
 
-module.exports=model('product', imagSchema);
-
-
-
-
-
-
-
-
-
-
-
+module.exports=model('promo', imagSchema);
