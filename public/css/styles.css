@@ -44,6 +44,18 @@
     z-index: 1000;
     
   }
+ .caja span{
+
+    position: absolute;
+    content: "";
+    height: 8px;
+    width: 8px;
+   visibility: hidden;
+    top:30px;
+    left: 60px;
+    font-size: 13px;
+    font-family: 'Fjalla One', sans-serif;
+  }
 .caja nav {
     justify-content: center;
     position: static;
@@ -1185,7 +1197,10 @@ and (min-device-width: 120px)
 and (max-device-width:856px)
 {
 
+  .caja span{
 
+    visibility: visible;
+  }
   .contenedor{
 
     width: 150%;
