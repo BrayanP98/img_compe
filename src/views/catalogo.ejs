@@ -184,24 +184,30 @@ this.classList.toggle("bx-rectangle")
       <div id="promos">
        
          <% promo.forEach(function(prom) { %>
-         <div  class="cont_slider">
-            
-            <img id="img_slider4" src="<%= prom.imagen %>" alt="">
-            <button id="mostrar_pop" onclick="mostrar('<%= prom.nombre %>','<%= prom.valor %>','<%= prom.imagen %>')"></button>
-            <img class="img_logo" src="/img/logo1.png" alt="" style="width: 17vw; height: 15vw; position:absolute;display: flex; right: 35px; opacity: 0.6;" >
-            <div id="caract_product">
-          <h1 class="nombre_prod_slide"id="nombre_prom4"><%= prom.nombre %></h1>
-          
-          <h1 class="valor_prod_slide"id="descuento4"><%= prom.promo %></h1>
-          
-          <h1 id="new_valor4"><%= prom.valor %></h1>
-          <p class="mensaje_prod_slide" id="mensaje_promo4">solo por esta semana</p>
-        
-            </div>
+
+          <% if (prom.nombre==" ") { %>
+       
            
-             
-               </div>
+           <% } else{ %>  
+
+            <div  class="cont_slider">
             
+              <img id="img_slider4" src="<%= prom.imagen %>" alt="">
+              <button id="mostrar_pop" onclick="mostrar('<%= prom.nombre %>','<%= prom.valor %>','<%= prom.imagen %>')"></button>
+              <img class="img_logo" src="/img/logo1.png" alt="" style="width: 17vw; height: 15vw; position:absolute;display: flex; right: 35px; opacity: 0.6;" >
+              <div id="caract_product">
+            <h1 class="nombre_prod_slide"id="nombre_prom4"><%= prom.nombre %></h1>
+            
+            <h1 class="valor_prod_slide"id="descuento4"><%= prom.promo %></h1>
+            
+            <h1 id="new_valor4"><%= prom.valor %></h1>
+            <p class="mensaje_prod_slide" id="mensaje_promo4">solo por esta semana</p>
+          
+              </div>
+             
+               
+                 </div>
+                 <% } %>
          <% }) %>
         
          
