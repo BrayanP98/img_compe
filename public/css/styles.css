@@ -36,7 +36,7 @@
    visibility: hidden;
     top: 15px;
     cursor: pointer;
-    font-size: 25px; 
+    font-size: 35px; 
     height: 1px;
     width: 1px;
     text-align: center;
@@ -117,7 +117,12 @@ text-align: center;
   width: fit-content;
     display: flex;
 }
-
+#head_recomend{
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+  overflow: hidden;
+  
+}
  #titulo_cat
 {
   margin-top: 80px;
@@ -444,6 +449,9 @@ padding-top: 10px;
    
   }
   .cont_slider{
+    /*background-image: url("/img/bancolombia.webp");*/
+    background-size:700px 350px;
+    background-repeat: no-repeat;
     animation-delay: 10s;
     
     display: flex;
@@ -473,7 +481,7 @@ padding-top: 10px;
   #caract_product{
     flex-direction: column;
     line-height: 50px;
-  background:white;
+  
    width:50%;
   height: 100%;
   position: static;
@@ -568,7 +576,7 @@ padding-top: 10px;
      justify-content: center;
      padding-bottom: 20px;
       gap: 20px;
-    background: white;
+    background: #f9f7f7;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -609,6 +617,8 @@ padding-top: 10px;
       margin-top: -16px;
      }
      #catalogo h3{
+      line-height: 1.1;
+     word-break: break-word;
       text-align: center;
       width: 145px;
      margin-top: -5px;
@@ -821,7 +831,7 @@ border: 0;
   font-size: 20px;
   font-family: 'Nunito Sans', sans-serif;
   text-align: justify;
-  line-height:25px;
+  line-height:20px;
   word-spacing:-2px;
   color: #4d4a4a;
   }
@@ -848,12 +858,12 @@ border: 0;
      margin-top: 10px;
      display: block;
   }
-  .formulario_cliente label:nth-child(3)::after  {
+  .formulario_cliente label:nth-child(5)::after  {
     content: "(no requerido)";
    font-size: 14px;
  }
 .formulario_cliente input{
-  
+    caret-color: #0099FF;
      width: 70%;
   
   color: #000;
@@ -929,7 +939,7 @@ border: 0;
   }
 #title_fotter_pagos{
   position:relative;
-  top:50px;text-align: center;
+  top:px;text-align: center;
 }
 #fotter_pagos{
   
@@ -937,11 +947,11 @@ border: 0;
    height: 50px;
   width: 100%;
   text-align: center;
-  
+  top:-10px;
   position:relative;
-  top:30px;
-  padding-top: 5px;
-  padding: 20px;
+  
+  
+  
 }
 #fotter_pagos img{
 width: 55px;
@@ -949,8 +959,43 @@ height: 55px;
 
 }
 
+#footer{
+  margin-top: 50px;
+  display: flex;
+  border-top: 2px solid rgb(25, 125, 155);
+  flex-wrap: wrap;
+  width: 100%;
+  height: fit-content;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
+  background: #c6d5decd;
+  gap: 20px;
+ 
+}
+#info_footer{
+width: 900px;
+height: fit-content;
+text-align: center;
+padding-left: 10px;
+padding-right: 10px;
+font-family: 'Rubik', sans-serif;
+}
+#info_footer p{
+font-family: 'Rubik', sans-serif;
+text-align: center;
+}
+#footer_mapa{
+  width: 500px;
+  height: 350px;
+  
+  text-align: center;
+}
+.cont-map{
+  width: 600px;
+  height: 100%;
 
+}
 
   /** media screen**/
   @media only screen
@@ -958,25 +1003,10 @@ height: 55px;
   and (max-device-width:768px)
   {
 
-    .contenedor{
-
-      width: 150%;
-    }
  
-     #logo_menu{
-      position: fixed;
-     right: 30px;
-     position: absolute;
-     margin-top: 2px;
-
-    }
-.menu{
-
-  display: none;
-}
      #caract_product .nombre_prod_slide::first-letter,#caract_product .nombre_prod_slide{
      font-size: 15px;
-    right: 25%;
+     right: 25%;
      background: none;
     }
 
@@ -1025,10 +1055,6 @@ height: 55px;
       
     }
   
-   .img_logo{
-  
-     margin-left: 2000px;
-    }
     #caract_product h1:nth-child(3)::before,#caract_product h1:nth-child(3){
       content: "$";
       color: #14c211;
@@ -1041,9 +1067,7 @@ height: 55px;
     
     gap: 25px;
   }
-  #toogle_menu{
-  visibility: visible;
-  }
+  
   .caja nav li{
     text-align: center;
     width: 100px;
@@ -1055,7 +1079,7 @@ height: 55px;
   }
       .cont-map{
           width: 80%;
-          height:calc(100%);
+          height:80%;
       
       }
   
@@ -1075,10 +1099,10 @@ height: 55px;
 
   }
   
-  #info_prod, #formulario_env{
+  #info_prod{
   
     width: 100%;
-    height:450px;
+    height:fit-content;
   }
   
   #formulario_env{
@@ -1154,4 +1178,31 @@ padding: 0;
         
     }
 
+}
+
+@media only screen
+and (min-device-width: 120px)
+and (max-device-width:856px)
+{
+
+
+  .contenedor{
+
+    width: 150%;
+  }
+
+   #logo_menu{
+    position: fixed;
+   right: 30px;
+   position: absolute;
+   margin-top: 2px;
+
+  }
+.menu{
+
+display: none;
+}
+#toogle_menu{
+  visibility: visible;
+  }
 }
