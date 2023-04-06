@@ -149,8 +149,8 @@ this.classList.toggle("bx-rectangle")
                                 nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
                                 btn_whatsap.style.cursor="not-allowed"
                               }else{
-                                
-                                btn_whatsap.setAttribute('href', "https://wa.me/573026055289?text= Hola, minombre es"+" "+nombre_cliente.value+"%0A %0A"+"Quiesiera hecer un pedido de "+cant_prod.value+""+medida.innerHTML+" "+"de"+"  "+nombre_prod.innerHTML+"🙏"+"%0A %0A"+"Mi correo es:"+" "+email_cliente.value);
+                                let new_name=nombre_prod.innerHTML.replace("&amp;", "y");
+                                btn_whatsap.setAttribute('href', "https://wa.me/573026055289?text= Hola, minombre es"+" "+nombre_cliente.value+"%0A %0A"+"Quiesiera hecer un pedido de "+cant_prod.value+""+medida.innerHTML+" "+"de"+"  "+new_name+"🙏"+"%0A %0A"+"Mi correo es:"+" "+email_cliente.value+"%0A %0A"+"Mi documento es:"+" "+doc_cliente.value);
                                 //var loader=document.querySelector("#loader")
                                 cant_prod.style.border="2px solid black";
                                 nombre_cliente.style.border="2px solid black"
@@ -221,7 +221,9 @@ this.classList.toggle("bx-rectangle")
            var email_cliente=document.querySelector("#email_cliente");
           var cant_prod=document.querySelector("#cant_prod");
          var nombre_prod=document.querySelector("#nombre_view");
+       
 
+        
          cant_prod.value=" "
          nombre_cliente.value=" "
          email_cliente.value=" " 
@@ -229,12 +231,13 @@ this.classList.toggle("bx-rectangle")
          document.querySelector("#pop-up").classList.add("active")
          
          document.querySelector("#nombre_view").innerHTML=nombre
+        
          document.querySelector("#valor_view").innerHTML=valor
         document.querySelector("#desccripcion_view").innerHTML=descrip
         document.querySelector("#medida").innerHTML=medida
         
         document.querySelector("#image_prod").setAttribute('src',image)
-
+       
         document.querySelector("#close_view").onclick=function(){
 
          document.querySelector("#pop-up").classList.toggle("active")
