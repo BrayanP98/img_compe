@@ -7,11 +7,6 @@ const imagSchema= new Schema({
         unique:false,
         trim:true
            },
-    categoria:{
-        type:String,
-        required:true,
-        unique:false,
-    },
     codigo:{
         type:String,
        
@@ -42,6 +37,12 @@ const imagSchema= new Schema({
 
     imagen:{
         type:String
+    },
+    
+    mensaje:{
+        type:String,
+        required:true,
+        unique:false,
     },
 
      done: Boolean,},{

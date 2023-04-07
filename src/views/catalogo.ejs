@@ -22,16 +22,15 @@
       <img  id="logo_menu" src="/img/logo1.png" alt="" style="width: 100px; height: 60px;">
       <nav>
         
-          <ul class="menu" >
-              <li ><a href="#hogar">Hogar</a></li>        
-              <li><a href="#ferreteria">Ferreteria</a></li>
+          <ul class="menu" >    
+              <li><a href="#alimentos">Alimentos</a></li>
               <li><a href="#aseo_personal">Aseo Personal</a></li>
+              <li><a href="#ferreteria">Ferreteria</a></li>
+              <li ><a href="#hogar">Hogar</a></li>      
               <li><a href="#cosmetica">Cosmetica</a></li>
               <li><a href="#salud">Salud</a></li>
               <li><a href="#papeleria">Papeleria</a></li>
-              <li><a href="#varios">Varios</a></li>
-              
-              
+
            </ul> 
        <!--
         <div class="src">
@@ -52,7 +51,7 @@
 <script>
 
 var btn_menu=document.querySelector("#toogle_menu").onclick= function(){
-
+  
 
 let menu=document.querySelector(".menu")
 this.classList.toggle("bx-rectangle")
@@ -182,7 +181,10 @@ this.classList.toggle("bx-rectangle")
      
      
       <div id="promos">
+       <script>
        
+
+       </script>
          <% promo.forEach(function(prom) { %>
 
           <% if (prom.nombre==" ") { %>
@@ -193,15 +195,15 @@ this.classList.toggle("bx-rectangle")
             <div  class="cont_slider">
             
               <img id="img_slider4" src="<%= prom.imagen %>" alt="">
-              <button id="mostrar_pop" onclick="mostrar('<%= prom.nombre %>','<%= prom.valor %>','<%= prom.imagen %>')"></button>
+              <button id="mostrar_pop" onclick="mostrar('<%= prom.nombre %>','<%= prom.promo %>','<%= prom.imagen %>')"></button>
               <img class="img_logo" src="/img/logo1.png" alt="" style="width: 17vw; height: 15vw; position:absolute;display: flex; right: 35px; opacity: 0.6;" >
               <div id="caract_product">
             <h1 class="nombre_prod_slide"id="nombre_prom4"><%= prom.nombre %></h1>
             
-            <h1 class="valor_prod_slide"id="descuento4"><%= prom.promo %></h1>
+            <h1 class="valor_prod_slide"id="descuento4"><%= prom.valor %></h1>
             
-            <h1 id="new_valor4"><%= prom.valor %></h1>
-            <p class="mensaje_prod_slide" id="mensaje_promo4">solo por esta semana</p>
+            <h1 id="new_valor4"><%= prom.promo %></h1>
+            <p class="mensaje_prod_slide" id="mensaje_promo4"><%= prom.mensaje %></p>
           
               </div>
              
@@ -253,7 +255,32 @@ this.classList.toggle("bx-rectangle")
         <div   id="cont_product"  style="margin-top: 30px; padding: 10px; gap: 10px; left: 0; background: #f9f7f7;">
           
            
+       
+          <h1 style="text-align: center; margin-top: 50px;">Alimentos</h1>
+          <section id="alimentos" >
+          
+         <% prods.forEach(function(prod) { %>
+                     <% if (prod.categoria=="alimentos") { %>
+                    
+                     
+                       
+                   <div  id="catalogo">
+                     <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
+                      <a> <img src="<%= prod.imagen %>" alt="" > </a>
+                     
+                    <div class="descript" id="descript">
+                      <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
+                       <p class="product-category">Cod. <%= prod.codigo %></p>
+                       
+                       <h4 class="product-price">$<%= prod.valor %></h4>                  
+                      </div>       
+                  </div>
                
+                
+                  <% } %>
+                  <% }) %>
+                </section>
+
          <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
          <section id="aseo_personal" >
          

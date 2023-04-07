@@ -48,14 +48,13 @@ router.get('/update', (req,res)=>{
  router.get('/promo',async(req, res,)=>{
     try{
         const promo= new Promo();
-        promo.cantidad="122";
-        promo.categoria="bellezab";
-        promo.codigo="256b";
-        promo.nombre="aceite bebe";
-         promo.valor="12c000";
+         promo.cantidad="122";
+         promo.codigo="566";
+         promo.nombre="aceite maquina";
+         promo.valor="12000";
          promo.descripcion="estab";
-         promo.promo="2222"
-     
+         promo.promo="11500"
+         promo.mensaje="pague 12 lleve 13!";
          promo.imagen='/img/logo.png';
     
      

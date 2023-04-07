@@ -52,13 +52,29 @@ $(document).ready(function(){
                             <input type="text" name="valor" id="valor" placeholder="VALOR"required>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="categoria" id="categoria" placeholder="categoria"required>
+                            <input type="text" name="categoria" list="options" id="categoria" placeholder="categoria"required>
+
+                            <datalist id="options">
+                                <option value="hogar">
+                                <option value="ferreteria">
+                                <option value="aseo personal">
+                                <option value="salud">
+                                <option value="alimentos">
+                            </datalist>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="cantidad" id="cantidad" placeholder="cantidad"required>
+                            <input type="text" name="cantidad" id="cantidad"  placeholder="cantidad"required>
+                                
                         </div>
                         <div class="form-group">
-                            <input type="text" name="medida" id="medida" placeholder="medida"required>
+                            <input type="text" name="medida" id="medida" placeholder="medida" list="options1" required>
+                            <datalist id="options1">
+                                <option value="UNIDAD">
+                                <option value="Display X12">
+                                 <option value="Display X6">
+                                <option value="SOBRE">
+                               
+                            </datalist>
                         </div>
                         <div class="form-group my-3">
                             <textarea name="descripcion" class="form-control" placeholder="descripcion" required></textarea>

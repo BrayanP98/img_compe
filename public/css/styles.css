@@ -95,6 +95,7 @@
  justify-content: center;
  transition: 5s ease-in;
 }
+
 .caja nav li{
   text-align: center;
    width: 100px;
@@ -108,6 +109,7 @@
   border-bottom: 1px  solid #113dc2;
 }
 .caja nav li a{
+  font-family: 'Fjalla One', sans-serif;
 text-decoration: none;
 
 }
@@ -132,8 +134,28 @@ text-align: center;
 #head_recomend{
   text-align: center;
   font-family: 'Fjalla One', sans-serif;
-  overflow: hidden;
+  /*overflow: hidden;
+  /*width:70ch;*/
+ /* white-space: nowrap;
+ /*animation: typing 10s steps(19) , blink .5s step-end infinite;*/
+ /* border-right: 3px solid;*/
   
+  
+}
+
+@keyframes typing{
+
+  from{
+    width: 0;
+  }to{
+    width: 500px;
+  }
+}
+@keyframes blink{
+
+  50%{
+    border-color: transparent;
+  }
 }
  #titulo_cat
 {
@@ -430,21 +452,14 @@ padding-top: 10px;
   
     0% { transform: translateX(0); }
     10% { transform: translateX(0); }
+    35% { transform: translateX(0); }
+
+  70% { transform: translateX(-100%); }
+    100% { transform: translateX(-100%) ;   ;}
   
-    15% { transform: translateX(-100%); }
-    30% { transform: translateX(-100%);   ;}
+   
   
-    35% { transform: translateX(-200%); }
-    50% { transform: translateX(-200%); }
-  
-    55% { transform: translateX(-300%); }
-    70% { transform: translateX(-300%);  ; }
-  
-    75% { transform: translateX(-400%); }
-    90% { transform: translateX(-400%); }
-  
-    90% { transform: translateX(-500%); }
-    100% { transform: translateX(-500%); }
+ 
   }
   #promos{
     margin-top: 150px;
@@ -471,12 +486,12 @@ padding-top: 10px;
     width: 100vw;
     flex-shrink: 0;
    animation-name:slide;
-    animation-duration: 28s;
+    animation-duration: 20s;
     animation-iteration-count: infinite;
     animation-fill-mode: backwards;
     animation-direction: normal;
     animation-timing-function: ease-in-out;
-    transition: 0.10s all ease;
+    transition: 6s all ease-in-out;
     height: 350px;
    
   
@@ -579,7 +594,7 @@ padding-top: 10px;
     justify-content: center;
     }
     #catalogo:hover{
-      border: 1px solid rgba(0, 0, 0, 0.614);
+     
     }
     #cont_product  section{
       margin-top: 20px;
@@ -621,6 +636,7 @@ padding-top: 10px;
       width:100%;
       margin-top: 0px;
       transition: 0.3s;
+      background: white;
 
      }
      #catalogo p{
@@ -629,6 +645,7 @@ padding-top: 10px;
       margin-top: -16px;
      }
      #catalogo h3{
+      font-family: 'Fjalla One', sans-serif;
       line-height: 1.1;
      word-break: break-word;
       text-align: center;
@@ -637,14 +654,17 @@ padding-top: 10px;
       text-transform: capitalize;
      font-size: 12px;
      position: relative;
+     overflow: hidden;
+     height: 39px;
      }
      #catalogo  h4{
-     position: relative;
+      position: relative;
       font-size: 20px;
       font-family: 'Kanit', sans-serif;
       text-transform: capitalize;
       font-weight: bold;
       margin-top: -8px;
+      
       
      }
      @keyframes hover {
