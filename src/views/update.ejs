@@ -26,20 +26,42 @@
                             <input type="file" id="inputGroupFile01" name="image"class="form-control" placeholder=" chosee" aria-label="Example text with button addon"required >    
                           </div>
                           <div class="form-group">
-                            <input type="text" name="codigo" id="codigo" placeholder=" <%= producto.codigo %>"required>
+                            <input type="text" name="codigo" id="codigo" placeholder=" <%= producto.codigo %>" value="<%= producto.codigo %>">
+                            <datalist id="options1">
+                                <option value="<%= producto.nombre %>">
+                               
+                            </datalist>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="nombre" id="nombre" placeholder="<%= producto.nombre %>"required>
+                            <input type="text" name="nombre" id="nombre" placeholder="<%= producto.nombre %>" list="options1">
+
+                            <datalist id="options1">
+                                <option value="<%= producto.nombre %>">
+                               
+                               
+                            </datalist>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="valor" id="valor" placeholder="<%= producto.valor %>"required>
+                            <input type="text" name="valor" id="valor" value="<%= producto.valor%>">
+                            <style>
+                                #valor::before{
+
+                                    content: "$";
+                                }
+
+                            </style>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="valor" id="valor" placeholder="<%= producto.categoria %>"required>
+                            
+                            <input type="text" name="categoria" id="categoria"  value="<%= producto.categoria %>">
+                            <datalist id="options1">
+                                <option value="<%= producto.categoria %>">  
+                               
+                            </datalist>
                         </div>
                         
                         <div class="form-group my-3">
-                            <textarea name="descripcion" class="form-control" placeholder="<%= producto.descripcion %>" required></textarea>
+                            <textarea name="descripcion"  class="form-control" placeholder="<%= producto.descripcion %>" required ><%= producto.descripcion %></textarea>
                         </div>
                         <div class="form-group">
                             <button  type="submit" class="btn btn-success btn-block"> actualizar</button>

@@ -23,15 +23,48 @@
       <nav>
         
           <ul class="menu" >    
-              <li><a href="#alimentos">Alimentos</a></li>
-              <li><a href="#aseo_personal">Aseo Personal</a></li>
-              <li><a href="#ferreteria">Ferreteria</a></li>
-              <li ><a href="#hogar">Hogar</a></li>      
-              <li><a href="#cosmetica">Cosmetica</a></li>
-              <li><a href="#salud">Salud</a></li>
-              <li><a href="#papeleria">Papeleria</a></li>
+              <li class="sub"><a class="item_menu active" href="#alimentos">Alimentos</a></li>
+              <li class="sub"><a class="item_menu" href="#aseo_personal">Aseo Personal</a></li>
+              <li class="sub"><a class="item_menu" href="#ferreteria">Ferreteria</a></li>
+              <li><a class="item_menu" href="#hogar">Hogar</a></li>      
+              <li><a class="item_menu" href="#cosmetica">Cosmetica</a></li>
+              <li><a class="item_menu" href="#salud">Salud</a></li>
+              <li><a class="item_menu" href="#papeleria">Papeleria</a></li>
 
            </ul> 
+
+           <script>
+           let menu=document.querySelector(".menu")
+          
+        let hijos= menu.children;
+
+//alert(hijos.length)
+
+
+for (let index = 0; index < hijos.length; index++) {
+    let hijastro=hijos[index];
+
+    let bebe= hijastro.children;
+     bebe[0].style.color="blue"
+     bebe[0].onclick=function(){
+        this.classList.toggle("active")
+
+     }
+     
+  
+
+
+
+     
+
+  
+
+    
+}
+
+
+
+           </script>
        <!--
         <div class="src">
 
@@ -295,7 +328,7 @@ this.classList.toggle("bx-rectangle")
                     
                    <div class="descript" id="descript">
                      <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                      <p class="product-category">Cod. <%= prod.codigo %></p>
+                      <p class="product-cod">Cod. <%= prod.codigo %></p>
                       
                       <h4 class="product-price">$<%= prod.valor %></h4>                  
                      </div>       
