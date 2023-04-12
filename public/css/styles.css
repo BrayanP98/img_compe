@@ -690,7 +690,7 @@ padding-top: 10px;
 background: transparent;
 position:absolute;width: 
 150px; height: 150px;
-  
+  cursor: pointer;
  border: 0;
      
      }
@@ -1009,22 +1009,28 @@ height: 55px;
   height: fit-content;
   padding-top: 10px;
   padding-bottom: 10px;
-
+ justify-content: center;
   background: #c6d5decd;
   gap: 20px;
  
 }
 #info_footer{
-width: 900px;
+width: 700px;
 height: fit-content;
 text-align: center;
-padding-left: 10px;
-padding-right: 10px;
+
+
 font-family: 'Rubik', sans-serif;
 }
 #info_footer p{
+  text-align: center;
 font-family: 'Rubik', sans-serif;
 text-align: center;
+padding-left: 10px;
+padding-right: 10px;
+word-wrap: break-word; 
+
+hyphens: none;
 }
 #footer_mapa{
   width: 500px;
