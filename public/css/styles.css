@@ -101,18 +101,26 @@
    width: 100px;
     border-bottom: 1px  solid #c21117;
     height: 30px;
-   
+ 
 }
 
 .caja nav li:hover{
 
   border-bottom: 1px  solid #113dc2;
 }
-.caja nav li a{
+.item_menu{
   font-family: 'Fjalla One', sans-serif;
-text-decoration: none;
+  text-decoration: none;
 
 }
+
+.item_menu.active{
+  font-family: 'Fjalla One', sans-serif;
+  text-decoration: none;
+  color: rgb(0, 195, 255);
+
+}
+
 
 #container{
   width: 100%;
@@ -640,12 +648,13 @@ padding-top: 10px;
 
      }
      #catalogo p{
-     font-size: 10px;
+     font-size: 14px;
       position: relative;
       margin-top: -16px;
      }
      #catalogo h3{
-      font-family: 'Fjalla One', sans-serif;
+      font-family: 'Rubik', sans-serif;
+
       line-height: 1.1;
      word-break: break-word;
       text-align: center;
