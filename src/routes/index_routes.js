@@ -129,17 +129,20 @@ router.post('/update/:id',async(req, res)=>{
     const id2=req.params.id;
    
     //const id1="63487cf80007932e1ce928a8";
-   const filein=(req.file.path);
+   const filein=(req
+    .file.path);
  try{
         const img= new Image();
      img.codigo=req.body.codigo;
      img.nombre=req.body.nombre;
      img.valor=req.body.valor;
      img.descripcion=req.body.descripcion;
-     img.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
-     const updateProd=await Image.findByIdAndUpdate(id2,req.body).lean();
-     //const updateProd=await Image.findOneAndReplace(id2,img)
-    // console.log(img)
+    let imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
+ const updateProd=await Image.findByIdAndUpdate(id2,req.body).lean();
+ const updateProdimg=await Image.findByIdAndUpdate(id2,{imagen}).lean();
+ //   const updateProd=await Image.findOneAndReplace(id2,req.body)
+   //const updateProdimg=await Image.findOneAndReplace(id2,{imagen})
+    // console.log(req.body.image)
     
      
      

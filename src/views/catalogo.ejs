@@ -23,7 +23,7 @@
       <nav>
         
           <ul class="menu" >    
-              <li class="sub"><a class="item_menu active" href="#alimentos">Alimentos</a></li>
+              <li class="sub"> <a class="item_menu active" href="#alimentos">Alimentos<div id="li_hover"> </div>   </a></li>
               <li class="sub"><a class="item_menu" href="#aseo_personal">Aseo Personal</a></li>
               <li class="sub"><a class="item_menu" href="#ferreteria">Ferreteria</a></li>
               <li><a class="item_menu" href="#hogar">Hogar</a></li>      
@@ -36,18 +36,19 @@
            <script>
            let menu=document.querySelector(".menu")
           
-        let hijos= menu.children;
+              let hijos= menu.children;
 
 //alert(hijos.length)
 
 
-for (let index = 0; index < hijos.length; index++) {
-    let hijastro=hijos[index];
+              for (let index = 0; index < hijos.length; index++) {
+                let hijastro=hijos[index];
 
-    let bebe= hijastro.children;
-     bebe[0].style.color="blue"
-     bebe[0].onclick=function(){
-        this.classList.toggle("active")
+              let bebe= hijastro.children;
+              bebe[0].style.color="blue"
+              bebe[0].onclick=function(){
+                bebe[0].classList.remove("active")
+                  this.classList.add("active")
 
      }
      
@@ -120,7 +121,7 @@ this.classList.toggle("bx-rectangle")
                 <form action=""  class="formulario_cliente">
                      
                     <label for="nombre">Nombre*</label>
-                    <input type="text"  id="nombre_cliente1" required>
+                    <input type="text"  id="nombre_cliente1" required >
 
                     <label for="nombre">Documento identidad*</label>
                     <input type="number"  id="documento_cliente1" required>
@@ -151,31 +152,30 @@ this.classList.toggle("bx-rectangle")
           
         </div>
         <script>
-                 var btn_whatsap= document.getElementById("whatsapp");
-       var nombre_cliente=document.querySelector("#nombre_cliente1");
-       var doc_cliente=document.querySelector("#documento_cliente1"); 
+                var btn_whatsap= document.getElementById("whatsapp");
+                var nombre_cliente=document.querySelector("#nombre_cliente1");
+                var doc_cliente=document.querySelector("#documento_cliente1"); 
                 var email_cliente=document.querySelector("#email_cliente");
                 var cant_prod=document.querySelector("#cant_prod");
                 var nombre_prod=document.querySelector("#nombre_view");
                 var medida_prod=document.querySelector("#medida"); 
-                         cant_prod.style.border="2px solid black";
-                                nombre_cliente.style.border="2px solid black";
-                          btn_whatsap.removeAttribute('href');
-
+                 cant_prod.style.border="2px solid black";
+                nombre_cliente.style.border="2px solid black";
+                btn_whatsap.removeAttribute('href');
+                doc_cliente.value=0;
                           nombre_cliente.addEventListener('keydown', (event) => {
                                 btn_whatsap.style.cursor="pointer"
                                 
-                            })
+                              })
                           
                             btn_whatsap.onclick= function(){
 
-                              cant_prod.innerHTML=" "
-                             nombre_cliente.innerHTML=" "
-                              email_cliente.innerHTML=" "  
-                              doc_cliente.innerHTML=" "  
                               
-                              if(nombre_cliente.value=="" && cant_prod.value==0){
+                              
+                              if(nombre_cliente.value=="" || doc_cliente.value==0 ){
                                btn_whatsap.removeAttribute('href');
+                               doc_cliente.style.border="2px solid red";
+                               doc_cliente.setAttribute('placeholder', "ingrese documento porfavor");
                                 cant_prod.style.border="2px solid red";
                                 nombre_cliente.style.border="2px solid red"
                                 nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
@@ -204,6 +204,7 @@ this.classList.toggle("bx-rectangle")
                            
                               
                             }
+                        
         </script>
       </div>
       <div class="loader"id="loader">
@@ -259,8 +260,8 @@ this.classList.toggle("bx-rectangle")
        
 
         
-         cant_prod.value=" "
-         nombre_cliente.value=" "
+         cant_prod.value=0
+         nombre_cliente.value=""
          email_cliente.value=" " 
 
          document.querySelector("#pop-up").classList.add("active")

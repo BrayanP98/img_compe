@@ -19,7 +19,7 @@
     left: 0;
 }
 #logo_menu{
-  margin-top: 10px;
+  margin-top: 6px;
   position: fixed;
   
 }
@@ -101,26 +101,54 @@
    width: 100px;
     border-bottom: 1px  solid #c21117;
     height: 30px;
+   
  
 }
 
 .caja nav li:hover{
-
+  
+   
   border-bottom: 1px  solid #113dc2;
 }
+
+@keyframes pass{
+  from{
+    width: 20px;
+  }to{
+    width: 100px;
+  }
+
+
+}
 .item_menu{
-  font-family: 'Fjalla One', sans-serif;
+  font-size: 15px;
+  font-family: 'Rubik', sans-serif;
   text-decoration: none;
 
 }
-
+#li_hover{
+ 
+  text-align: center;
+  width: fit-content;
+   border-bottom: 1px  solid #c21117;
+   height: 30px;
+   
+}
+#li_hover:hover{
+  background: #113dc2;
+  animation: pass 5s infinite;
+}
 .item_menu.active{
-  font-family: 'Fjalla One', sans-serif;
+  
+  font-family: 'Rubik', sans-serif;
   text-decoration: none;
   color: rgb(0, 195, 255);
 
 }
+.item_menu:hover{
+  color: #4c9ae9;
 
+}
 
 #container{
   width: 100%;
