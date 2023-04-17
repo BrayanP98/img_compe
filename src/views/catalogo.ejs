@@ -1,709 +1,773 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-  
-    <link rel="stylesheet" href="/css/styles.css"></link>
-    <link rel="shortcut icon" href="/img/logo1.png">
-    <title>El Competidor</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <link rel="stylesheet" href="/css/styles.css">
+  </link>
+  <link rel="shortcut icon" href="/img/logo1.png">
+  <title>El Competidor</title>
 </head>
 
 <body>
-  
-
-<div class="caja">
-
-      <!--<h1 class="logo"><img src="img/logo.png" alt=""></h1>-->
-      <input type="checkbox" class='bx bx-menu'  id="toogle_menu">
-      <span class="tooltip_categ">Categorias</span>
-      <img  id="logo_menu" src="/img/logo1.png" alt="" style="width: 100px; height: 60px;">
-      <nav>
-        
-          <ul class="menu" >    
-              <li class="sub"> <a class="item_menu active" href="#alimentos">Alimentos<div id="li_hover"> </div>   </a></li>
-              <li class="sub"><a class="item_menu" href="#aseo_personal">Aseo Personal</a></li>
-              <li class="sub"><a class="item_menu" href="#ferreteria">Ferreteria</a></li>
-              <li><a class="item_menu" href="#hogar">Hogar</a></li>      
-              <li><a class="item_menu" href="#cosmetica">Cosmetica</a></li>
-              <li><a class="item_menu" href="#salud">Salud</a></li>
-              <li><a class="item_menu" href="#papeleria">Papeleria</a></li>
-
-           </ul> 
-
-           <script>
-           let menu=document.querySelector(".menu")
-          
-              let hijos= menu.children;
-
-//alert(hijos.length)
 
 
-              for (let index = 0; index < hijos.length; index++) {
-                let hijastro=hijos[index];
+  <div class="caja">
 
-              let bebe= hijastro.children;
-              bebe[0].style.color="blue"
-              bebe[0].onclick=function(){
-                bebe[0].classList.remove("active")
-                  this.classList.add("active")
+    <!--<h1 class="logo"><img src="img/logo.png" alt=""></h1>-->
+    <input type="checkbox" class='bx bx-menu' id="toogle_menu">
+    <span class="tooltip_categ">Categorias</span>
+    <img id="logo_menu" src="/img/logo1.png" alt="" style="width: 100px; height: 60px;">
+    <nav>
 
-     }
-     
-  
+      <ul class="menu">
+        <li class="sub"> <a class="item_menu active" href="#alimentos">Alimentos<div id="li_hover"> </div> </a></li>
+        <li class="sub"><a class="item_menu" href="#aseo_personal">Aseo Personal</a></li>
+        <li class="sub"><a class="item_menu" href="#ferreteria">Ferreteria</a></li>
+        <li><a class="item_menu" href="#hogar">Hogar</a></li>
+        <li><a class="item_menu" href="#cosmetica">Cosmetica</a></li>
+        <li><a class="item_menu" href="#salud">Salud</a></li>
+        <li><a class="item_menu" href="#papeleria">Papeleria</a></li>
+
+      </ul>
+
+      <script>
+        let caja = document.querySelector(".caja")
+        caja.style.background = "<%= general[0].color%>"
+
+        let menu = document.querySelector(".menu")
+
+        let hijos = menu.children;
+
+        //alert(hijos.length)
 
 
+        for (let index = 0; index < hijos.length; index++) {
+          let hijastro = hijos[index];
 
-     
+          let bebe = hijastro.children;
+          bebe[0].style.color = "blue"
+          bebe[0].onclick = function () {
+            bebe[0].classList.remove("active")
+            this.classList.add("active")
 
-  
+          }
 
-    
-}
+        }
 
 
 
-           </script>
-       <!--
-        <div class="src">
+      </script>
 
-             <i class='bx bx-search-alt-2' ></i>
-           
-             <input type="text" placeholder="search">
-             <% prods.forEach(function(prod) { %>
+    </nav>
+
+  </div>
+  <script>
+
+    var btn_menu = document.querySelector("#toogle_menu").onclick = function () {
 
 
+      let menu = document.querySelector(".menu")
+      this.classList.toggle("bx-rectangle")
+      menu.classList.toggle('active');
+    }
+  </script>
 
-              <% }) %>
-           </div>
-       -->    
-  </nav>
+  <div class="container-fluid">
+    <div class="pop-up" id="pop-up">
 
-</div>
-<script>
-
-var btn_menu=document.querySelector("#toogle_menu").onclick= function(){
-  
-
-let menu=document.querySelector(".menu")
-this.classList.toggle("bx-rectangle")
- menu.classList.toggle('active');
-}
-</script>
-
-<div class="container-fluid"  style="  ">
-  <div class="pop-up" id="pop-up">
-    
       <div class="pop-wrap" id="pop-wrap">
         <button id="close_view"> X salir</button>
         <div class="subscription">
-          
-          
-         
-            <div id="cont_img">
-                <img id="image_prod"src="" alt="">
-    
-            </div>
-            <div id="info_prod">
-              <h1 id="nombre_view">nombre prod</h1>
-              <h1 id="valor_view"></h1>
-              <p id="medida">caja</p>
-              <h2 id="title_descript">Descipcion</h2>
-              <p id="desccripcion_view">  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui iure maiores fuga necessitatibus illum aliquid, possimus 
-                odio nesciunt. In tenetur harum ad soluta nostrum illo dolor assumenda dolorem numquam deserunt.</p>
-    
-    
-            </div>
-            <div id="formulario_env">
-              <h1 id="title_form">Datos Pedido </h1>
-                <form action=""  class="formulario_cliente">
-                     
-                    <label for="nombre">Nombre*</label>
-                    <input type="text"  id="nombre_cliente1" required >
 
-                    <label for="nombre">Documento identidad*</label>
-                    <input type="number"  id="documento_cliente1" required>
-        
-                    <label for="email">Email</label>
-                    <input type="email"  id="email_cliente" placeholder="email@dominio.com" >   
-        
-                    <label for="contacto">Cantidad producto*</label>
-        
-                    <input type="number"  id="cant_prod" required>
-    
-                    
-                </form>
-                <div class="cont-whatsapp">
-                    <a   target="_blank" id="whatsapp" style="width: 200px; height: 50px;"> <img src="/img/whatsapp.png" alt="" style="width: 50px; height: 50px; ">
-                    <span>Hacer Pedido</span>
-                    </a>
-                </div>
-                  <h5  id="title_fotter_pagos"> Metodos de pago</h5>
-                <div id="fotter_pagos">
-                  <img src="/img/logo_nequi.webp" alt="">
-                  <img src="/img/bancolombia.webp" alt="">
-                  <img src="/img/daviplata.webp" alt="">
-                  <img src="/img/al_recivir.webp" alt="">
-                </div>
+
+
+          <div id="cont_img">
+            <img id="image_prod" src="" alt="">
+
+          </div>
+          <div id="info_prod">
+            <h1 id="nombre_view">nombre prod</h1>
+            <h1 id="valor_view"></h1>
+            <p id="medida">caja</p>
+            <h2 id="title_descript">Descipcion</h2>
+            <p id="desccripcion_view"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui iure maiores fuga
+              necessitatibus illum aliquid, possimus
+              odio nesciunt. In tenetur harum ad soluta nostrum illo dolor assumenda dolorem numquam deserunt.</p>
+
+
+          </div>
+          <div id="formulario_env">
+            <h1 id="title_form">Datos Pedido </h1>
+            <form action="" class="formulario_cliente">
+
+              <label for="nombre">Nombre*</label>
+              <input type="text" id="nombre_cliente1" required>
+
+              <label for="nombre">Documento identidad*</label>
+              <input type="number" id="documento_cliente1" required>
+
+              <label for="direccion_cliente">Direcion de entrega*</label>
+              <input type="text" id="direccion_cliente" placeholder="cra 2#8-56">
+
+              <label for="contacto">Cantidad producto*</label>
+              <input type="number" id="cant_prod" required>
+
+
+            </form>
+            <div class="cont-whatsapp">
+            
+                <a target="_blank" id="whatsapp" style="width: 200px; height: 50px;"> <img src="/img/whatsapp.png"
+                    alt="" style="width: 50px; height: 50px; ">
+                  <span>Hacer Pedido</span>
+                </a>
+               
             </div>
-           
-          
+            <h5 id="title_fotter_pagos"> Metodos de pago</h5>
+            <div id="fotter_pagos">
+              <img src="/img/logo_nequi.webp" alt="">
+              <img src="/img/bancolombia.webp" alt="">
+              <img src="/img/daviplata.webp" alt="">
+              <img src="/img/al_recivir.webp" alt="">
+            </div>
+          </div>
+
+
         </div>
         <script>
-                var btn_whatsap= document.getElementById("whatsapp");
-                var nombre_cliente=document.querySelector("#nombre_cliente1");
-                var doc_cliente=document.querySelector("#documento_cliente1"); 
-                var email_cliente=document.querySelector("#email_cliente");
-                var cant_prod=document.querySelector("#cant_prod");
-                var nombre_prod=document.querySelector("#nombre_view");
-                var medida_prod=document.querySelector("#medida"); 
-                 cant_prod.style.border="2px solid black";
-                nombre_cliente.style.border="2px solid black";
-                btn_whatsap.removeAttribute('href');
-                doc_cliente.value=0;
-                          nombre_cliente.addEventListener('keydown', (event) => {
-                                btn_whatsap.style.cursor="pointer"
-                                
-                              })
-                          
-                            btn_whatsap.onclick= function(){
+          var btn_whatsap = document.getElementById("whatsapp");
+          var nombre_cliente = document.querySelector("#nombre_cliente1");
+          var doc_cliente = document.querySelector("#documento_cliente1");
+          var direccion_cliente = document.querySelector("#direccion_cliente");
+          var cant_prod = document.querySelector("#cant_prod");
+          var nombre_prod = document.querySelector("#nombre_view");
+          var medida_prod = document.querySelector("#medida");
+          cant_prod.style.border = "2px solid black";
+          nombre_cliente.style.border = "2px solid black";
+          btn_whatsap.removeAttribute('href');
+          doc_cliente.value = 0;
+          nombre_cliente.addEventListener('keydown', (event) => {
+           btn_whatsap.style.cursor = "pointer"
 
-                              
-                              
-                              if(nombre_cliente.value=="" || doc_cliente.value==0 ){
-                               btn_whatsap.removeAttribute('href');
-                               doc_cliente.style.border="2px solid red";
-                               doc_cliente.setAttribute('placeholder', "ingrese documento porfavor");
-                                cant_prod.style.border="2px solid red";
-                                nombre_cliente.style.border="2px solid red"
-                                nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
-                                btn_whatsap.style.cursor="not-allowed"
-                              }else{
-                                let new_name=nombre_prod.innerHTML.replace("&amp;", "y");
-                                btn_whatsap.setAttribute('href', "https://wa.me/573026055289?text= Hola, minombre es"+" "+nombre_cliente.value+"%0A %0A"+"Quiesiera hecer un pedido de "+cant_prod.value+""+medida.innerHTML+" "+"de"+"  "+new_name+"🙏"+"%0A %0A"+"Mi correo es:"+" "+email_cliente.value+"%0A %0A"+"Mi documento es:"+" "+doc_cliente.value);
-                                //var loader=document.querySelector("#loader")
-                                cant_prod.style.border="2px solid black";
-                                nombre_cliente.style.border="2px solid black"
-                                nombre_cliente.setAttribute('placeholder', "");
-                                btn_whatsap.style.cursor="pointer"
-                                
-                             
-                        
-                             
-                              doc_cliente.value=" "   
-                              cant_prod.value=""
-                              nombre_cliente.value=""
-                              email_cliente.value=""
-                              
-                              btn_whatsap.style.cursor="not-allowed"
-                          //   btn_whatsap.removeAttribute('href');
-                            //  location.reload()
-                              }
-                           
-                              
-                            }
-                        
+          })
+
+          btn_whatsap.onclick = function () {
+
+
+
+            if (nombre_cliente.value == "" || doc_cliente.value == 0) {
+              btn_whatsap.removeAttribute('href');
+              doc_cliente.style.border = "2px solid red";
+              doc_cliente.setAttribute('placeholder', "ingrese documento porfavor");
+              cant_prod.style.border = "2px solid red";
+              nombre_cliente.style.border = "2px solid red"
+              nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
+              btn_whatsap.style.cursor = "not-allowed"
+            } else {
+              let new_name = nombre_prod.innerHTML.replace("&amp;", "y");
+              btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value + "" + medida.innerHTML + " " + "de" + "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
+              //var loader=document.querySelector("#loader")
+              cant_prod.style.border = "2px solid black";
+              nombre_cliente.style.border = "2px solid black"
+              nombre_cliente.setAttribute('placeholder', "");
+              btn_whatsap.style.cursor = "pointer"
+
+
+
+
+              doc_cliente.value = " "
+              cant_prod.value = ""
+              nombre_cliente.value = ""
+              direccion_cliente.value = ""
+
+              btn_whatsap.style.cursor = "not-allowed"
+              //   btn_whatsap.removeAttribute('href');
+              //  location.reload()
+            }
+
+
+          }
+
         </script>
       </div>
-      <div class="loader"id="loader">
+      <div class="loader" id="loader">
         <div class="justify-content-center jimu-primary-loading"></div>
       </div>
-      </div>
-   
-     
-     
-      <div id="promos">
-       <script>
-       
+    </div>
 
-       </script>
-         <% promo.forEach(function(prom) { %>
+    <div id="promos">
 
-          <% if (prom.nombre==" ") { %>
-       
-           
-           <% } else{ %>  
+      <% promo.forEach(function(prom) { %>
+        <% if (prom.nombre==" " ) { %>
+          <% } else{ %>
 
-            <div  class="cont_slider">
-            
+            <div class="cont_slider">
+
               <img id="img_slider4" src="<%= prom.imagen %>" alt="">
-              <button id="mostrar_pop" onclick="mostrar('<%= prom.nombre %>','<%= prom.promo %>','<%= prom.imagen %>')"></button>
-              <img class="img_logo" src="/img/logo1.png" alt="" style="width: 17vw; height: 15vw; position:absolute;display: flex; right: 35px; opacity: 0.6;" >
+              <button id="mostrar_pop"
+                onclick="mostrar('<%= prom.nombre %>','<%= prom.promo %>','<%= prom.imagen %>')"></button>
+              <img class="img_logo" src="/img/logo1.png" alt=""
+                style="width: 17vw; height: 15vw; position:absolute;display: flex; right: 35px; opacity: 0.6;">
               <div id="caract_product">
-            <h1 class="nombre_prod_slide"id="nombre_prom4"><%= prom.nombre %></h1>
-            
-            <h1 class="valor_prod_slide"id="descuento4"><%= prom.valor %></h1>
-            
-            <h1 id="new_valor4"><%= prom.promo %></h1>
-            <p class="mensaje_prod_slide" id="mensaje_promo4"><%= prom.mensaje %></p>
-          
+                <h1 class="nombre_prod_slide" id="nombre_prom4">
+                  <%= prom.nombre %>
+                </h1>
+
+                <h1 class="valor_prod_slide" id="descuento4">
+                  <%= prom.valor %>
+                </h1>
+
+                <h1 id="new_valor4">
+                  <%= prom.promo %>
+                </h1>
+                <p class="mensaje_prod_slide" id="mensaje_promo4">
+                  <%= prom.mensaje %>
+                </p>
+
               </div>
-             
-               
-                 </div>
-                 <% } %>
-         <% }) %>
-        
-         
-        
-      </div>
-      <script>
-
-               
-        function mostrar(nombre, valor, image,descrip,medida){
-        var nombrecliente =document.querySelector("#nombre_cliente1");
-           var email_cliente=document.querySelector("#email_cliente");
-          var cant_prod=document.querySelector("#cant_prod");
-         var nombre_prod=document.querySelector("#nombre_view");
-       
-
-        
-         cant_prod.value=0
-         nombre_cliente.value=""
-         email_cliente.value=" " 
-
-         document.querySelector("#pop-up").classList.add("active")
-         
-         document.querySelector("#nombre_view").innerHTML=nombre
-        
-         document.querySelector("#valor_view").innerHTML=valor
-        document.querySelector("#desccripcion_view").innerHTML=descrip
-        document.querySelector("#medida").innerHTML=medida
-        
-        document.querySelector("#image_prod").setAttribute('src',image)
-       
-        document.querySelector("#close_view").onclick=function(){
-
-         document.querySelector("#pop-up").classList.toggle("active")
-        }
-        
-        }
-    
-
-       
-          </script>
-      <h1 id="titulo_cat" style="text-align: center; ;">CATALOGO PRODUCTOS EL COMPETIDOR</h1>
-      <p id="head_recomend">Haz clik sobre la imagen , podras ver la descripcion del producto y ordenar tu pedido.</p>
-        <div   id="cont_product"  style="margin-top: 30px; padding: 10px; gap: 10px; left: 0; background: #f9f7f7;">
-          
-           
-       
-          <h1 style="text-align: center; margin-top: 50px;">Alimentos</h1>
-          <section id="alimentos" >
-          
-         <% prods.forEach(function(prod) { %>
-                     <% if (prod.categoria=="alimentos") { %>
-                    
-                     
-                       
-                   <div  id="catalogo">
-                     <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                      <a> <img src="<%= prod.imagen %>" alt="" > </a>
-                     
-                    <div class="descript" id="descript">
-                      <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                       <p class="product-category">Cod. <%= prod.codigo %></p>
-                       
-                       <h4 class="product-price">$<%= prod.valor %></h4>                  
-                      </div>       
-                  </div>
-               
-                
-                  <% } %>
-                  <% }) %>
-                </section>
-
-         <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
-         <section id="aseo_personal" >
-         
-        <% prods.forEach(function(prod) { %>
-                    <% if (prod.categoria=="aseo personal") { %>
-                   
-                    
-                      
-                  <div  id="catalogo">
-                    <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                     <a> <img src="<%= prod.imagen %>" alt="" > </a>
-                    
-                   <div class="descript" id="descript">
-                     <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                      <p class="product-cod">Cod. <%= prod.codigo %></p>
-                      
-                      <h4 class="product-price">$<%= prod.valor %></h4>                  
-                     </div>       
-                 </div>
-              
-               
-                 <% } %>
-                 <% }) %>
-               </section>
-               <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
-               <section class="seccion" id="hogar">
-              <% prods.forEach(function(prod) { %>
-                          <% if (prod.categoria=="hogar") { %> 
-                            
-                        <div  id="catalogo">
-                          <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                           <a > <img src="<%= prod.imagen %>" alt="" ></a>
-                         <div class="descript" id="descript">
-                           <h3 class="product-name"><a id="nombre-prod"> <%= prod.nombre %></a></h3>
-                            <p class="product-category">Cod. <%= prod.codigo %></p>
-                            
-                            <h4 class="product-price">$<%= prod.valor %></h4>                  
-                           </div>       
-                       </div>
-                    
-                     
-                       <% } %>
-                       <% }) %>
-                     </section>
-
-               <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
-               <section class="seccion" id="ferreteria">
-              <% prods.forEach(function(prod) { %>
-                          <% if (prod.categoria=="ferreteria") { %> 
-                            
-                        <div  id="catalogo">
-                          <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                           <a> <img src="<%= prod.imagen %>" alt="" ></a>
-                         <div class="descript" id="descript">
-                           <h3 class="product-name"><a id="nombre-prod"> <%= prod.nombre %></a></h3>
-                            <p class="product-category">Cod. <%= prod.codigo %></p>
-                            
-                            <h4 class="product-price">$<%= prod.valor %></h4>                  
-                           </div>       
-                       </div>
-                    
-                     
-                       <% } %>
-                       <% }) %>
-                     </section>
-                     <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
-                     <section class="seccion" id="salud">
-                    <% prods.forEach(function(prod) { %>
-                                <% if (prod.categoria=="salud") { %> 
-                                  
-                              <div  id="catalogo">
-                                 <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                                 <a > <img src="<%= prod.imagen %>" alt="" ></a>
-                               <div class="descript" id="descript">
-                                 <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                                  <p class="product-category">Cod. <%= prod.codigo %></p>
-                                  
-                                  <h4 class="product-price">$<%= prod.valor %></h4>                  
-                                 </div>       
-                             </div>
-                          
-                           
-                             <% } %>
-                             <% }) %>
-                           </section>
-                           <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
-                           <section class="seccion" id="cosmetica">
-                          <% prods.forEach(function(prod) { %>
-                                      <% if (prod.categoria=="cosmetica") { %> 
-                                        
-                                    <div  id="catalogo">
-                                       <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                                       <a > <img src="<%= prod.imagen %>" alt="" ></a>
-                                     <div class="descript" id="descript">
-                                       <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                                        <p class="product-category">Cod. <%= prod.codigo %></p>
-                                        
-                                        <h4 class="product-price">$<%= prod.valor %></h4>                  
-                                       </div>       
-                                   </div>
-                                
-                                 
-                                   <% } %>
-                                   <% }) %>
-                                 </section>
-                           <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
-                           <section class="seccion" id="papeleria">
-                          <% prods.forEach(function(prod) { %>
-                                      <% if (prod.categoria=="papeleria") { %> 
-                                        
-                                    <div  id="catalogo">
-                                      <button  id="revisar" onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')"> </button>
-                                       <a > <img src="<%= prod.imagen %>" alt="" ></a>
-                                     <div class="descript" id="descript">
-                                       <h3 class="product-name"><a  id="nombre-prod"> <%= prod.nombre %></a></h3>
-                                        <p class="product-category">Cod. <%= prod.codigo %></p>
-                                        
-                                        <h4 class="product-price">$<%= prod.valor %></h4>                  
-                                       </div>       
-                                   </div>
-                                
-                                 
-                                   <% } %>
-                                   <% }) %>
-                                 </section>
-                 <div>      
-                  </div>
-                 </div>
-              
-                 
-                    
-                
-
-              
 
 
-        </div>
-
-
+            </div>
+            <% } %>
+              <% }) %>
 
 
     </div>
-    <style>
-
-.wrapper {
-  position: fixed;
-  z-index: 9999;
-  top: 65%;
-  margin-left:85%; 
- gap: 5px;
-  padding: 5px;
-  right: 1%;
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding-left:50px;
-  margin-top: 1%;
-  height: 0px;
-  width:50px;
-  float: right;
-  padding-top: 20px;
-  font-family: "Poppins", sans-serif;
-  justify-content: center;
-}
-.wrapper img {
-  height: auto;
-  width: 100%;
-  
-  
-}
-.wrapper .icon {
-  
-  float: left;
-  visibility: visible;
-  position: relative;
-  background: none;
-  border-radius: 50%;
-  bottom: auto;
-  
-  margin: auto;
-  width: 2.5em;
-  height: 2.5em;
-  font-size: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.wrapper .tooltip {
- 
-  position: absolute;
-  top: 0;
-  font-size: 14px;
-  background: #fff;
-  color: #fff;
-  padding: 5px 8px;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
- 
-}
-
-.wrapper .tooltip::before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  background: #fff;
-  bottom: -3px;
-  left: 50%;
-  transform: translate(-50%) rotate(45deg);
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.wrapper .icon:hover .tooltip {
-  top: -45px;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.wrapper .icon:hover span,
-.wrapper .icon:hover .tooltip {
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-}
-.wrapper .facebook:hover,.wrapper .twitter:hover
-,.wrapper .instagram:hover{
-  transform: scale(1.2);
-}
-.wrapper .facebook{
-
-  
-   transform: scale(1.1);
-}
-.wrapper .facebook:hover .tooltip,
-.wrapper .facebook:hover .tooltip::before {
- 
-  background: #0566e4e5;
-  
-}
+    <script>
 
 
-.wrapper .twitter:hover .tooltip,
-.wrapper .twitter:hover .tooltip::before {
-  background: #62f47aee;
-  
-  color: #fff;
-}
+      function mostrar(nombre, valor, image, descrip, medida) {
+        var nombrecliente = document.querySelector("#nombre_cliente1");
+        var direccion_cliente = document.querySelector("#direccion_cliente");
+        var cant_prod = document.querySelector("#cant_prod");
+        var nombre_prod = document.querySelector("#nombre_view");
 
 
-.wrapper .instagram:hover .tooltip,
-.wrapper .instagram:hover .tooltip::before {
-  background: #e4405ee9;
-  
-  color: #fff;
- 
 
-}
+        cant_prod.value = 0
+        nombre_cliente.value = ""
+        direccion_cliente.value = " "
+
+        document.querySelector("#pop-up").classList.add("active")
+
+        document.querySelector("#nombre_view").innerHTML = nombre
+
+        document.querySelector("#valor_view").innerHTML = valor
+        document.querySelector("#desccripcion_view").innerHTML = descrip
+      
+
+        if(medida=="UNUDAD"){
+
+          medida="UNIDAD"
+          document.querySelector("#medida").innerHTML = medida
+        }
+
+        document.querySelector("#image_prod").setAttribute('src', image)
+
+        document.querySelector("#close_view").onclick = function () {
+
+          document.querySelector("#pop-up").classList.toggle("active")
+        }
+
+      }
 
 
-  /*load*/
- 
-  .loader {
- 
-  top: 0;
-  bottom:60%;
-  left: 0;
-  right: 0;
-  opacity: 0;
-}
 
-.jimu-primary-loading:before,
-.jimu-primary-loading:after {
- 
-  position: absolute;
-  top: 0;
-  content: '';
-}
+    </script>
+    <h1 id="titulo_cat" style="text-align: center; ;">CATALOGO PRODUCTOS EL COMPETIDOR</h1>
+    <p id="head_recomend">Haz clik sobre la imagen , podras ver la descripcion del producto y ordenar tu pedido.</p>
+    <div id="cont_product" style="margin-top: 30px; padding: 10px; gap: 10px; left: 0; background: #f9f7f7;">
 
-.jimu-primary-loading:before {
-  left: -19.992px;
-}
 
-.jimu-primary-loading:after {
-  left: 19.992px;
-  -webkit-animation-delay: 0.32s !important;
-  animation-delay: 0.32s !important;
-}
 
-.jimu-primary-loading:before,
-.jimu-primary-loading:after,
-.jimu-primary-loading {
-  background: #076fe5;
-  -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
-  animation: loading-keys-app-loading 0.8s infinite ease-in-out;
-  width: 13.6px;
-  height: 32px;
-}
+      <h1 style="text-align: center; margin-top: 50px;">Alimentos</h1>
+      <section id="alimentos">
 
-.jimu-primary-loading {
-  text-indent: -9999em;
-  margin: auto;
-  position: absolute;
-  right: calc(50% - 6.8px);
-  top: calc(50% - 16px);
-  -webkit-animation-delay: 0.16s !important;
-  animation-delay: 0.16s !important;
- 
-}
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="alimentos" ) { %>
 
-@-webkit-keyframes loading-keys-app-loading {
 
-  0%,
-  80%,
-  100% {
-    opacity: .75;
-    box-shadow: 0 0 #076fe5;
-    height: 32px;
-  }
 
-  40% {
-    opacity: 1;
-    box-shadow: 0 -8px #076fe5;
-    height: 40px;
-  }
-}
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
-@keyframes loading-keys-app-loading {
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
 
-  0%,
-  80%,
-  100% {
-    opacity: .75;
-    box-shadow: 0 0 #076fe5;
-    height: 32px;
-  }
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
 
-  40% {
-    opacity: 1;
-    box-shadow: 0 -8px #076fe5;
-    height: 40px;
-  }
-}
 
-    </style>
-    <ul class="wrapper">
-      <li class="icon facebook">
-          <a href="" style="text-decoration: none;">  <img src="img/facebook1.png"></img></a>
-          <span class="tooltip">Facebook</span>
-          <span><i class="fab fa-facebook-f"></i></span>
-      </li>
-      <li class="icon twitter">
-          <a target="_blank" href="https://wa.me/573026055289?text= Hola, quisiera mas infomacion."style="text-decoration: none;"> <img src="img/whatsapp.png"></img></a>
+            <% } %>
+              <% }) %>
+      </section>
+
+      <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
+      <section id="aseo_personal">
+
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="aseo personal" ) { %>
+
+
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""> </a>
+
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-cod">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+      </section>
+      <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
+      <section class="seccion" id="hogar">
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="hogar" ) { %>
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""></a>
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+      </section>
+
+      <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
+      <section class="seccion" id="ferreteria">
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="ferreteria" ) { %>
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""></a>
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+      </section>
+      <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
+      <section class="seccion" id="salud">
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="salud" ) { %>
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""></a>
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+      </section>
+      <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
+      <section class="seccion" id="cosmetica">
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria==="cosmetica" ) { %>
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""></a>
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+      </section>
+      <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
+    <!-- <input type="text" id="buscar"> <a id="mostrarwe" href="/">buscar</a>--> 
+
+      <section class="seccion" id="papeleria">
+        <%let cats=["papeleria"]%>
+        <% prods.forEach(function(prod) { %>
+          <% if (cats.includes(prod.categoria)){ %>
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""></a>
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-category">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+            <% } %>
+              <% }) %>
+
+
+
+
+               
+      </section>
+
+      <div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+  </div>
+  <style>
+    .wrapper {
+      position: fixed;
+      z-index: 9999;
+      top: 65%;
+      margin-left: 85%;
+      gap: 5px;
+      padding: 5px;
+      right: 1%;
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      padding-left: 50px;
+      margin-top: 1%;
+      height: 0px;
+      width: 50px;
+      float: right;
+      padding-top: 20px;
+      font-family: "Poppins", sans-serif;
+      justify-content: center;
+    }
+
+    .wrapper img {
+      height: auto;
+      width: 100%;
+
+
+    }
+
+    .wrapper .icon {
+
+      float: left;
+      visibility: visible;
+      position: relative;
+      background: none;
+      border-radius: 50%;
+      bottom: auto;
+
+      margin: auto;
+      width: 2.5em;
+      height: 2.5em;
+      font-size: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .wrapper .tooltip {
+
+      position: absolute;
+      top: 0;
+      font-size: 14px;
+      background: #fff;
+      color: #fff;
+      padding: 5px 8px;
+      border-radius: 5px;
+      box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    }
+
+    .wrapper .tooltip::before {
+      position: absolute;
+      content: "";
+      height: 8px;
+      width: 8px;
+      background: #fff;
+      bottom: -3px;
+      left: 50%;
+      transform: translate(-50%) rotate(45deg);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .wrapper .icon:hover .tooltip {
+      top: -45px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .wrapper .icon:hover span,
+    .wrapper .icon:hover .tooltip {
+      text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .wrapper .facebook:hover,
+    .wrapper .twitter:hover,
+    .wrapper .instagram:hover {
+      transform: scale(1.2);
+    }
+
+    .wrapper .facebook {
+
+
+      transform: scale(1.1);
+    }
+
+    .wrapper .facebook:hover .tooltip,
+    .wrapper .facebook:hover .tooltip::before {
+
+      background: #0566e4e5;
+
+    }
+
+
+    .wrapper .twitter:hover .tooltip,
+    .wrapper .twitter:hover .tooltip::before {
+      background: #62f47aee;
+
+      color: #fff;
+    }
+
+
+    .wrapper .instagram:hover .tooltip,
+    .wrapper .instagram:hover .tooltip::before {
+      background: #e4405ee9;
+
+      color: #fff;
+
+
+    }
+
+
+    /*load*/
+
+    .loader {
+
+      top: 0;
+      bottom: 60%;
+      left: 0;
+      right: 0;
+      opacity: 0;
+    }
+
+    .jimu-primary-loading:before,
+    .jimu-primary-loading:after {
+
+      position: absolute;
+      top: 0;
+      content: '';
+    }
+
+    .jimu-primary-loading:before {
+      left: -19.992px;
+    }
+
+    .jimu-primary-loading:after {
+      left: 19.992px;
+      -webkit-animation-delay: 0.32s !important;
+      animation-delay: 0.32s !important;
+    }
+
+    .jimu-primary-loading:before,
+    .jimu-primary-loading:after,
+    .jimu-primary-loading {
+      background: #076fe5;
+      -webkit-animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+      animation: loading-keys-app-loading 0.8s infinite ease-in-out;
+      width: 13.6px;
+      height: 32px;
+    }
+
+    .jimu-primary-loading {
+      text-indent: -9999em;
+      margin: auto;
+      position: absolute;
+      right: calc(50% - 6.8px);
+      top: calc(50% - 16px);
+      -webkit-animation-delay: 0.16s !important;
+      animation-delay: 0.16s !important;
+
+    }
+
+    @-webkit-keyframes loading-keys-app-loading {
+
+      0%,
+      80%,
+      100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+      }
+
+      40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+      }
+    }
+
+    @keyframes loading-keys-app-loading {
+
+      0%,
+      80%,
+      100% {
+        opacity: .75;
+        box-shadow: 0 0 #076fe5;
+        height: 32px;
+      }
+
+      40% {
+        opacity: 1;
+        box-shadow: 0 -8px #076fe5;
+        height: 40px;
+      }
+    }
+  </style>
+  <ul class="wrapper">
+    <li class="icon facebook">
+      <a href="" style="text-decoration: none;"> <img src="img/facebook1.png"></img></a>
+      <span class="tooltip">Facebook</span>
+      <span><i class="fab fa-facebook-f"></i></span>
+    </li>
+    <li class="icon twitter">
+      <% general.forEach(function(num) { %>
+
+
+
+
+        <a target="_blank" href="https://wa.me/57<%= num.numWhatsapp%>?text= Hola, quisiera mas infomacion."
+          style="text-decoration: none;"> <img src="img/whatsapp.png"></img></a>
+        <% }) %>
           <span class="tooltip">whatsapp</span>
           <span><i class="fab fa-twitter"></i></span>
-      </li>
+    </li>
     <li class="icon instagram">
       <a href="" style="text-decoration: none;"> <img src="img/instagram.png"></img></a>
-        <span class="tooltip">Instagram</span>
-          <span><i class="fab fa-instagram"></i></span>
-      </li>
+      <span class="tooltip">Instagram</span>
+      <span><i class="fab fa-instagram"></i></span>
+    </li>
   </ul>
 </body>
 <footer>
 
   <div id="footer">
-   <div id="info_footer">
-    <h2>Distribuciones El Competidor</h2>
+    <div id="info_footer">
+      <h2>Distribuciones El Competidor</h2>
 
-    <p>Empresa con mas de 15 años de experiencia, brindando el mejor servcion a sus clintes a lo largo del territorio caucano y departamentos
-      vecinos como huila y nariño, el claro testimonio de nuestros clientes certifica nuestro compromiso para llevar los mejores productos  a los mejores precios del mercado hasta la puerta 
-    de su negocio </p>
-    <p>Calle 2 1 - 15, Popayan, Cauca, 190003
-      Colombia</p>
-    <p>Celular 3188905863</p>
-   </div>
-     <div id="footer_mapa">
-     
-      <iframe class="cont-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d360.0482099722832!2d-76.60129363700528!3d2.4424710681519723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30038dd39d1d99%3A0x9bfaed77e91de30a!2sDistribuciones%20el%20Competidor!5e0!3m2!1ses!2sco!4v1680750449448!5m2!1ses!2sco" style="border:0;"
-       allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <p>Empresa con mas de 15 años de experiencia, brindando el mejor servcion a sus clintes a lo largo del territorio
+        caucano y departamentos
+        vecinos como huila y nariño, el claro testimonio de nuestros clientes certifica nuestro compromiso para llevar
+        los mejores productos a los mejores precios del mercado hasta la puerta
+        de su negocio </p>
+      <p>Calle 2 1 - 15, Popayan, Cauca, 190003
+        Colombia</p>
 
-     </div>
+      <p>Celular <%= numwh %>
+      </p>
+
+
+
+    </div>
+    <div id="footer_mapa">
+
+      <iframe class="cont-map"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d360.0482099722832!2d-76.60129363700528!3d2.4424710681519723!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30038dd39d1d99%3A0x9bfaed77e91de30a!2sDistribuciones%20el%20Competidor!5e0!3m2!1ses!2sco!4v1680750449448!5m2!1ses!2sco"
+        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
   </div>
 </footer>
+
 </html>

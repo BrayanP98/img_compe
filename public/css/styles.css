@@ -4,7 +4,7 @@
   
    
     flex-direction: row;
-    background-color:#16a07b81 ;
+   
     height: fit-content;
    justify-content: center;
     min-height: 50px;
@@ -21,7 +21,7 @@
 #logo_menu{
   margin-top: 6px;
   position: fixed;
-  
+ 
 }
 #logo_menu:hover{
  filter: drop-shadow(8px 6px 4px  #3938388e);
@@ -170,6 +170,7 @@ text-align: center;
 #head_recomend{
   text-align: center;
   font-family: 'Fjalla One', sans-serif;
+  font-size: 15px;
   /*overflow: hidden;
   /*width:70ch;*/
  /* white-space: nowrap;
@@ -507,9 +508,6 @@ padding-top: 10px;
     background: white;
     width: 100%;
     padding-bottom: 10px;
-    border-bottom:1px solid  #000;
-    box-shadow: 2px solid red;
-   
   }
   .cont_slider{
     /*background-image: url("/img/bancolombia.webp");*/
@@ -851,9 +849,10 @@ border: 0;
     width: 100%;
     height:80%;
     border: 0;
+    transition: .2s ease-in;
   }
   #cont_img img:hover{
-    transition: 0.6s;
+    transition: 0.5s all ease-in-out;
     opacity: 0.8;
      transform: scale(1.2);
   }
@@ -928,7 +927,7 @@ border: 0;
      display: block;
   }
   .formulario_cliente label:nth-child(5)::after  {
-    content: "(no requerido)";
+   
    font-size: 14px;
  }
 .formulario_cliente input{

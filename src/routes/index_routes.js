@@ -4,6 +4,7 @@ const { base } = require('../models/IMAGE');
 const router=Router();
 const Image=require('../models/IMAGE')
 const Promo=require('../models/promos')
+const General=require('../models/generals')
 const fs = require('fs');
 const IMAGE = require('../models/IMAGE');
 const { MulterError } = require('multer');
@@ -12,13 +13,24 @@ const multer = require('multer');
 
 router.get('/', async (req,res)=>{
     const prods= await Image.find().lean();
-    
+    const general= await General.find().lean();
     const promo= await Promo.find().lean();
+    let numwh=general[0].numWhatsapp
     
-    res.render("catalogo.ejs", { prods, promo });
+    res.render("catalogo.ejs", { prods, promo, general,numwh });
 });
 
+/*router.get('/:clave',async(req, res)=>{
+    const promo= await Promo.find().lean();
 
+    const  clave=req.params.clave.toUpperCase()
+    console.log(clave)
+   // const prods1= await Image.findOne( { $text: { $search: "\"CINTA\"" } }).lean();
+   //const prods1= await Image.find({nombre:{$regex:/^/}},{nombre:1,_id:0})
+   let prods1= await Image.find({ nombre : { $regex: clave} },{})
+   res.redirect('/')
+})
+*/
 router.get('/upload',async (req,res)=>{
     const prods= await Image.find().lean();
 
@@ -56,6 +68,7 @@ router.get('/update', (req,res)=>{
          promo.promo="11500"
          promo.mensaje="pague 12 lleve 13!";
          promo.imagen='/img/logo.png';
+
     
      
         await promo.save();
@@ -67,6 +80,36 @@ router.get('/update', (req,res)=>{
         res.send('<script>window.history.go(-1)</script>');
     }
 
+ })
+ router.get('/generalfirstcommit',async(req, res,)=>{
+    var general1= new General();
+    general1.numWhatsapp="3026055289";
+    general1.color="#16a07b81 ";
+
+     await general1.save();
+     res.redirect('/general')
+ })
+ router.get('/general',async(req, res,)=>{
+   
+        
+        const general= await General.find().lean();
+        res.render('general',{ general})
+
+ })
+
+ router.post('/general/:id',async(req, res,)=>{
+    var  id3=req.params.id;
+    try{
+     const general1= new General();
+       general1.numWhatsapp=req.body.numWhatsapp
+       general1.color=req.body.color;
+      
+       const updategen=await General.findByIdAndUpdate(id3,req.body).lean();
+        res.redirect('/general')
+    }catch{
+
+    res.send("no se pudo")
+    }
  })
 router.post('/upload',async(req, res,)=>{
     const filein=(req.file.path);
