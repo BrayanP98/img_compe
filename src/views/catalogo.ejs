@@ -260,10 +260,17 @@
         document.querySelector("#desccripcion_view").innerHTML = descrip
       
 
-    
+     if(medida=="UNUDAD"){
+
+         let medida_new="UNIDAD"
+          document.querySelector("#medida").innerHTML = medida_new
+        }else{
+
+          document.querySelector("#medida").innerHTML = medida
+        }
 
         
-          document.querySelector("#medida").innerHTML = medida
+        
         
 
         document.querySelector("#image_prod").setAttribute('src', image)
