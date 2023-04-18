@@ -36,7 +36,16 @@
       </ul>
 
       <script>
-        let caja = document.querySelector(".caja")
+        
+
+
+      </script>
+
+    </nav>
+
+  </div>
+  <script>
+let caja = document.querySelector(".caja")
         caja.style.background = "<%= general[0].color%>"
 
         let menu = document.querySelector(".menu")
@@ -51,28 +60,21 @@
 
           let bebe = hijastro.children;
           bebe[0].style.color = "blue"
-          bebe[0].onclick = function () {
-            bebe[0].classList.remove("active")
-            this.classList.add("active")
-
+          bebe[0].onclick=function(){
+            let btn_menu1 = document.querySelector("#toogle_menu")
+            let menu = document.querySelector(".menu")
+            btn_menu1 .classList.toggle("bx-rectangle")
+             menu.classList.toggle('active');
           }
+           
+          
 
         }
+       
 
-
-
-      </script>
-
-    </nav>
-
-  </div>
-  <script>
-
-    var btn_menu = document.querySelector("#toogle_menu").onclick = function () {
-
-
+    var btn_menu = document.querySelector("#toogle_menu").onclick =  function closeMenu(){
       let menu = document.querySelector(".menu")
-      this.classList.toggle("bx-rectangle")
+    this.classList.toggle("bx-rectangle")
       menu.classList.toggle('active');
     }
   </script>
@@ -93,7 +95,10 @@
           <div id="info_prod">
             <h1 id="nombre_view">nombre prod</h1>
             <h1 id="valor_view"></h1>
+            <div id="medida_disp">
             <p id="medida">caja</p>
+            <a id="disponible"> disponible!!</a>
+          </div>
             <h2 id="title_descript">Descipcion</h2>
             <p id="desccripcion_view"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui iure maiores fuga
               necessitatibus illum aliquid, possimus
@@ -102,7 +107,7 @@
 
           </div>
           <div id="formulario_env">
-            <h1 id="title_form">Datos Pedido </h1>
+            <h1 id="title_form">Datos  Del Pedido </h1>
             <form action="" class="formulario_cliente">
 
               <label for="nombre">Nombre*</label>
@@ -146,12 +151,15 @@
           var cant_prod = document.querySelector("#cant_prod");
           var nombre_prod = document.querySelector("#nombre_view");
           var medida_prod = document.querySelector("#medida");
-          cant_prod.style.border = "2px solid black";
-          nombre_cliente.style.border = "2px solid black";
+         
           btn_whatsap.removeAttribute('href');
           doc_cliente.value = 0;
+         
           nombre_cliente.addEventListener('keydown', (event) => {
            btn_whatsap.style.cursor = "pointer"
+           cant_prod.style.border = "2px solid black";
+          doc_cliente.style.border = "2px solid black";
+          nombre_cliente.style.border = "2px solid black";
 
           })
 
@@ -183,7 +191,6 @@
               cant_prod.value = ""
               nombre_cliente.value = ""
               direccion_cliente.value = ""
-
               btn_whatsap.style.cursor = "not-allowed"
               //   btn_whatsap.removeAttribute('href');
               //  location.reload()
@@ -240,13 +247,24 @@
     <script>
 
 
-      function mostrar(nombre, valor, image, descrip, medida) {
+      function mostrar(nombre, valor, image, descrip, medida, cantidad) {
         var nombrecliente = document.querySelector("#nombre_cliente1");
         var direccion_cliente = document.querySelector("#direccion_cliente");
         var cant_prod = document.querySelector("#cant_prod");
         var nombre_prod = document.querySelector("#nombre_view");
+        var disponible = document.querySelector("#disponible");
+        
 
-
+        if(cantidad=="0"){
+ 
+          disponible.innerHTML="agotado!!!"
+          disponible.style.background="red"
+          
+        }
+        else{
+          disponible.innerHTML="disponible!!!"
+          disponible.style.background="#14c211"
+        }
 
         cant_prod.value = 0
         nombre_cliente.value = ""
@@ -262,7 +280,10 @@
 
         if(medida=="UNUDAD"){
 
-          medida="UNIDAD"
+         let medida_new="UNIDAD"
+          document.querySelector("#medida").innerHTML = medida_new
+        }else{
+
           document.querySelector("#medida").innerHTML = medida
         }
 
@@ -294,7 +315,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
@@ -325,7 +346,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
@@ -352,7 +373,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -379,7 +400,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -405,7 +426,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -431,7 +452,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -460,7 +481,7 @@
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">

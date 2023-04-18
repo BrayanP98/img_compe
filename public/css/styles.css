@@ -196,7 +196,7 @@ text-align: center;
 }
  #titulo_cat
 {
-  margin-top: 80px;
+  margin-top: 50px;
 font-size: 40px;
 font-family: 'Fjalla One', sans-serif;
 color: #000;
@@ -534,6 +534,7 @@ padding-top: 10px;
 #img_slider4,#img_slider3{
    
     width: 30%;
+    height: 90%;
     margin-top: 40px;
     transition: 0.5s all ease;
     transform: scale(1);
@@ -859,11 +860,37 @@ border: 0;
  
   #info_prod{
     width: 34%;
-    height:500px;
+    height:fit-content;
     background: transparent;
     text-align: center;
     align-items: center;
+    padding-bottom: 8px;
 
+
+  }
+  #medida{
+
+    color: #113dc2;
+  }
+  #medida_disp{
+   gap: 15px;
+   display: flex;
+   flex-direction: row;
+   font-family: 'Nunito Sans', sans-serif;
+    width: 90%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+  }
+  #medida_disp a{
+    background: #14c211;
+    width: 100px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    height: 20px;
+    padding-top: 2px;
+    border-radius: 2px;
   }
   #info_prod h1:nth-child(2)::before{
    
@@ -891,7 +918,7 @@ border: 0;
    color: #4d4a4a;
    font-size: 25px;
   }
-  #info_prod  p{
+  #desccripcion_view{
     
   width: 90%;
   margin: auto;
@@ -900,7 +927,7 @@ border: 0;
   font-family: 'Nunito Sans', sans-serif;
   text-align: justify;
   line-height:20px;
-  word-spacing:-2px;
+  word-spacing: 0.05em;
   color: #4d4a4a;
   }
   #formulario_env{
@@ -1030,7 +1057,7 @@ height: 55px;
 #footer{
   margin-top: 50px;
   display: flex;
-  border-top: 2px solid rgb(25, 125, 155);
+  border-top: 2px solid#1877F2;
   flex-wrap: wrap;
   width: 100%;
   height: fit-content;
@@ -1066,7 +1093,7 @@ hyphens: none;
   text-align: center;
 }
 .cont-map{
-  width: 600px;
+  width: 100%;
   height: 100%;
 
 }
@@ -1077,7 +1104,9 @@ hyphens: none;
   and (max-device-width:768px)
   {
 
- 
+  #info_prod  p{
+  font-size: 17px;
+  }
      #caract_product .nombre_prod_slide::first-letter,#caract_product .nombre_prod_slide{
      font-size: 15px;
      right: 25%;
@@ -1099,7 +1128,7 @@ hyphens: none;
       margin-left: 19px;
     }
     #items #titulo_cat{
-     margin-top: 50px;
+     
       
       font-size: 5px;
     }

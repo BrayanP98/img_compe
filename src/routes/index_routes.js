@@ -58,7 +58,9 @@ router.get('/update', (req,res)=>{
  
  });
  router.get('/promo',async(req, res,)=>{
-    try{
+
+    res.render('promos');
+    /*try{
         const promo= new Promo();
          promo.cantidad="122";
          promo.codigo="566";
@@ -78,9 +80,42 @@ router.get('/update', (req,res)=>{
         res.redirect('/upload')
     }catch{
         res.send('<script>window.history.go(-1)</script>');
-    }
+    }*/
 
- })
+ });
+ router.post('/promo',async(req, res,)=>{
+    const filein=(req.file.path);
+    
+
+
+try{
+    const img= new Image();
+    const promo= new Promo();
+    promo.cantidad=req.body.cantidad;
+    promo.codigo=req.body.codigo;
+    promo.nombre=req.body.nombre;
+    promo.valor=req.body.valor;
+    promo.descripcion=req.body.descripcion;
+    promo.promo=req.body.valorPromo;
+    promo.mensaje=req.body.mensajeProm;
+    promo.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
+
+
+  
+
+ 
+    await promo.save();
+
+
+   
+    res.redirect('/promo')
+}catch{
+    res.send('<script>window.history.go(-1)</script>');
+}
+ 
+//onsole.log('data:image/jpeg;base64,/'+base64);
+
+});
  router.get('/generalfirstcommit',async(req, res,)=>{
     var general1= new General();
     general1.numWhatsapp="3026055289";
