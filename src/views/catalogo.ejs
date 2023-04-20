@@ -63,8 +63,12 @@ let caja = document.querySelector(".caja")
           bebe[0].onclick=function(){
             let btn_menu1 = document.querySelector("#toogle_menu")
             let menu = document.querySelector(".menu")
-            btn_menu1 .classList.toggle("bx-rectangle")
-             menu.classList.toggle('active');
+            var x = window.screen.width
+            if(x<=854){
+              btn_menu1 .classList.toggle("bx-rectangle")
+               menu.classList.toggle('active');
+            }
+          
           }
            
           
@@ -287,10 +291,6 @@ let caja = document.querySelector(".caja")
           document.querySelector("#medida").innerHTML = medida
         }
 
-        
-        
-        
-
         document.querySelector("#image_prod").setAttribute('src', image)
 
         document.querySelector("#close_view").onclick = function () {
@@ -309,9 +309,10 @@ let caja = document.querySelector(".caja")
 
 
 
-      <h1 style="text-align: center; margin-top: 50px;">Alimentos</h1>
+      
       <section id="alimentos">
-
+        <h1 id="title_section" style="text-align: center; margin-top: 50px;">Alimentos</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria=="alimentos" ) { %>
 
@@ -333,16 +334,19 @@ let caja = document.querySelector(".caja")
                 <h4 class="product-price">$<%= prod.valor %>
                 </h4>
               </div>
+             
             </div>
 
 
             <% } %>
               <% }) %>
+            </div>
       </section>
 
-      <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
+      
       <section id="aseo_personal">
-
+        <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria=="aseo personal" ) { %>
 
@@ -369,9 +373,44 @@ let caja = document.querySelector(".caja")
 
             <% } %>
               <% }) %>
+            </div>
       </section>
-      <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
-      <section class="seccion" id="hogar">
+      
+      <section id="aseo">
+        <h1 style="text-align: center; margin-top: 50px;">Aseo</h1>
+        <div class="seccion">
+        <% prods.forEach(function(prod) { %>
+          <% if (prod.categoria=="aseo" ) { %>
+
+
+
+            <div id="catalogo">
+              <button id="revisar"
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+              </button>
+              <a> <img src="<%= prod.imagen %>" alt=""> </a>
+
+              <div class="descript" id="descript">
+                <h3 class="product-name"><a id="nombre-prod">
+                    <%= prod.nombre %>
+                  </a></h3>
+                <p class="product-cod">Cod. <%= prod.codigo %>
+                </p>
+
+                <h4 class="product-price">$<%= prod.valor %>
+                </h4>
+              </div>
+            </div>
+
+
+            <% } %>
+              <% }) %>
+          </div>
+      </section>
+      
+      <section  id="hogar">
+        <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria=="hogar" ) { %>
 
@@ -395,10 +434,13 @@ let caja = document.querySelector(".caja")
 
             <% } %>
               <% }) %>
+            </div>
       </section>
 
-      <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
-      <section class="seccion" id="ferreteria">
+    
+      <section  id="ferreteria">
+        <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria=="ferreteria" ) { %>
 
@@ -422,9 +464,12 @@ let caja = document.querySelector(".caja")
 
             <% } %>
               <% }) %>
+              </div>
       </section>
-      <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
-      <section class="seccion" id="salud">
+      
+      <section  id="salud">
+        <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria=="salud" ) { %>
 
@@ -448,9 +493,12 @@ let caja = document.querySelector(".caja")
 
             <% } %>
               <% }) %>
+            </div>
       </section>
-      <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
-      <section class="seccion" id="cosmetica">
+      
+      <section  id="cosmetica">
+        <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
+        <div class="seccion">
         <% prods.forEach(function(prod) { %>
           <% if (prod.categoria==="cosmetica" ) { %>
 
@@ -474,11 +522,14 @@ let caja = document.querySelector(".caja")
 
             <% } %>
               <% }) %>
+            </div>
       </section>
-      <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
+      
     <!-- <input type="text" id="buscar"> <a id="mostrarwe" href="/">buscar</a>--> 
 
-      <section class="seccion" id="papeleria">
+      <section  id="papeleria">
+        <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
+        <div class="seccion">
         <%let cats=["papeleria"]%>
         <% prods.forEach(function(prod) { %>
           <% if (cats.includes(prod.categoria)){ %>
@@ -504,9 +555,7 @@ let caja = document.querySelector(".caja")
               <% }) %>
 
 
-
-
-               
+            </div>
       </section>
 
       <div>
@@ -518,12 +567,28 @@ let caja = document.querySelector(".caja")
 
 
 
-
+    <script>
+      var conten=document.querySelector("#cont_product")
+        var conten_child=conten.children
+       
+        for (let index = 0; index < conten_child.length; index++) {
+              let hijastro = conten_child[index];
+               let title=hijastro.children
+              var div_toggle= title[0];
+              div_toggle.style.cursor="pointer"
+               title[0].onclick= function(){
+                title[1].classList.toggle("active")
+               }
+             console.log( )
+        }
+      
+    
+    </script>
 
   </div>
 
 
-
+ 
 
   </div>
   <style>

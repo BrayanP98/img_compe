@@ -132,6 +132,73 @@
           </div>
         </div>
       </div>
+      <div id="view_prom">
+      <% proms.forEach(function(prom) { %>
+
+       
+            <div id="card_prom">
+              <img src="<%= prom.imagen %>" alt="">
+              <div >
+              <input style="margin-top: 5px;" type="text">
+              <input style="margin-top: 5px;" type="text">
+              <input style="margin-top: 5px;" type="text">
+
+              <div>
+
+                <a href="/deleteprom/<%= prom._id %>">delete</a>
+                <a href="">update</a>
+              </div>
+            </div>
+
+
+
+            </div>
+         
+       
+        <% }) %>
+      </div>
+        <style>
+     #view_prom{
+      
+      margin-top: 20px;
+      width:100%;
+      height: fit-content;
+     justify-content: center;
+     padding-bottom: 20px;
+      gap: 20px;
+    background: #7a0e0e;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+      
+   
+      
+
+
+     }
+       #card_prom{
+      display: flex;
+      flex-direction: row;
+      
+       background: red;
+        width:500px;
+        height: fit-content;
+        gap: 10px;
+        justify-content: center;
+      
+       }
+       #card_prom img{
+       
+        width: 50%;
+        height: 100%;
+       }
+       #card_prom input{
+       
+          width: 200px;
+          height: 30px;
+       }
+        </style>
+
     </div>
   </body>
 </html>
