@@ -59,30 +59,31 @@ router.get('/update', (req,res)=>{
  });
  router.get('/promo',async(req, res,)=>{
 
-    res.render('promos');
-    /*try{
-        const promo= new Promo();
-         promo.cantidad="122";
-         promo.codigo="566";
-         promo.nombre="aceite maquina";
-         promo.valor="12000";
-         promo.descripcion="estab";
-         promo.promo="11500"
-         promo.mensaje="pague 12 lleve 13!";
-         promo.imagen='/img/logo.png';
 
+
+  
+
+    const proms= await Promo.find().lean();
+    res.render('promos',{proms});
     
-     
-        await promo.save();
-    
-    
-       
-        res.redirect('/upload')
-    }catch{
-        res.send('<script>window.history.go(-1)</script>');
-    }*/
+   
 
  });
+
+ router.get('/deleteprom/:id',async(req, res,)=>{
+    let  id=req.params.id;
+    try{
+     await Promo.findByIdAndDelete(id).lean();
+      res.redirect('/promos');
+    }catch{
+     res.send('<script>window.history.go(-1)</script>');
+    }
+     
+
+
+
+
+ })
  router.post('/promo',async(req, res,)=>{
     const filein=(req.file.path);
     

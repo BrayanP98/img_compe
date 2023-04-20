@@ -628,10 +628,13 @@ padding-top: 10px;
     word-wrap: break-word;
     justify-content: center;
     }
-    #catalogo:hover{
-     
-    }
+  
     #cont_product  section{
+
+    width:100%; 
+    height: fit-content;
+    }
+    .seccion{
       margin-top: 20px;
       width:100%;
       height: fit-content;
@@ -642,7 +645,12 @@ padding-top: 10px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    transition: 10s ease-in ;
+    }
+    .seccion.active{
     
+      transition-duration:3s;
+      display: none;
     }
     #descript{
     gap: 0;
@@ -1312,3 +1320,7 @@ display: none;
   visibility: visible;
   }
 }
+
+
+
+
