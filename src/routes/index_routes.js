@@ -159,7 +159,7 @@ try{
  img.codigo=req.body.codigo;
  img.nombre=req.body.nombre;
  img.valor=req.body.valor;
- img.promo="4";
+ img.promo=req.body.promo;
  img.descripcion=req.body.descripcion;
  img.medida=req.body.medida;
  img.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
@@ -216,6 +216,7 @@ router.post('/update/:id',async(req, res)=>{
      img.codigo=req.body.codigo;
      img.nombre=req.body.nombre;
      img.valor=req.body.valor;
+     img.promo=req.body.promo;
      img.descripcion=req.body.descripcion;
     let imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
  const updateProd=await Image.findByIdAndUpdate(id2,req.body).lean();

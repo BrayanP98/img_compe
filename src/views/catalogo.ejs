@@ -374,7 +374,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -412,8 +416,12 @@ let caja = document.querySelector(".caja")
             <div id="catalogo">
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
+               <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -450,7 +458,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %> </button>
@@ -484,7 +496,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -519,7 +535,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -553,7 +573,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -589,7 +613,11 @@ let caja = document.querySelector(".caja")
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
@@ -626,7 +654,11 @@ let caja = document.querySelector(".caja")
               <button id="revisar"
                 onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
                 <% if (prod.promo) { %>
+                  <% if (prod.promo=="0") { %>
+                    
+                    <% }else { %>
                   <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
                 <% }else { %>
                   
                   <% } %>
