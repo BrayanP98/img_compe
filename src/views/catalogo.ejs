@@ -274,7 +274,7 @@ let caja = document.querySelector(".caja")
         label_porcent.innerHTML=" "
         old_price.innerHTML=" "
         if(promo){
-         if(promo==="0"){
+         if(promo=="0"){
          label_porcent.style.visiblitily="hidden"
           document.querySelector("#valor_view").innerHTML = valor;
          }else{
@@ -289,7 +289,11 @@ let caja = document.querySelector(".caja")
 
         
          }
-        }  
+        }  else{
+        
+        label_porcent.style.visiblitily="hidden"
+          document.querySelector("#valor_view").innerHTML = valor;
+        }
         if(cantidad=="0"){
  
           disponible.innerHTML="agotado!!!"
