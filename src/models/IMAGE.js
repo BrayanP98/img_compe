@@ -37,6 +37,12 @@ const imagSchema= new Schema({
         trim:true
 
      },
+     promo:{
+        type:String,
+        required:false,
+        trim:true
+
+     },
     descripcion:{
         type:String,
         required:true },

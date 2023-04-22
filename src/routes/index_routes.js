@@ -159,6 +159,7 @@ try{
  img.codigo=req.body.codigo;
  img.nombre=req.body.nombre;
  img.valor=req.body.valor;
+ img.promo="4";
  img.descripcion=req.body.descripcion;
  img.medida=req.body.medida;
  img.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
