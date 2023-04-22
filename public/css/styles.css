@@ -628,7 +628,33 @@ padding-top: 10px;
     word-wrap: break-word;
     justify-content: center;
     }
+    #etiq_descuento{
+      text-decoration: none;
+      cursor: none;
+      font-weight: bold;
+      width: 100px;
+      position: absolute;
+      top: 14px;
+      right: -10;
+      background: #14c211;
+      transform: rotate(45deg);
+      color: rgb(250, 251, 251);
+    }
+   #etiq_descuentoSlide{
+    text-decoration: none;
+    cursor: none;
+    font-weight: bold;
+    width: 220px;
+    text-align: center;
+    font-size: 25px;
+    position: absolute;
+    top: 39px;
+    left: -45px;
+    background: #14c211;
+    transform: rotate(-45deg);
+    color: rgb(250, 251, 251);
   
+   }
     #cont_product  section{
 
     width:100%; 
@@ -722,6 +748,7 @@ padding-top: 10px;
 
    
      #revisar{
+      overflow: hidden;
 background: transparent;
 position:absolute;width: 
 150px; height: 150px;
@@ -881,6 +908,8 @@ border: 0;
     color: #113dc2;
   }
   #medida_disp{
+    position: relative;
+    top: -28px;
    gap: 15px;
    display: flex;
    flex-direction: row;
@@ -900,7 +929,14 @@ border: 0;
     padding-top: 2px;
     border-radius: 2px;
   }
-  #info_prod h1:nth-child(2)::before{
+  #info_prod h1:nth-child(2){
+   text-decoration:line-through;
+   font-size: x-large;
+   color: red;
+    top: -10px;
+    height: 35px;
+    }
+  #info_prod h1:nth-child(3)::before{
    
   content: "$";
   }
@@ -913,7 +949,9 @@ border: 0;
    font-family: 'Fjalla One', sans-serif;
    hyphens: none;
   }
-  #info_prod h1:nth-child(2){
+  #info_prod h1:nth-child(3){
+    position: relative;
+    top: -50px;
     margin-top: 40px;
    font-size: 30px;
    color: #189016;
@@ -922,15 +960,14 @@ border: 0;
   }
  #title_descript{
   text-align: center;
-  margin-top: 4vw;
+  margin-top: -5px;
    color: #4d4a4a;
    font-size: 25px;
   }
   #desccripcion_view{
     
   width: 90%;
-  margin: auto;
-  margin-top: 30px;
+  margin-top: 0px;
   font-size: 20px;
   font-family: 'Nunito Sans', sans-serif;
   text-align: justify;

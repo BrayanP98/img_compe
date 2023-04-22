@@ -93,15 +93,18 @@ let caja = document.querySelector(".caja")
 
 
           <div id="cont_img">
-            <img id="image_prod" src="" alt="">
 
+          
+            <img id="image_prod" src="" alt="">
+            <a href="" id="etiq_descuentoSlide"> </a>
           </div>
           <div id="info_prod">
             <h1 id="nombre_view">nombre prod</h1>
+            <h1 id="valor_old"></h1>
             <h1 id="valor_view"></h1>
             <div id="medida_disp">
             <p id="medida">caja</p>
-            <a id="disponible"> disponible!!</a>
+            <a id="disponible"> </a>
           </div>
             <h2 id="title_descript">Descipcion</h2>
             <p id="desccripcion_view"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui iure maiores fuga
@@ -132,7 +135,7 @@ let caja = document.querySelector(".caja")
             
                 <a target="_blank" id="whatsapp" style="width: 200px; height: 50px;"> <img src="/img/whatsapp.png"
                     alt="" style="width: 50px; height: 50px; ">
-                  <span>Hacer Pedido</span>
+                  <span id="whatsapp_span">Hacer Pedido</span>
                 </a>
                
             </div>
@@ -155,7 +158,13 @@ let caja = document.querySelector(".caja")
           var cant_prod = document.querySelector("#cant_prod");
           var nombre_prod = document.querySelector("#nombre_view");
           var medida_prod = document.querySelector("#medida");
+          var disponible = document.querySelector("#disponible");
+      
+          
          
+          cant_prod.style.border = "2px solid black";
+          doc_cliente.style.border = "2px solid black";
+          nombre_cliente.style.border = "2px solid black";
           btn_whatsap.removeAttribute('href');
           doc_cliente.value = 0;
          
@@ -164,7 +173,7 @@ let caja = document.querySelector(".caja")
            cant_prod.style.border = "2px solid black";
           doc_cliente.style.border = "2px solid black";
           nombre_cliente.style.border = "2px solid black";
-
+          
           })
 
           btn_whatsap.onclick = function () {
@@ -202,7 +211,9 @@ let caja = document.querySelector(".caja")
 
 
           }
+      
 
+        
         </script>
       </div>
       <div class="loader" id="loader">
@@ -251,14 +262,32 @@ let caja = document.querySelector(".caja")
     <script>
 
 
-      function mostrar(nombre, valor, image, descrip, medida, cantidad) {
+      function mostrar(nombre, valor,promo, image, descrip, medida, cantidad) {
         var nombrecliente = document.querySelector("#nombre_cliente1");
         var direccion_cliente = document.querySelector("#direccion_cliente");
         var cant_prod = document.querySelector("#cant_prod");
         var nombre_prod = document.querySelector("#nombre_view");
         var disponible = document.querySelector("#disponible");
-        
+        var old_price = document.querySelector("#valor_old");
+        var label_porcent = document.querySelector("#etiq_descuentoSlide");
+        var btn_whatsap = document.getElementById("whatsapp");
+        label_porcent.innerHTML=" "
+        old_price.innerHTML=" "
+         if(promo==="0"){
+         label_porcent.style.visiblitily="hidden"
+          document.querySelector("#valor_view").innerHTML = valor;
+         }else{
+         label_porcent.innerHTML=promo+"%OFF";
+          let intpromo= parseInt(promo);
+          let intvalor= parseInt(valor);
+          let porcentaje=valor*(promo/100);
+          let new_valor1=valor-porcentaje;
+          let new_valor=new_valor1/1000;
+          document.querySelector("#valor_view").innerHTML=new_valor.toFixed(3);
+          old_price.innerHTML=valor;
 
+        
+         }
         if(cantidad=="0"){
  
           disponible.innerHTML="agotado!!!"
@@ -278,7 +307,7 @@ let caja = document.querySelector(".caja")
 
         document.querySelector("#nombre_view").innerHTML = nombre
 
-        document.querySelector("#valor_view").innerHTML = valor
+     
         document.querySelector("#desccripcion_view").innerHTML = descrip
       
 
@@ -293,9 +322,30 @@ let caja = document.querySelector(".caja")
 
         document.querySelector("#image_prod").setAttribute('src', image)
 
+        if(disponible.innerHTML=="agotado!!!"){
+         btn_whatsap.style="pointer-events:none;";
+        
+          
+          document.querySelector(".cont-whatsapp").style.background="red"
+          document.querySelector("#whatsapp_span").innerHTML="No disponible!!"
+
+        }else{
+          btn_whatsap.style="pointer-events:all;";
+          document.querySelector(".cont-whatsapp").style.background="#0099FF"
+          document.querySelector("#whatsapp_span").innerHTML="Hacer pedido"
+        }
         document.querySelector("#close_view").onclick = function () {
 
+
           document.querySelector("#pop-up").classList.toggle("active")
+
+         
+       
+          
+         
+          cant_prod.style.border = "2px solid black";
+          doc_cliente.style.border = "2px solid black";
+          nombre_cliente.style.border = "2px solid black";
         }
 
       }
@@ -320,7 +370,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                <% }else { %>
+                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                  <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
@@ -354,7 +409,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
@@ -386,8 +446,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-              </button>
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %> </button>
               <a> <img src="<%= prod.imagen %>" alt=""> </a>
 
               <div class="descript" id="descript">
@@ -416,7 +480,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -446,7 +515,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -475,7 +549,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -503,8 +582,15 @@ let caja = document.querySelector(".caja")
           <% if (prod.categoria==="cosmetica" ) { %>
 
             <div id="catalogo">
+              
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -536,7 +622,12 @@ let caja = document.querySelector(".caja")
 
             <div id="catalogo">
               <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
+                <% if (prod.promo =="0" ) { %>
+                
+                  <% }else { %>
+                    <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
+                    <% } %>
               </button>
               <a> <img src="<%= prod.imagen %>" alt=""></a>
               <div class="descript" id="descript">
@@ -844,7 +935,7 @@ let caja = document.querySelector(".caja")
       <p>Calle 2 #1-15, Popayan, Cauca, 190003
         Colombia</p>
 
-      <p>Celular <%= numwh %>
+      <p>contacto <%= numwh %>    <br>correo: distrielcompetidor@gmail.com
       </p>
 
 
