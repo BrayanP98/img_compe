@@ -233,9 +233,11 @@ color: #000;
   
   width: 60%;
   height: fit-content;
+   max-height: 200px;
   background: #f8fafb;
  display: none;
  z-index: 2;
+   
  position:   absolute;
  transform: translateX(30%);
   list-style: none;
