@@ -216,23 +216,40 @@ color: #000;
   background: #0099FF;
   width: 100px;
   text-decoration: none;
-  height: 25px;
+  height: 29px;
   text-align: center;
   padding-top: 5px;
-}
-#input_buscar{
+  right:15%;
+  border-radius: 0 5px 5px  0;
+  position: absolute;
   border: 0;
-  background: #c7c8c9;
+  font-family: 'Rubik', sans-serif;
+}
+#buscar_prod:hover {
+  background: #00ff26;
+}
+#input_buscar:hover{
+  background: #eae4e4;
+}
+
+#input_buscar{
+  border: 1px solid #3e91e3 ;
+  background: #d1deeb;
  border-radius: 8px;
   width: 60%;
-  height: 25px;
+  height: 29px;
   font-size: 20px;
+  font-family: 'Rubik', sans-serif;
  }
 
  #box-search{
   
   width: 60%;
   height: fit-content;
+  max-height: 200px;
+  overflow: hidden;
+  font-family: 'Rubik', sans-serif;
+  overflow: scroll;
   background: #f8fafb;
  display: none;
  z-index: 2;

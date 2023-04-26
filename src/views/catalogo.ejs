@@ -291,12 +291,9 @@ let caja = document.querySelector(".caja")
         
          }
         }  else{
-<<<<<<< HEAD
-          label_porcent.style.visiblitily="hidden"
-=======
         
         label_porcent.style.visiblitily="hidden"
->>>>>>> 577efc91c1d35ca54fd88c8991444a9ae23d18d6
+
           document.querySelector("#valor_view").innerHTML = valor;
         }
         if(cantidad=="0"){
@@ -412,7 +409,10 @@ let caja = document.querySelector(".caja")
 
   buscarbtn.onclick=function(){
      this.setAttribute("href", "#"+inputfind.value)
-     inputfind.value=""
+    
+   // var selected=  document.getElementById(inputfind.value)
+    //selected.style.border=" 2px solid red"
+    inputfind.value=""
   }
 
   </script>
@@ -501,9 +501,6 @@ let caja = document.querySelector(".caja")
 
      a_options1.innerHTML='<%= prod.nombre %>'
   li_options1.appendChild(a_options1)
-  
-  
-
   listop.appendChild(li_options1)
 
    
