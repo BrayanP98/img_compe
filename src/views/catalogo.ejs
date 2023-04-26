@@ -99,7 +99,7 @@ let caja = document.querySelector(".caja")
             <a href="" id="etiq_descuentoSlide"> </a>
           </div>
           <div id="info_prod">
-            <h1 id="nombre_view">nombre prod</h1>
+            <h1 id="nombre_view"></h1>
             <h1 id="valor_old"></h1>
             <h1 id="valor_view"></h1>
             <div id="medida_disp">
@@ -156,10 +156,10 @@ let caja = document.querySelector(".caja")
           var doc_cliente = document.querySelector("#documento_cliente1");
           var direccion_cliente = document.querySelector("#direccion_cliente");
           var cant_prod = document.querySelector("#cant_prod");
-          var nombre_prod = document.querySelector("#nombre_view");
+          var nombre_prod1 = document.querySelector("#nombre_view");
           var medida_prod = document.querySelector("#medida");
           var disponible = document.querySelector("#disponible");
-      
+     
           
          
           cant_prod.style.border = "2px solid black";
@@ -173,6 +173,7 @@ let caja = document.querySelector(".caja")
            cant_prod.style.border = "2px solid black";
           doc_cliente.style.border = "2px solid black";
           nombre_cliente.style.border = "2px solid black";
+      
           
           })
 
@@ -189,9 +190,20 @@ let caja = document.querySelector(".caja")
               nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
               btn_whatsap.style.cursor = "not-allowed"
             } else {
-              let new_name = nombre_prod.innerHTML.replace("&amp;", "y");
-              btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value + "" + medida.innerHTML + " " + "de" + "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
+              let new_name = nombre_prod1.innerHTML.replace("&amp;", "y");
+
+              if(cant_prod.value>1){
+                btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value+ "" + medida.innerHTML +"S"+ " " + "de" +
+               "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
+            
+              }else{
+                btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value + "" + medida.innerHTML + " " + "de" +
+               "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
               //var loader=document.querySelector("#loader")
+              }
+              
+            
+             
               cant_prod.style.border = "2px solid black";
               nombre_cliente.style.border = "2px solid black"
               nombre_cliente.setAttribute('placeholder', "");
@@ -266,7 +278,7 @@ let caja = document.querySelector(".caja")
         var nombrecliente = document.querySelector("#nombre_cliente1");
         var direccion_cliente = document.querySelector("#direccion_cliente");
         var cant_prod = document.querySelector("#cant_prod");
-        var nombre_prod = document.querySelector("#nombre_view");
+        var nombre_prod1 = document.querySelector("#nombre_view");
         var disponible = document.querySelector("#disponible");
         var old_price = document.querySelector("#valor_old");
         var label_porcent = document.querySelector("#etiq_descuentoSlide");
@@ -312,8 +324,8 @@ let caja = document.querySelector(".caja")
         direccion_cliente.value = " "
 
         document.querySelector("#pop-up").classList.add("active")
-
-        document.querySelector("#nombre_view").innerHTML = nombre
+        //let new_name = nombre.replace("y", "&");
+        nombre_prod1.innerText = nombre
 
      
         document.querySelector("#desccripcion_view").innerHTML = descrip
@@ -380,6 +392,7 @@ let caja = document.querySelector(".caja")
 
   function buscador_interno(){
   var filtro=inputfind.value.toUpperCase();
+  
     var li= box_serach.getElementsByTagName("li");
 
     for (let i = 0; i < li.length; i++) {
@@ -422,28 +435,28 @@ let caja = document.querySelector(".caja")
 
       
       <section id="alimentos">
-        <h1 id="title_section" style="text-align: center; margin-top: 50px;">Alimentos</h1>
+        <h1 class="title_section" id="title_section" style="text-align: center; margin-top: 50px;">Alimentos</h1>
         <div class="seccion" id="seccion_alimentos">
             </div>
       </section>
 
       
       <section id="aseo_personal">
-        <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
         <div class="seccion" id="seccion_aseo personal">
    
             </div>
       </section>
       
       <section id="aseo">
-        <h1 style="text-align: center; margin-top: 50px;">Aseo</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Aseo</h1>
         <div class="seccion" id="seccion_aseo">
        
           </div>
       </section>
       
       <section  id="hogar">
-        <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Hogar</h1>
         <div class="seccion" id="seccion_hogar">
        
         </div>
@@ -451,14 +464,14 @@ let caja = document.querySelector(".caja")
 
     
       <section  id="ferreteria">
-        <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Ferreteria</h1>
         <div class="seccion" id="seccion_ferreteria">
         
               </div>
       </section>
       
       <section  id="salud">
-        <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Salud</h1>
         <div class="seccion" id="seccion_salud">
        
            
@@ -466,7 +479,7 @@ let caja = document.querySelector(".caja")
       </section>
       
       <section  id="cosmetica">
-        <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Cosmetica</h1>
         <div class="seccion" id="seccion_cosmetica">
         
             </div>
@@ -475,7 +488,7 @@ let caja = document.querySelector(".caja")
       
 
       <section  id="papeleria">
-        <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
+        <h1 class="title_section" style="text-align: center; margin-top: 50px;">Papeleria</h1>
        
      
         <div class="seccion" id="seccion_papeleria">
@@ -498,12 +511,12 @@ let caja = document.querySelector(".caja")
   var buscar_btn=document.getElementById("input_buscar")
   var li_options1= document.createElement("li");
   var a_options1= document.createElement("a");
-
-     a_options1.innerHTML='<%= prod.nombre %>'
+////llenando li de busqueda
+  a_options1.innerHTML='<%= prod.nombre %>'
   li_options1.appendChild(a_options1)
   listop.appendChild(li_options1)
 
-   
+   ///////CREANDO CARD DE PRODUCTO
   var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos","cosmetica","aseo"]
   var cont_prod= document.querySelector(".seccion")
   if(cats.includes(cate)){ 
@@ -534,6 +547,7 @@ let caja = document.querySelector(".caja")
   }
    codigo.innerHTML="<%= prod.codigo %>"
    prod_valor.innerHTML="$"+valor
+   //let new_name = nombre.replace("y", "&");
    nombre_prod.innerHTML=nombre
   descipcion.appendChild(nombre_prod)
   descipcion.appendChild(codigo)
@@ -548,18 +562,23 @@ let caja = document.querySelector(".caja")
       
 
     <script>
-      var conten=document.querySelector("#cont_product")
+
+      //////TOGGLE DIC SECCION
+      var conten=document.getElementById("cont_product")
+      var title_sec=document.querySelector(".title_section")
+      var sec=document.getElementsByClassName("seccion")
+    
         var conten_child=conten.children
        
         for (let index = 0; index < conten_child.length; index++) {
               let hijastro = conten_child[index];
                let title=hijastro.children
               var div_toggle= title[0];
-              div_toggle.style.cursor="pointer"
-               title[0].onclick= function(){
+             
+              div_toggle.onclick= function(){
                 title[1].classList.toggle("active")
                }
-             console.log( )
+              
         }
       
     

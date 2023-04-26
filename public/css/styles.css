@@ -18,6 +18,9 @@
     position: fixed;
     left: 0;
 }
+.title_section{
+  cursor: pointer;
+}
 #logo_menu{
   margin-top: 6px;
   position: fixed;
