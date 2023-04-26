@@ -234,6 +234,7 @@ color: #000;
   width: 60%;
   height: fit-content;
   overflow: hidden;
+  overflow: scroll;
   max-height: 200px;
   background: #f8fafb;
  display: none;
