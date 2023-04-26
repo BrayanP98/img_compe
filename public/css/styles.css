@@ -233,7 +233,8 @@ color: #000;
   
   width: 60%;
   height: fit-content;
-   max-height: 200px;
+  overflow: hidden;
+  max-height: 200px;
   background: #f8fafb;
  display: none;
  z-index: 2;
