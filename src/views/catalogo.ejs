@@ -9,7 +9,7 @@
 
   <link rel="stylesheet" href="/css/styles.css">
   </link>
-  <link rel="shortcut icon" href="/img/logo1.png">
+  <link rel="shortcut icon" href="<%= general[0].favicon %>">
   <title>El Competidor</title>
 </head>
 
@@ -21,7 +21,7 @@
     <!--<h1 class="logo"><img src="img/logo.png" alt=""></h1>-->
     <input type="checkbox" class='bx bx-menu' id="toogle_menu">
     <span class="tooltip_categ">Categorias</span>
-    <img id="logo_menu" src="/img/logo1.png" alt="" style="width: 100px; height: 60px;">
+    <img id="logo_menu" src="<%= general[0].favicon %>" alt="" style="width: 100px; height: 60px;">
     <nav>
 
       <ul class="menu">
@@ -285,11 +285,15 @@ let caja = document.querySelector(".caja")
           let new_valor1=valor-porcentaje;
           let new_valor=new_valor1/1000;
           document.querySelector("#valor_view").innerHTML=new_valor.toFixed(3);
-          old_price.innerHTML=valor;
+          old_price.innerHTML="$"+valor;
 
         
+        
          }
-        }  
+        }  else{
+          label_porcent.style.visiblitily="hidden"
+          document.querySelector("#valor_view").innerHTML = valor;
+        }
         if(cantidad=="0"){
  
           disponible.innerHTML="agotado!!!"
@@ -357,6 +361,56 @@ let caja = document.querySelector(".caja")
     </script>
     <h1 id="titulo_cat" style="text-align: center; ;">CATALOGO PRODUCTOS EL COMPETIDOR</h1>
     <p id="head_recomend">Haz clik sobre la imagen , podras ver la descripcion del producto y ordenar tu pedido.</p>
+    <div class="buscador">
+    <input type="text" id="input_buscar" list="options1"> <a id="buscar_prod" href="#">buscar</a>
+   
+</div>
+<ul id="box-search">
+
+ 
+ 
+  
+</ul>
+<script>
+  var buscarbtn=document.querySelector("#buscar_prod");
+  var inputfind=document.querySelector("#input_buscar");
+  var box_serach=document.querySelector("#box-search");
+
+  function buscador_interno(){
+  var filtro=inputfind.value.toUpperCase();
+    var li= box_serach.getElementsByTagName("li");
+
+    for (let i = 0; i < li.length; i++) {
+      var a=li[i].getElementsByTagName("a")[0];
+      textvalue=a.textContent || a.innerText;
+      
+     if(textvalue.toUpperCase().indexOf(filtro)>-1){
+       li[i].style.display=""
+       a.onclick=function(){
+       
+        inputfind.value=li[i].innerText;
+        box_serach.style.display="none"
+       }
+      box_serach.style.display="block"
+
+      if(filtro===""){
+        box_serach.style.display="none"
+      }
+     }else{
+      li[i].style.display="none"
+     }
+      
+    }
+  }
+
+  inputfind.addEventListener("keyup", buscador_interno) ;
+
+  buscarbtn.onclick=function(){
+     this.setAttribute("href", "#"+inputfind.value)
+     inputfind.value=""
+  }
+
+  </script>
     <div id="cont_product" style="margin-top: 30px; padding: 10px; gap: 10px; left: 0; background: #f9f7f7;">
 
 
@@ -364,333 +418,132 @@ let caja = document.querySelector(".caja")
       
       <section id="alimentos">
         <h1 id="title_section" style="text-align: center; margin-top: 50px;">Alimentos</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="alimentos" ) { %>
-
-
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""> </a>
-
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-             
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_alimentos">
             </div>
       </section>
 
       
       <section id="aseo_personal">
         <h1 style="text-align: center; margin-top: 50px;">Aseo Personal</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="aseo personal" ) { %>
-
-
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-               <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""> </a>
-
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-cod">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_aseo personal">
+   
             </div>
       </section>
       
       <section id="aseo">
         <h1 style="text-align: center; margin-top: 50px;">Aseo</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="aseo" ) { %>
-
-
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %> </button>
-              <a> <img src="<%= prod.imagen %>" alt=""> </a>
-
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-cod">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_aseo">
+       
           </div>
       </section>
       
       <section  id="hogar">
         <h1 style="text-align: center; margin-top: 50px;">Hogar</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="hogar" ) { %>
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""></a>
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
-            </div>
+        <div class="seccion" id="seccion_hogar">
+       
+        </div>
       </section>
 
     
       <section  id="ferreteria">
         <h1 style="text-align: center; margin-top: 50px;">Ferreteria</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="ferreteria" ) { %>
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""></a>
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_ferreteria">
+        
               </div>
       </section>
       
       <section  id="salud">
         <h1 style="text-align: center; margin-top: 50px;">Salud</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria=="salud" ) { %>
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""></a>
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_salud">
+       
+           
             </div>
       </section>
       
       <section  id="cosmetica">
         <h1 style="text-align: center; margin-top: 50px;">Cosmetica</h1>
-        <div class="seccion">
-        <% prods.forEach(function(prod) { %>
-          <% if (prod.categoria==="cosmetica" ) { %>
-
-            <div id="catalogo">
-              
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""></a>
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-
-            <% } %>
-              <% }) %>
+        <div class="seccion" id="seccion_cosmetica">
+        
             </div>
       </section>
       
-    <!-- <input type="text" id="buscar"> <a id="mostrarwe" href="/">buscar</a>--> 
+      
 
       <section  id="papeleria">
         <h1 style="text-align: center; margin-top: 50px;">Papeleria</h1>
-        <div class="seccion">
-        <%let cats=["papeleria"]%>
-        <% prods.forEach(function(prod) { %>
-          <% if (cats.includes(prod.categoria)){ %>
-
-            <div id="catalogo">
-              <button id="revisar"
-                onclick="mostrar('<%= prod.nombre %>','<%= prod.valor %>','<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')">
-                <% if (prod.promo) { %>
-                  <% if (prod.promo=="0") { %>
-                    
-                    <% }else { %>
-                  <a href="" id="etiq_descuento"><%= prod.promo %>%OFF </a>
-                  <% } %>
-                <% }else { %>
-                  
-                  <% } %>
-              </button>
-              <a> <img src="<%= prod.imagen %>" alt=""></a>
-              <div class="descript" id="descript">
-                <h3 class="product-name"><a id="nombre-prod">
-                    <%= prod.nombre %>
-                  </a></h3>
-                <p class="product-category">Cod. <%= prod.codigo %>
-                </p>
-
-                <h4 class="product-price">$<%= prod.valor %>
-                </h4>
-              </div>
-            </div>
-
-            <% } %>
-              <% }) %>
-
-
-            </div>
+       
+     
+        <div class="seccion" id="seccion_papeleria">
+           
+           
+        </div>
       </section>
+      
+       
+        <% prods.forEach(function(prod) { %>
+<script>
+ var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= prod.categoria %>'; var imagen='<%= prod.imagen %>'
+ var descripcion='<%= prod.descripcion %>'; var promo="<%= prod.promo %>"
+ var secc_prod=document.getElementById("seccion_"+cate)
 
-      <div>
-      </div>
-    </div>
 
+ var listop=document.getElementById("box-search")
+ 
 
+  var buscar_btn=document.getElementById("input_buscar")
+  var li_options1= document.createElement("li");
+  var a_options1= document.createElement("a");
 
+     a_options1.innerHTML='<%= prod.nombre %>'
+  li_options1.appendChild(a_options1)
+  
+  
 
+  listop.appendChild(li_options1)
 
+   
+  var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos","cosmetica","aseo"]
+  var cont_prod= document.querySelector(".seccion")
+  if(cats.includes(cate)){ 
+   var card=document.createElement("div");
+   card.id="catalogo"
+   var img_prod=document.createElement("img")
+   img_prod.id=nombre
+   img_prod.setAttribute("src", imagen)
+   var revisar=document.createElement("button");
+  revisar.id="revisar"
+  var descipcion=document.createElement("div");
+  descipcion.id="descript"
+  var nombre_prod=document.createElement("h3");
+  
+   nombre_prod.className="nombre-prod";
+   var codigo=document.createElement("p");
+   var prod_valor=document.createElement("h4");
+   revisar.setAttribute("onclick","mostrar('<%= prod.nombre %>',"+valor+",'<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')");
+  if(promo){
+    if(promo=="0"){
+
+    }else{
+      var label_prom=document.createElement("a");
+      label_prom.id="etiq_descuento";
+      label_prom.innerHTML=promo+"%OFF"
+      revisar.appendChild(label_prom)   
+    }
+  }
+   codigo.innerHTML="<%= prod.codigo %>"
+   prod_valor.innerHTML="$"+valor
+   nombre_prod.innerHTML=nombre
+  descipcion.appendChild(nombre_prod)
+  descipcion.appendChild(codigo)
+  descipcion.appendChild(prod_valor)
+  card.appendChild(revisar)
+  card.appendChild(img_prod)
+  card.appendChild(descipcion) 
+  secc_prod.appendChild(card)
+  }
+</script>
+<% }) %>
+      
 
     <script>
       var conten=document.querySelector("#cont_product")
@@ -708,6 +561,32 @@ let caja = document.querySelector(".caja")
         }
       
     
+
+
+        /*var imagen_prod = document.createElement("img");
+  var card=document.createElement("div");
+  var revisar=document.createElement("button");
+  revisar.id="revisar"
+  var descipcion=document.createElement("div");
+    descipcion.id="descript"
+  card.id="catalogo"
+  var nombre_prod=document.createElement("h3");
+  nombre_prod.id="nombre-prod";
+    imagen_prod.id="imagen";
+    console.log(cate)
+ 
+    imagen_prod.setAttribute("src",imagen)
+   var seccion=document.querySelector("#"+cate)
+   card.appendChild(imagen_prod)
+   card.appendChild(revisar)
+   nombre_prod.innerHTML=nombre;
+   descipcion.appendChild(nombre_prod)
+   card.appendChild(descipcion)
+
+   cont_prod.appendChild(card)
+
+  
+   seccion.appendChild(cont_prod)*/
     </script>
 
   </div>
@@ -717,6 +596,9 @@ let caja = document.querySelector(".caja")
 
   </div>
   <style>
+    
+   
+      
     .wrapper {
       position: fixed;
       z-index: 9999;

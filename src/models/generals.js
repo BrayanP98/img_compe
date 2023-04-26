@@ -9,8 +9,14 @@ const generalSchema= new Schema({
            },
    color:{
         type:String,
-        required:true,
+        required:false,
         unique:false,
+    }, 
+  favicon:{
+       
+       
+            type:String
+        
     }, 
     
 

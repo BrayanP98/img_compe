@@ -11,26 +11,36 @@
         <div id="cont_form">
 
             <h1>Informacion General</h1>
-    <% general.forEach(function(num) { %>
-<form action="/general/<%= num._id %>"" method="post">
+   
+<form action="/general/<%= general[0]._id %>" method="post" enctype="multipart/form-data">
     <div class="form-group">
     <label for="numWhatsapp"> numero whatsapp</label>
-    <input type="text" name="numWhatsapp" id="numWhatsapp" value="<%= num.numWhatsapp %>">
+    <input type="text" name="numWhatsapp" id="numWhatsapp" value="<%= general[0].numWhatsapp %>">
 </div>
 <div class="form-group">
     <label for="numWhatsapp"> color barrra menu</label>
-    <input type="text" name="color" id="color" value="<%= num.color %>">
+    <input type="text" name="color" id="color" value="<%= general[0].color %>">
+</div>
+<div class="form-group" id="cont-previa">
+
+    <img src="<%= general[0].favicon %>" name="imagen2" id="previa">
+
+</div>
+<div class="form-group">
+    <input type="file" id="inputGroupFile01" name="image" class="form-control"
+        placeholder=" chosee" aria-label="Example text with button addon" required>
 </div>
 <button type="submit"> send</button>
 
 </form>
-<% }) %>
+
+
         </div>
 
 
 
 
-
+       
 
     </div>
     <style>
@@ -55,6 +65,7 @@
             border-radius: 5px;
             height: 20px;
             border: 0;
+           
         }
         .form-group label{
             text-transform: capitalize;
@@ -77,7 +88,50 @@
             height: 30px;
             border-radius: 3px;
         }
-    </style>
+        #cont-previa{
+      justify-content: center;
+            width: 100%;
+            height: 50px;
+        }
+        #cont-previa  img{
 
+width: 50px;
+height: 50px;
+}
+    </style>
+   <script>
+    // Variables
+    const inputFile = document.querySelector('#inputGroupFile01');
+    const image = document.querySelector('#previa');
+    const cod = document.querySelector('#codigoim');
+
+    /**
+     * Returns a file in Base64URL format.
+     * @param {File} file
+     * @return {Promise<string>}
+     */
+
+
+    async function encodeFileAsBase64URL(file) {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.addEventListener('loadend', () => {
+                resolve(reader.result);
+            });
+            reader.readAsDataURL(file);
+            console.log(file);
+        });
+    };
+
+    // Eventos
+    inputFile.addEventListener('input', async (event) => {
+        // Convierto la primera imagen del input en una ruta Base64
+        const base64URL = await encodeFileAsBase64URL(inputFile.files[0]);
+        // Anyado la ruta Base64 a la imagen
+        image.setAttribute('src', base64URL);
+        cod.innerHTML = inputFile;
+        console.log();
+    });
+</script>
 </body>
 </html>

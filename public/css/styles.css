@@ -202,6 +202,56 @@ font-family: 'Fjalla One', sans-serif;
 color: #000;
 
 }
+
+
+.buscador{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 30px;
+  
+ justify-content: center;
+}
+#buscar_prod {
+  background: #0099FF;
+  width: 100px;
+  text-decoration: none;
+  height: 25px;
+  text-align: center;
+  padding-top: 5px;
+}
+#input_buscar{
+  border: 0;
+  background: #c7c8c9;
+ border-radius: 8px;
+  width: 60%;
+  height: 25px;
+  font-size: 20px;
+ }
+
+ #box-search{
+  
+  width: 60%;
+  height: fit-content;
+  background: #f8fafb;
+ display: none;
+ z-index: 2;
+ position:   absolute;
+ transform: translateX(30%);
+  list-style: none;
+  font-size: 20px;
+ }
+ #box-search li a{
+  text-decoration: none;
+  display: block;
+  width: 60%;
+  color: black;
+  padding: 10px 12px ;
+  cursor: pointer;
+ }
+
+
+
 .form-group{
     margin-top: 10px;
     display: flex;
@@ -453,7 +503,7 @@ padding-top: 10px;
     gap: 5px;
   } 
 
-  #nombre-prod{
+  .nombre-prod{
 
     text-decoration: none;
     color: rgb(82, 47, 255);
@@ -883,7 +933,7 @@ border: 0;
   #cont_img img{
     
     width: 100%;
-    height:80%;
+    height:70%;
     border: 0;
     transition: .2s ease-in;
   }
@@ -1151,6 +1201,7 @@ hyphens: none;
 
   #info_prod  p{
   font-size: 17px;
+  padding: 15px;
   }
      #caract_product .nombre_prod_slide::first-letter,#caract_product .nombre_prod_slide{
      font-size: 15px;

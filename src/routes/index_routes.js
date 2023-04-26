@@ -51,17 +51,8 @@ router.get('/catalogo',async (req,res)=>{
    //console.log(prods)
 
 });
-router.get('/update', (req,res)=>{ 
-   
-    
-    res.render('update.ejs');
- 
- });
+
  router.get('/promo',async(req, res,)=>{
-
-
-
-  
 
     const proms= await Promo.find().lean();
     res.render('promos',{proms});
@@ -79,9 +70,6 @@ router.get('/update', (req,res)=>{
      res.send('<script>window.history.go(-1)</script>');
     }
      
-
-
-
 
  })
  router.post('/promo',async(req, res,)=>{
@@ -101,14 +89,8 @@ try{
     promo.mensaje=req.body.mensajeProm;
     promo.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
 
-
-  
-
- 
     await promo.save();
-
-
-   
+  
     res.redirect('/promo')
 }catch{
     res.send('<script>window.history.go(-1)</script>');
@@ -121,7 +103,7 @@ try{
     var general1= new General();
     general1.numWhatsapp="3026055289";
     general1.color="#16a07b81 ";
-
+    general1.favicon=""
      await general1.save();
      res.redirect('/general')
  })
@@ -135,12 +117,16 @@ try{
 
  router.post('/general/:id',async(req, res,)=>{
     var  id3=req.params.id;
+    const filein=(req.file.path);
     try{
      const general1= new General();
        general1.numWhatsapp=req.body.numWhatsapp
        general1.color=req.body.color;
+       let favicon='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
+       
       
        const updategen=await General.findByIdAndUpdate(id3,req.body).lean();
+       const updateProdimg=await General.findByIdAndUpdate(id3,{favicon}).lean();
         res.redirect('/general')
     }catch{
 
@@ -182,7 +168,7 @@ router.get('/delete/:id',async(req, res)=>{
     const  id=req.params.id;
    try{
     await Image.findByIdAndDelete(id).lean();
-     res.redirect('/upload.ejs');
+     res.redirect('/upload');
    }catch{
     res.send('<script>window.history.go(-1)</script>');
    }
@@ -193,7 +179,7 @@ router.get('/find/:id',async(req, res)=>{
 
     const {id}= req.params;
 const producto= await Image.findById(id).lean();
-res.render("update.ejs", { producto });
+res.render("update", { producto });
 
 
 });
