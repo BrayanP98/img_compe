@@ -250,9 +250,13 @@ color: #000;
   overflow: hidden;
   font-family: 'Rubik', sans-serif;
   overflow: scroll;
+  overflow: hidden;
+  overflow: scroll;
+  max-height: 200px;
   background: #f8fafb;
  display: none;
  z-index: 2;
+   
  position:   absolute;
  transform: translateX(30%);
   list-style: none;
