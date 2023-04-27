@@ -324,8 +324,8 @@ let caja = document.querySelector(".caja")
         direccion_cliente.value = " "
 
         document.querySelector("#pop-up").classList.add("active")
-        //let new_name = nombre.replace("y", "&");
-        nombre_prod1.innerText = nombre
+        let new_name = nombre.replace("&amp;", "&");
+        nombre_prod1.innerText = new_name
 
      
         document.querySelector("#desccripcion_view").innerHTML = descrip
