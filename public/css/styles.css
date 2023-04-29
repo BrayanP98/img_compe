@@ -1236,6 +1236,11 @@ hyphens: none;
   and (min-device-width: 120px)
   and (max-device-width:768px)
   {
+    #subir{
+      color: #ac3030;
+       right:  -0px;
+       
+     }
     #buscar_prod {
       height: 25px;
       width: 80px;
