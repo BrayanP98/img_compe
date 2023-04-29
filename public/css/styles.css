@@ -1191,9 +1191,23 @@ height: 55px;
 width: 700px;
 height: fit-content;
 text-align: center;
-
-
 font-family: 'Rubik', sans-serif;
+}
+#subir{
+  font-weight: bold;
+  border: 0;
+  background: transparent;
+  font-size:50px;
+  position: fixed;
+  z-index: 1000;
+  color: rgb(0, 94, 255);
+  right:  17px;
+  bottom: 16px;
+  opacity: 0;
+}
+#subir.show {      
+opacity: 1;  
+transition: opacity 1s, transform 1s;     
 }
 #info_footer p{
   text-align: center;

@@ -838,6 +838,7 @@ let caja = document.querySelector(".caja")
 
   <div id="footer">
     <div id="info_footer">
+      <button id="subir"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="40" viewBox="0 0 24 24" style="fill: rgb(33, 106, 196);"><path d="m6.293 11.293 1.414 1.414L12 8.414l4.293 4.293 1.414-1.414L12 5.586z"></path><path d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path></svg></button>
       <h2>Distribuciones El Competidor</h2>
 
       <p>Empresa con mas de 20 años de experiencia, brindando el mejor servicio a sus clintes a lo largo del territorio
@@ -851,7 +852,32 @@ let caja = document.querySelector(".caja")
       <p>contacto <%= numwh %>    <br>correo: distrielcompetidor@gmail.com
       </p>
 
+      <script>
+ 
 
+        const showOnPx = 100;
+        const scrollContainer = () => {
+          return document.documentElement || document.body;
+        };
+        document.addEventListener("scroll", () => {
+          let btn_subi=document.getElementById("subir")
+          if (scrollContainer().scrollTop > showOnPx) {
+            btn_subi.classList.add("show")
+          } else {
+            btn_subi.classList.remove("show")
+          }
+        })
+        
+        
+           var btn_subir=document.getElementById("subir")
+            btn_subir.onclick=function(){
+             window.scrollTo({
+              top:0,
+              behavior:"smooth"
+             })
+              
+            }
+        </script>
 
     </div>
     <div id="footer_mapa">
