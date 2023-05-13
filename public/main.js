@@ -63,7 +63,7 @@ socket.on("loadates", function(notes)   {
   var cart=notes;
   console.log(cart.length)
   if(cart){
-
+   
 
   var length = cart.length
   //console.log(length);
@@ -146,10 +146,13 @@ socket.on("loadates", function(notes)   {
         }
         
       }
+
+
+
+      //////borrar producto---------------------------------------------
       delete_item.onclick=function(){
-        
-        let nombre="brayan5"
-    
+      var nombre =nombreuser.innerHTML
+      
        let id=car_cont[i]._id;
        socket.emit("deleteprod", nombre, id)
        product_car.innerHTML=""
