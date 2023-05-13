@@ -66,7 +66,7 @@
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
-   
+  
     padding-left: 20px;
 }
 
@@ -74,7 +74,7 @@
   
   text-align: center;
   display: flex;
-  width: 100%;
+  width: 80%;
  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
@@ -404,7 +404,7 @@ form label{
 
 form input{
 
-   width: 70%;
+   width: 50%;
 
 
    border-radius: 5px;
@@ -702,6 +702,20 @@ padding-top: 10px;
     word-wrap: break-word;
     justify-content: center;
     }
+    @keyframes show {
+  
+    from{
+      box-shadow: inset 3px red;
+    }to{
+      box-shadow: inset 3px red;
+    }
+   
+    }
+    #catalogo.show{ 
+  animation: show 0.7 ease-in;
+  animation-duration: 2s ;
+
+    }
     #etiq_descuento{
       text-decoration: none;
       cursor: none;
@@ -746,6 +760,11 @@ padding-top: 10px;
     flex-wrap: wrap;
     align-items: center;
     transition: 10s ease-in ;
+    }
+
+    .seccion .renew{
+      border: 0px;
+
     }
     .seccion.active{
     
@@ -885,7 +904,7 @@ border: 0;
     display: flex;
     transform: scale(1);
     width:90%;
-  
+   top: 100px;
     
     opacity: 0;
     align-items: center;
@@ -908,7 +927,7 @@ border: 0;
   }
   .pop-up button{
     position:absolute;
-    z-index: 33;
+    z-index: 999;
      top: -10px;
      right: -9px;
      width: 80px;
@@ -1046,7 +1065,7 @@ border: 0;
   font-family: 'Nunito Sans', sans-serif;
   text-align: justify;
   line-height:20px;
-  word-spacing: 0.05em;
+  word-spacing: none;
   color: #4d4a4a;
   }
   #formulario_env{
@@ -1054,7 +1073,6 @@ border: 0;
     height: 500px;
     background: white;
     justify-content: center;
-   
     position: sticky;
   }
 
@@ -1078,31 +1096,82 @@ border: 0;
  }
 .formulario_cliente input{
     caret-color: #0099FF;
-     width: 70%;
+     width: 50%;
   
-  color: #000;
-     border-radius: 5px;
-    padding: 10px 25px;
+     color: #000;
+    border-radius: 5px;
+   
      margin:0 0 10px;
-     display: block;
+    
   }
 
-
+  #div_cant_prod{
+    position: relative;
+    height: fit-content;
+    width: 90%;
+    align-items: center;
+   
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .cant_prod{
+    position: relative;
+    width:35px;
+    height: 20px;
+    text-align: center;
+    border-radius: 0;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid gray ;
+  }
+ 
+  #div_cant_prod a{
+    
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid gray ;
+   
+    text-align:center ;
+    margin: 0;
+    position: static;
+    width:25px;
+    height: 20px;
+   
+    align-items: center;
+  }
+  #button_menos{
+    border-radius: 5px 0 0  5px  ;
+  }
+  #button_mas{
+    border-radius:  0 5px  5px 0 ;
+  }
   /*whatsapp*/
+  .cont_shop_var{
+    width: 100%;
+    height: 40px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+   justify-content: center;
+    gap: 15px;
+    top: 22px;
+  }
   .cont-whatsapp{
 
-    width: 200px;
-    height: 50px;
+    width: 130px;
+    height: 40px;
     background: #0099FF;
-    
-    border-radius: 30px  ;
-   margin-left: 50px;
-   margin-top: 20px;
+   
+   border-radius: 20px;
+  
     transition: all ease 2s;
   /*;*/
   }
- .cont-whatsapp a img{
-  width: 100px;
+  #whatsapp  img{
+    width: 40px;
+    height: 40px;
     margin-top: 0;
     animation: anim_what 5s alternate infinite ease
   }
@@ -1113,7 +1182,7 @@ border: 0;
     position: absolute;
     display: flex;
     flex-direction: row;
-   
+  
   }
 
   /*animacion boton whatsapp*/
@@ -1132,7 +1201,7 @@ border: 0;
   .cont-whatsapp a span{
     
    
-    margin-top: 15px;
+    margin-top: 10px;
     margin-left: 15px;
     color: #171718;
     transition: all ease 1s;
@@ -1151,6 +1220,31 @@ border: 0;
    transition: all ease 1s;
    box-shadow: 3px solid rgba(0, 174, 255, 0.237);
   }
+
+  .cont-car_icon{
+    border-radius: 25px;
+    width: fit-content;
+    height: 40px;
+    background: #0099FF;
+    padding: 0 5px 0 5px;
+    overflow: hidden;
+    text-decoration: solid;
+  }
+
+  .cont-car_icon svg{
+    padding-left: 5px;
+    padding-bottom: 5px;
+    border-radius:  0 15px   15px  0 ;
+    background: #00ff26;
+   margin-left: -5px;
+  }
+  .cont-car_icon a{
+    position: relative;
+    color: #0c0c0c;
+    
+    bottom: 15px;
+  }
+ 
 #title_fotter_pagos{
   position:relative;
   top:px;text-align: center;
@@ -1195,6 +1289,22 @@ text-align: center;
 
 font-family: 'Rubik', sans-serif;
 }
+#subir{
+  font-weight: bold;
+  border: 0;
+  background: transparent;
+  font-size:50px;
+  position: fixed;
+  z-index: 1000;
+  
+  right:  17px;
+  bottom: 8px;
+  opacity: 0;
+}
+#subir.show {      
+opacity: 1;  
+transition: opacity 1s, transform 1s;     
+}
 #info_footer p{
   text-align: center;
 font-family: 'Rubik', sans-serif;
@@ -1222,7 +1332,29 @@ hyphens: none;
   and (min-device-width: 120px)
   and (max-device-width:768px)
   {
-
+    .pop-wrap-sigin{
+     
+     
+     
+     left: 0;
+    }
+    #subir{
+     color: #ac3030;
+      right:  -0px;
+      
+    }
+    #buscar_prod {
+      height: 25px;
+      width: 80px;
+    }
+    #box-search{
+      font-size: 15px;
+    }
+    #input_buscar{
+      height: 25px;
+      font-size: 14px;
+      width: 70%;
+    }
   #info_prod  p{
   font-size: 17px;
   padding: 15px;
@@ -1407,7 +1539,17 @@ padding: 0;
 and (min-device-width: 120px)
 and (max-device-width:856px)
 {
-
+  #cont_car{
+    position: static;
+    top: 15px;
+    z-index: 0;
+     width: 280px;
+    
+  }
+  #product_car{
+    
+    top: 110px;
+  }
   .caja span{
 
     visibility: visible;
@@ -1418,10 +1560,7 @@ and (max-device-width:856px)
   }
 
    #logo_menu{
-    position: fixed;
-   right: 30px;
-   position: absolute;
-   margin-top: 2px;
+   display: none;
 
   }
 .menu{

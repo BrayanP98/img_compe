@@ -8,16 +8,53 @@ const General=require('../models/generals')
 const fs = require('fs');
 const IMAGE = require('../models/IMAGE');
 const { MulterError } = require('multer');
+const User=require('../models/users')
 const multer = require('multer');
+var passport = require('passport');
+
+const pasport=require('../pasport')(passport);
 
 
-router.get('/', async (req,res)=>{
+
+
+
+
+function isLogedIn(req, res, next){
+
+    if(req.isAuthenticated()){
+      
+  
+      return next();
+    }else{
+        return next();
+    }
+    return res. redirect("/")
+   }
+ 
+router.get('/',isLogedIn, async(req,res)=>{
     const prods= await Image.find().lean();
     const general= await General.find().lean();
     const promo= await Promo.find().lean();
     let numwh=general[0].numWhatsapp
+    const nom_user= req.session.passport;
+    console.log(req.session.passport)
+    var coche = JSON.stringify(nom_user);;
+   var band;
+    if(nom_user){
+        band=true;
+        const userlogin= await User.findById(nom_user.user).lean();
+       
+        res.render("catalogo.ejs", { prods, promo, general,numwh,userlogin, band});
+        
+    }else{
+        band=false
+        const userlogin= "";
+        console.log("no hay sesion")
+        res.render("catalogo.ejs", { prods, promo, general,numwh,userlogin ,band});
+    }
     
-    res.render("catalogo.ejs", { prods, promo, general,numwh });
+    
+    
 });
 
 /*router.get('/:clave',async(req, res)=>{
@@ -42,6 +79,66 @@ router.get('/upload',async (req,res)=>{
    //console.log(prods)
 
 });
+router.get('/adduser',async (req,res)=>{
+    
+    const nom_user= req.session.passport;
+    
+    console.log( req.session)
+    
+    
+
+    
+    res.render("adduser");
+   //console.log(prods)
+
+});
+router.post("/task/addUser", passport.authenticate('local-signup',{
+    successRedirect:'/',
+
+    failure:{
+
+    },
+    
+    failureFlash:true
+
+}) );
+router.post("/task/findUser", passport.authenticate('local-login',{
+      
+    successRedirect:'/',
+
+    failureRedirect:('/'),
+    failureMessage:true,
+   failureFlash:true
+   
+
+
+}));
+
+router.get("/logout", (req, res) => {
+    req.logout(req.user, err => {
+      if(err) return next(err);
+      res.redirect("/");
+    });
+  });
+
+router.get("/stock/:nombre/:stock", async (req,res)=>{
+    let  nombre_clave=req.params.nombre;
+    let  stock_clave=req.params.stock;
+   // const prod= Image.find({"nombre":nombre})
+   try{
+    let prods1= await Image.find({ nombre : { $regex: nombre_clave} },{})
+    let cantidad=stock_clave;
+    let id2=prods1[0].id;
+    
+    const updateProdimg=await Image.findByIdAndUpdate(id2,{cantidad:cantidad}).lean();
+  
+   res.redirect("/")
+   } catch{
+    console.log("no se puedo")
+   }
+   
+}) ;
+
 router.get('/catalogo',async (req,res)=>{
     var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos"]
     const prods= await Image.find().lean();
@@ -230,4 +327,9 @@ router.get('/img/:id/delete', (req, res)=>{
 
     res.send('eliminada con exito')
 })
+
+
+
+
+
 module.exports=router;

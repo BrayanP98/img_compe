@@ -9,9 +9,14 @@
 
   <link rel="stylesheet" href="/css/styles.css">
   </link>
+
   <link rel="shortcut icon" href="<%= general[0].favicon %>">
+
   <title>El Competidor</title>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 </head>
+
 
 <body>
 
@@ -33,21 +38,316 @@
         <li><a class="item_menu" href="#salud">Salud</a></li>
         <li><a class="item_menu" href="#papeleria">Papeleria</a></li>
 
-      </ul>
+     </ul>
+     <div id="cont_car">
+      <a id="item_car"  name='shopping-bag'></a>
+      <svg  id="icon_car"  xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1); cursor:pointer;"><path d="M5 22h14a2 2 0 0 0 2-2V9a1 1 0 0 0-1-1h-3v-.777c0-2.609-1.903-4.945-4.5-5.198A5.005 5.005 0 0 0 7 7v1H4a1 1 0 0 0-1 1v11a2 2 0 0 0 2 2zm12-12v2h-2v-2h2zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v1H9V7zm-2 3h2v2H7v-2z"></path></svg>
+     
+      <img id="user_sigin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAYdJREFUSEvllu1NA0EMRCeVECoBKglUAlRCqASoBKgE9KS15Oztx9wFKT+wFEXROX4e27Gz04VsdyGutoL3ku4lfZXX+1oBa8G3kl4kAc5GAs+Sjm4Ca8AoBDoy4E8O3AWj9K0EzOpQzrPHUgWePUialt4FAwWAXZe+ZmEk8JkSw2doLvinRBmVkhKjHNV/As5lpoy9Acp+d7NyO4pzGUfgPHytdpyU3gHzBfpHAgwNalqW52Aad+pQCNE/Prb6zM8Mxb3ni0RdMGoJHpPNAKH+W9IhLRRrsMjCBeNbw2sVQGkD71NbA45glP2mqI9d/eFurAiyBTxV4zi44LhGV40DERzU03N6f/bKnPW1J27a75HivImyqt7wxMRn39de73vgGjpaHFl1tISdjXWvVQ8cR4EvT/duo971GV0cjRZ4tqWcocUn7+7FtmuBnb3swPNgLjZaCxxl5vxxjc6xXL2Ti1WD3dvrJtO90SPwlqGqE7LB9CX+uk63jyG7G89dmQZjncv/A/8Cb/lcHzChMD8AAAAASUVORK5CYII="/>
+      <div id="opciones_user">
+        <h4 id="nombre_user"><%= userlogin.nombre%></h4>
+        <ul>
+          <li><a >Mis datos</a></li>
+          <li><a href="/logout" >Cerrar Secion</a></li>
+        </ul>
+      </div>
+     
+      <box-icon type='solid'></box-icon>
+      <div  id="cont_buy" >
+      <div id="product_car">
+     
+    <script>
+  
+     
+      var cont_buy=document.querySelector("#cont_buy");
+   
+    var buy_car=document.createElement("div");
+    buy_car.id="buy_car";
+    var label_total=document.createElement("h3");
+    label_total.id="label_total"
+    var title_total=document.createElement("h3");
+    title_total.innerHTML="Total:"
+    var buy=document.createElement("button");
+    buy.id="buy"
+    buy.innerHTML="Comprar"
+    buy_car.appendChild(title_total)
+    buy_car.appendChild(label_total)
+    buy_car.appendChild(buy)
+    cont_buy.appendChild(buy_car)
 
-      <script>
-        
 
 
-      </script>
 
+    window.addEventListener("load", function(){
+  var nombreuser= document.querySelector("#nombre_user") 
+  var  item_car= document.querySelector("#item_car") 
+
+  var nombre="<%= userlogin._id%>";
+  var carro={
+      nombreProd: "content",
+      valor:"19000"
+  }
+  if(nombre){
+ 
+    item_car.style="visibility:visible"
+  socket.emit("idUser", nombre, carro)
+
+
+  }else{
+    prod_clean()
+  }
+
+})
+    
+    </script>
+ 
+</div>
+
+</div>
+     </div>
+    
+     
     </nav>
 
+   
+   <style>
+     @keyframes options{
+
+from{
+height: 0;
+}to{
+ height: 70px;
+}
+
+}
+    @keyframes car{
+
+   from{
+   height: 0;
+   }to{
+    height: 400px;
+   }
+   
+  }
+  #opciones_user.active{
+    display: flex;
+    flex-direction: column;
+  
+  }
+  #opciones_user{
+    position: fixed;
+    width: 150px;
+    height: fit-content;
+    right: 20px;
+    top: 60px;
+    overflow: hidden;
+    animation: options .5s ease-in;
+   
+  background-color: #076fe576;
+    display: none;
+  }
+  #opciones_user h4{
+    position: relative;
+    top: 0;
+    font-family: 'Rubik', sans-serif;
+    text-transform: none;
+  padding-bottom: 5px;
+    text-align: center;
+    height: 2px;
+    width: 150px;
+    color: #090909 ;
+  }
+  #opciones_user ul{
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  #opciones_user li{
+    padding: 3px;
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    list-style: none;
+    width: 100%;
+    height: 30px;
+    background: #f6f6fa;
+    border: 0;
+    
+  }
+  #opciones_user li:hover{
+   background: #d2d2d8bb;;
+
+  }
+  #opciones_user a{
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+  }
+    #cont_buy.active{
+      display: block;
+      animation: car 1s ease-out;
+    }
+    #product_car::before{
+      animation: car 3s ease-out;
+    }
+    #product_car{
+      width: 100%;
+      background: #076fe5;
+      height: 340px;
+      max-height: 400px;
+      overflow-y: scroll;
+      position: static;
+    }
+     #cont_buy{
+     width: 30vw;
+     min-width: 300px;
+     height: 400px;
+     max-height:400px ;
+      background: #076fe5;
+      position: fixed;
+      z-index: 15;
+      right: 20px;
+      top: 60px;
+      padding: 5px;
+      overflow: hidden;
+      display: none;
+     padding-bottom:5px ;
+     
+     }
+     #product_car::-webkit-scrollbar {display: none;}
+    #carItemnone{
+      width: 97%;
+      height: 150px;
+      background: white;
+      margin-top: 5px;
+     }
+     #carItem{
+      
+      width: 97%;
+      height: 100px;
+      background: white;
+      margin-top: 5px;
+      padding: 5px;
+     }
+    #cont_car{
+      width: fit-content;
+     
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      position: fixed;
+      right: 25px;
+     
+      
+    }
+    #cont_car img{
+      width: 30px;
+      height:30px ;
+      z-index: 12;
+      cursor: pointer;
+}
+
+#item_car{
+  background: red;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  border-radius: 50%;
+  z-index: 15;
+  position: relative;
+  left: 25px;
+  top:0;
+  cursor: pointer;
+  visibility: hidden;
+
+}
+#div_cant_prodCar{
+    position: relative;
+    height: fit-content;
+    width: 90%;
+    align-items: center;
+  
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #div_cant_prodCar a{
+    
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid gray ;
+   
+    text-align:center ;
+    margin: 0;
+    position: static;
+    width:25px;
+    height: 20px;
+   
+    align-items: center;
+  }
+  #delete_item{
+    width: 30px;
+    height: 20px;
+    
+    position: absolute;
+    right: 0;
+    overflow: hidden;
+    border: 0;
+  }
+  #delete_item img{
+width: 100%;
+height: 100%;
+  }
+#buy_car{
+  width: 95%;
+  height: 50px;
+  background: green;
+	position: absolute;
+ margin-bottom: 0;
+ display: flex;
+ flex-direction: row;
+ padding-left: 10px;
+ margin-top: 10px;
+ gap: 8px;
+}
+#buy{
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  background: #0707e5;
+  right: 2px;
+}
+@media only screen
+  and (min-device-width: 851px)
+  and (max-device-width:1168px)
+  {
+    #opciones_user{
+    
+      top: 110px;
+  }
+    #cont_car{
+      
+      background: #16a07b81 ;
+      top: 80px;
+      
+    }
+    #cont_buy{
+
+      top: 110px;
+    }
+  }
+   </style>
   </div>
   <script>
 let caja = document.querySelector(".caja")
         caja.style.background = "<%= general[0].color%>"
-
+var product_car=document.querySelector("#cont_car")
+product_car.style=""
         let menu = document.querySelector(".menu")
 
         let hijos = menu.children;
@@ -82,8 +382,9 @@ let caja = document.querySelector(".caja")
       menu.classList.toggle('active');
     }
   </script>
-
-  <div class="container-fluid">
+<%- include ('partials/sigin.ejs') %>
+  <div class="container-fluid" id="container-fluid">
+    
     <div class="pop-up" id="pop-up">
 
       <div class="pop-wrap" id="pop-wrap">
@@ -102,10 +403,17 @@ let caja = document.querySelector(".caja")
             <h1 id="nombre_view"></h1>
             <h1 id="valor_old"></h1>
             <h1 id="valor_view"></h1>
+            
             <div id="medida_disp">
             <p id="medida">caja</p>
             <a id="disponible"> </a>
+            <h6 id="stock_prod"></h6>
           </div>
+          <style>
+            #stock_prod{
+              opacity: 0;
+            }
+          </style>
             <h2 id="title_descript">Descipcion</h2>
             <p id="desccripcion_view"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui iure maiores fuga
               necessitatibus illum aliquid, possimus
@@ -125,20 +433,69 @@ let caja = document.querySelector(".caja")
 
               <label for="direccion_cliente">Direcion de entrega*</label>
               <input type="text" id="direccion_cliente" placeholder="cra 2#8-56">
-
               <label for="contacto">Cantidad producto*</label>
-              <input type="number" id="cant_prod" required>
+              <div id="div_cant_prod">
+                <a id="button_menos">-</a>
+                
+                <input type="text" id="cant_prod"  value="0" required>
+                <a id="button_mas">+</a>
+              </div>
+              
+                  <script>
+                var  button_mas=document.querySelector("#button_mas");
+                var  button_menos=document.querySelector("#button_menos");
+                var  cant_prod=document.querySelector("#cant_prod");
+                var cant=parseInt(cant_prod.value)
+                  
+                
+                  button_mas.onclick= function(){
+                  var cant=parseInt(cant_prod.value) 
+                  if(cant>=0){
+                    var new_cant=cant+1;
+                  }
+                  
 
+                  cant_prod.value=new_cant
+ 
+                  button_menos.onclick= function(){
+                  var cant=parseInt(cant_prod.value);
+                  
+                  if(cant>=1){
+                    var new_cant=cant-1;
+                    console.log(cant)
+                  }else{
+                    new_cant=0
+                  }
+                
+
+                  cant_prod.value=new_cant
+
+                }
+
+                }
+               
+                
+              
+                  </script>
 
             </form>
-            <div class="cont-whatsapp">
-            
+            <div class="cont_shop_var">
+
+              <div class="cont-whatsapp">
+              
                 <a target="_blank" id="whatsapp" style="width: 200px; height: 50px;"> <img src="/img/whatsapp.png"
-                    alt="" style="width: 50px; height: 50px; ">
-                  <span id="whatsapp_span">Hacer Pedido</span>
+                    alt="" >
+                  <span id="whatsapp_span"></span>
                 </a>
+
                
+              
             </div>
+            <div class="cont-car_icon" id="add_car">
+              <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1)"><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="17.5" cy="19.5" r="1.5"></circle><path d="M13 13h2v-2.99h2.99v-2H15V5.03h-2v2.98h-2.99v2H13V13z"></path><path d="M10 17h8a1 1 0 0 0 .93-.64L21.76 9h-2.14l-2.31 6h-6.64L6.18 4.23A2 2 0 0 0 4.33 3H2v2h2.33l4.75 11.38A1 1 0 0 0 10 17z"></path></svg>
+              <a> + Carrito</a></div>
+            </div>
+            
             <h5 id="title_fotter_pagos"> Metodos de pago</h5>
             <div id="fotter_pagos">
               <img src="/img/logo_nequi.webp" alt="">
@@ -152,6 +509,7 @@ let caja = document.querySelector(".caja")
         </div>
         <script>
           var btn_whatsap = document.getElementById("whatsapp");
+          
           var nombre_cliente = document.querySelector("#nombre_cliente1");
           var doc_cliente = document.querySelector("#documento_cliente1");
           var direccion_cliente = document.querySelector("#direccion_cliente");
@@ -159,12 +517,15 @@ let caja = document.querySelector(".caja")
           var nombre_prod1 = document.querySelector("#nombre_view");
           var medida_prod = document.querySelector("#medida");
           var disponible = document.querySelector("#disponible");
-     
+          var stock_prod = document.querySelector("#stock_prod");
+          var valor_view = document.querySelector("#valor_view");
+          
           
          
           cant_prod.style.border = "2px solid black";
           doc_cliente.style.border = "2px solid black";
           nombre_cliente.style.border = "2px solid black";
+          
           btn_whatsap.removeAttribute('href');
           doc_cliente.value = 0;
          
@@ -195,10 +556,22 @@ let caja = document.querySelector(".caja")
               if(cant_prod.value>1){
                 btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value+ "" + medida.innerHTML +"S"+ " " + "de" +
                "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
-            
+                 let cant=parseInt(stock_prod.innerHTML);
+                 let new_stock= cant-parseInt(cant_prod.value);
+                
+
+
+                 
+             
               }else{
-                btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value + "" + medida.innerHTML + " " + "de" +
+                
+
+            btn_whatsap.setAttribute('href', "https://wa.me/57<%= general[0].numWhatsapp %>?text= Hola, minombre es" + " " + nombre_cliente.value + "%0A %0A" + "Quiesiera hecer un pedido de " + cant_prod.value + "" + medida.innerHTML + " " + "de" +
                "  " + new_name + "🙏" + "%0A %0A" + "Mi direccion es:" + " " + direccion_cliente.value + "%0A %0A" + "Mi documento es:" + " " + doc_cliente.value);
+              //var loader=document.querySelector("#loader")
+             let cant=parseInt(stock_prod.innerHTML);
+              let new_stock= cant-parseInt(cant_prod.value);
+              window.location = "/stock/"+nombre_prod1.innerHTML+"/"+new_stock;
               //var loader=document.querySelector("#loader")
               }
               
@@ -212,10 +585,10 @@ let caja = document.querySelector(".caja")
 
 
 
-              doc_cliente.value = " "
-              cant_prod.value = ""
-              nombre_cliente.value = ""
-              direccion_cliente.value = ""
+              doc_cliente.value = 0
+              cant_prod.value = 0
+              nombre_cliente.value ="cale"
+              direccion_cliente.value ="dsds"
               btn_whatsap.style.cursor = "not-allowed"
               //   btn_whatsap.removeAttribute('href');
               //  location.reload()
@@ -224,7 +597,27 @@ let caja = document.querySelector(".caja")
 
           }
       
+          var add_car=document.querySelector("#add_car")
+          add_car.onclick=function(){
 
+            var nombreuser= document.querySelector("#nombre_user") 
+          
+          var nombre=nombreuser.innerHTML;
+      var carro={
+          nombreProd: nombre_prod1.innerHTML,
+           valor:valor_view.innerHTML,
+           cantidad:"1"
+      }
+      if(nombre){
+       
+        
+     socket.emit("sendprod", nombre, carro)
+     swal("Exito!", "Producto agregado al carrito", "success")
+
+     }else{
+       alert("no hay usuario")
+      }
+          }
         
         </script>
       </div>
@@ -275,6 +668,7 @@ let caja = document.querySelector(".caja")
 
 
       function mostrar(nombre, valor,promo, image, descrip, medida, cantidad) {
+        var cart= document.getElementById(nombre);
         var nombrecliente = document.querySelector("#nombre_cliente1");
         var direccion_cliente = document.querySelector("#direccion_cliente");
         var cant_prod = document.querySelector("#cant_prod");
@@ -285,6 +679,8 @@ let caja = document.querySelector(".caja")
         var btn_whatsap = document.getElementById("whatsapp");
         label_porcent.innerHTML=" "
         old_price.innerHTML=" "
+        let padre= cart.parentNode;
+        padre.style="border=0;"
         if(promo){
          if(promo=="0"){
          label_porcent.style.visiblitily="hidden"
@@ -329,7 +725,8 @@ let caja = document.querySelector(".caja")
 
      
         document.querySelector("#desccripcion_view").innerHTML = descrip
-      
+        document.querySelector("#stock_prod").innerHTML = cantidad
+        
 
      if(medida=="UNUDAD"){
 
@@ -352,17 +749,13 @@ let caja = document.querySelector(".caja")
         }else{
           btn_whatsap.style="pointer-events:all;";
           document.querySelector(".cont-whatsapp").style.background="#0099FF"
-          document.querySelector("#whatsapp_span").innerHTML="Hacer pedido"
+          document.querySelector("#whatsapp_span").innerHTML="Comprar"
         }
-        document.querySelector("#close_view").onclick = function () {
+        document.getElementById("close_view").onclick = function () {
 
-
+          
           document.querySelector("#pop-up").classList.toggle("active")
 
-         
-       
-          
-         
           cant_prod.style.border = "2px solid black";
           doc_cliente.style.border = "2px solid black";
           nombre_cliente.style.border = "2px solid black";
@@ -373,11 +766,14 @@ let caja = document.querySelector(".caja")
 
 
     </script>
+   
+    
+    
     <h1 id="titulo_cat" style="text-align: center; ;">CATALOGO PRODUCTOS EL COMPETIDOR</h1>
     <p id="head_recomend">Haz clik sobre la imagen , podras ver la descripcion del producto y ordenar tu pedido.</p>
     <div class="buscador">
     <input type="text" id="input_buscar" list="options1"> <a id="buscar_prod" href="#">buscar</a>
-   
+  
 </div>
 <ul id="box-search">
 
@@ -423,8 +819,9 @@ let caja = document.querySelector(".caja")
   buscarbtn.onclick=function(){
      this.setAttribute("href", "#"+inputfind.value)
     
-   // var selected=  document.getElementById(inputfind.value)
-    //selected.style.border=" 2px solid red"
+   var selected=  document.getElementById(inputfind.value)
+    var padre=selected.parentNode;
+    padre.classList.add("show")
     inputfind.value=""
   }
 
@@ -500,6 +897,8 @@ let caja = document.querySelector(".caja")
        
         <% prods.forEach(function(prod) { %>
 <script>
+
+
  var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= prod.categoria %>'; var imagen='<%= prod.imagen %>'
  var descripcion='<%= prod.descripcion %>'; var promo="<%= prod.promo %>"
  var secc_prod=document.getElementById("seccion_"+cate)
@@ -522,6 +921,7 @@ let caja = document.querySelector(".caja")
   if(cats.includes(cate)){ 
    var card=document.createElement("div");
    card.id="catalogo"
+  
    var img_prod=document.createElement("img")
    img_prod.id=nombre
    img_prod.setAttribute("src", imagen)
@@ -556,7 +956,8 @@ let caja = document.querySelector(".caja")
   card.appendChild(img_prod)
   card.appendChild(descipcion) 
   secc_prod.appendChild(card)
-  }
+}
+  
 </script>
 <% }) %>
       
@@ -581,7 +982,7 @@ let caja = document.querySelector(".caja")
               
         }
       
-    
+   
 
 
     </script>
@@ -838,6 +1239,7 @@ let caja = document.querySelector(".caja")
 
   <div id="footer">
     <div id="info_footer">
+      <button id="subir"><svg xmlns="http://www.w3.org/2000/svg" width="42" height="40" viewBox="0 0 24 24" style="fill: rgb(33, 106, 196);"><path d="m6.293 11.293 1.414 1.414L12 8.414l4.293 4.293 1.414-1.414L12 5.586z"></path><path d="m6.293 16.293 1.414 1.414L12 13.414l4.293 4.293 1.414-1.414L12 10.586z"></path></svg></button>
       <h2>Distribuciones El Competidor</h2>
 
       <p>Empresa con mas de 20 años de experiencia, brindando el mejor servicio a sus clintes a lo largo del territorio
@@ -851,7 +1253,32 @@ let caja = document.querySelector(".caja")
       <p>contacto <%= numwh %>    <br>correo: distrielcompetidor@gmail.com
       </p>
 
+<script>
+ 
 
+const showOnPx = 100;
+const scrollContainer = () => {
+  return document.documentElement || document.body;
+};
+document.addEventListener("scroll", () => {
+  let btn_subi=document.getElementById("subir")
+  if (scrollContainer().scrollTop > showOnPx) {
+    btn_subi.classList.add("show")
+  } else {
+    btn_subi.classList.remove("show")
+  }
+})
+
+
+   var btn_subir=document.getElementById("subir")
+    btn_subir.onclick=function(){
+     window.scrollTo({
+      top:0,
+      behavior:"smooth"
+     })
+      
+    }
+</script>
 
     </div>
     <div id="footer_mapa">
@@ -863,5 +1290,6 @@ let caja = document.querySelector(".caja")
     </div>
   </div>
 </footer>
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="/main.js"></script>
 </html>
