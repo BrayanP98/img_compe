@@ -1,4 +1,4 @@
-var socket = io.connect("http://51.222.207.244:4000", { forceNew: true });
+var socket = io.connect("https://competidor.store", { forceNew: true });
 const nombreuser= document.querySelector("#nombre_user") 
 
 socket.on("messages", function (data) {
