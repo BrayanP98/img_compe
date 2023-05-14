@@ -120,7 +120,7 @@ io.on("connection", function (socket) {
 
     const img=new Image();
     const prods= async()=>{
-      const notes= await Image.findOne({nombre});
+      const notes= await Image.findOne({user:nombre});
       //const prods1= await notes.carro.findOne( { $text: { $search: "\"CINTA\"" } }).lean();
       var car_cont= Object.values(notes.carro);
       var cont=[];
