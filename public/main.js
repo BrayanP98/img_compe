@@ -1,8 +1,6 @@
 
- // will automatically load the node version
-
-
 var socket = io.connect("ws://192.168.1.3:4000", { forceNew: true });
+
 const nombreuser= document.querySelector("#nombre_user") 
 
 socket.on("messages", function (data) {
