@@ -1,11 +1,15 @@
-var socket = io.connect("https://competidor.store/", { forceNew: true });
+
+ // will automatically load the node version
+
+
+var socket = io.connect("ws://192.168.1.3:4000", { forceNew: true });
 const nombreuser= document.querySelector("#nombre_user") 
 
 socket.on("messages", function (data) {
   
 });
 socket.on("prodstatus", function(status) {
-  swal("Oops!", "Something went wrong on the page!", "error");
+  swal("Oops!", "El producto ya se encuentra en el carrito", "error");
  
 })
 /*socket.on("getprod", function(notes1) {
@@ -193,11 +197,20 @@ function prod_clean(){
   var carItem= document.createElement("div")
   carItem.id="carItemnone"
     var car_prodName=document.createElement("h2");
+
     car_prodName.id="car_prodName";
-    car_prodName.innerHTML="sin productos"
+    car_prodName.innerHTML="Tu carrito esta vacio...."
+    var imgoff=document.createElement("img")
+    imgoff.id="imgOff"
+    imgoff.setAttribute("src","https://www.start.com.ar/Content/img/empty-cart.svg")
+    var parrafo=document.createElement("p")
+    parrafo.id="parrafo"
+    parrafo.innerHTML="Para agregar productos al carrito debes iniciar secion. <br> Hazlo pronto y no te pierdas nuestras promociones."
     carItem.appendChild(car_prodName)
+    carItem.appendChild(imgoff)
+    carItem.appendChild(parrafo)
     product_car.appendChild(carItem)
-    product_car.style="height:300PX"
+    product_car.style="height:400PX"
 }
 
 

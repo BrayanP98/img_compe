@@ -14,7 +14,8 @@
 
   <title>El Competidor</title>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+  <script src="http://192.168.1.3:4000/socket.io/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 
@@ -51,14 +52,29 @@
           <li><a href="/logout" >Cerrar Secion</a></li>
         </ul>
       </div>
-     
+    
       <box-icon type='solid'></box-icon>
       <div  id="cont_buy" >
+       
       <div id="product_car">
-     
+    
+        <script type="text/javascript">
+          
+      </script>
     <script>
-  
-     
+ /* var pdf= document.querySelector("#pdf")
+  pdf.onclick=function(){
+   
+            var doc=new jsPDF();
+          //  let mensaje=document.getElementById('esc').value;
+            doc.text(20,20,"mensaje");
+            doc.addPage();
+            doc.text(20,20,'Mi trabajo!!');
+            doc.save('Test.pdf');
+            window.print(doc)
+        
+  }
+     */
       var cont_buy=document.querySelector("#cont_buy");
    
     var buy_car=document.createElement("div");
@@ -79,6 +95,7 @@
 
 
     window.addEventListener("load", function(){
+      
   var nombreuser= document.querySelector("#nombre_user") 
   var  item_car= document.querySelector("#item_car") 
 
@@ -197,7 +214,7 @@ height: 0;
     }
     #product_car{
       width: 100%;
-      background: #076fe5;
+      background: #e4eaf0;
       height: 340px;
       max-height: 400px;
       overflow-y: scroll;
@@ -208,7 +225,7 @@ height: 0;
      min-width: 300px;
      height: 400px;
      max-height:400px ;
-      background: #076fe5;
+      background: #0797e59a;
       position: fixed;
       z-index: 15;
       right: 20px;
@@ -233,6 +250,7 @@ height: 0;
       background: white;
       margin-top: 5px;
       padding: 5px;
+      border-bottom:1px solid rgba(130, 32, 32, 0.485);
      }
     #cont_car{
       width: fit-content;
@@ -266,6 +284,18 @@ height: 0;
   visibility: hidden;
 
 }
+#car_prodName{
+  padding: 0;
+  width: 99%;
+  height: 15px;
+  float: right;
+}
+#car_prodvalue::before{
+content: "$ ";
+}
+#car_prodvalue{
+font-size: 18px;
+}
 #div_cant_prodCar{
     position: relative;
     height: fit-content;
@@ -275,6 +305,7 @@ height: 0;
     display: flex;
     flex-direction: row;
     justify-content: center;
+    bottom: 5px;
   }
   #div_cant_prodCar a{
     
@@ -290,23 +321,42 @@ height: 0;
    
     align-items: center;
   }
+
+  #carItemnone {
+    font-family: 'Nunito Sans', sans-serif;
+    width: 99%;
+    height: fit-content;
+    text-align: center;
+   justify-content: center;
+  }
+  #carItemnone img{
+    width: 300px;
+    height: 200px;
+  }
   #delete_item{
     width: 30px;
     height: 20px;
-    
+    border-radius: 5px;
     position: absolute;
     right: 0;
     overflow: hidden;
     border: 0;
+    background: rgba(255, 0, 0, 0.46);
   }
   #delete_item img{
 width: 100%;
 height: 100%;
   }
+  #label_total{
+    color: #33a31c;
+  }
+  #label_total::before{
+    content: "$ ";
+  }
 #buy_car{
   width: 95%;
   height: 50px;
-  background: green;
+  background: rgb(208, 217, 154);
 	position: absolute;
  margin-bottom: 0;
  display: flex;
@@ -314,13 +364,16 @@ height: 100%;
  padding-left: 10px;
  margin-top: 10px;
  gap: 8px;
+ border-radius: 10px;
 }
 #buy{
   position: absolute;
   width: 100px;
   height: 50px;
-  background: #0707e5;
-  right: 2px;
+  background: #07e597;
+  right: 0;
+  border-radius: 10px;
+  border: 0;
 }
 @media only screen
   and (min-device-width: 851px)
@@ -434,10 +487,10 @@ product_car.style=""
               <label for="direccion_cliente">Direcion de entrega*</label>
               <input type="text" id="direccion_cliente" placeholder="cra 2#8-56">
               <label for="contacto">Cantidad producto*</label>
-              <div id="div_cant_prod">
+              <div id="div_cant_prodPop">
                 <a id="button_menos">-</a>
                 
-                <input type="text" id="cant_prod"  value="0" required>
+                <input type="text" id="cant_prod" class="cant_prod" value="0" required>
                 <a id="button_mas">+</a>
               </div>
               
@@ -615,7 +668,12 @@ product_car.style=""
      swal("Exito!", "Producto agregado al carrito", "success")
 
      }else{
-       alert("no hay usuario")
+      swal({
+        title: "Inicie secion por favor1",
+        text: "para poder agregar al carrito",
+        timer: 3000,
+        showConfirmButton: false
+});
       }
           }
         
@@ -902,7 +960,9 @@ product_car.style=""
  var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= prod.categoria %>'; var imagen='<%= prod.imagen %>'
  var descripcion='<%= prod.descripcion %>'; var promo="<%= prod.promo %>"
  var secc_prod=document.getElementById("seccion_"+cate)
-
+ var secc=document.getElementById(cate)
+ var title_section=document.createElement("h1");
+ title_section.id="title_section"
 
  var listop=document.getElementById("box-search")
  
@@ -966,7 +1026,7 @@ product_car.style=""
 
       //////TOGGLE DIC SECCION
       var conten=document.getElementById("cont_product")
-      var title_sec=document.querySelector(".title_section")
+      
       var sec=document.getElementsByClassName("seccion")
     
         var conten_child=conten.children
@@ -975,7 +1035,8 @@ product_car.style=""
               let hijastro = conten_child[index];
                let title=hijastro.children
               var div_toggle= title[0];
-             
+
+              
               div_toggle.onclick= function(){
                 title[1].classList.toggle("active")
                }
@@ -1290,6 +1351,6 @@ document.addEventListener("scroll", () => {
     </div>
   </div>
 </footer>
-<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript" src="jspdf.min.js"></script>
 <script src="/main.js"></script>
 </html>

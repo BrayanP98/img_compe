@@ -1096,7 +1096,7 @@ border: 0;
  }
 .formulario_cliente input{
     caret-color: #0099FF;
-     width: 50%;
+     width: 70%;
   
      color: #000;
     border-radius: 5px;
@@ -1104,30 +1104,40 @@ border: 0;
      margin:0 0 10px;
     
   }
-
+  #div_cant_prodPop{
+    position: relative;
+    height: fit-content;
+    width: 90%;
+   
+    top: 10px;
+    display: flex;
+    flex-direction: row;
+   
+  }
   #div_cant_prod{
     position: relative;
     height: fit-content;
     width: 90%;
     align-items: center;
-   
+      
     display: flex;
     flex-direction: row;
     justify-content: center;
   }
-  .cant_prod{
+  #cant_prod, .cant_prod{
     position: relative;
+
     width:35px;
-    height: 20px;
+    height: 19px;
     text-align: center;
     border-radius: 0;
     outline: none;
     margin: 0;
     padding: 0;
-    border: 1px solid gray ;
+    border:0 ;
   }
  
-  #div_cant_prod a{
+  #div_cant_prodPop a, #div_cant_prod a{
     
     cursor: pointer;
     font-weight: bold;
@@ -1155,12 +1165,12 @@ border: 0;
     display: flex;
     flex-direction: row;
    justify-content: center;
-    gap: 15px;
+    gap: 20px;
     top: 22px;
   }
   .cont-whatsapp{
-
-    width: 130px;
+    overflow: hidden;
+    width: 150px;
     height: 40px;
     background: #0099FF;
    
@@ -1223,18 +1233,19 @@ border: 0;
 
   .cont-car_icon{
     border-radius: 25px;
-    width: fit-content;
+    width: 100px;
     height: 40px;
     background: #0099FF;
     padding: 0 5px 0 5px;
     overflow: hidden;
     text-decoration: solid;
+    cursor: pointer;
   }
 
   .cont-car_icon svg{
     padding-left: 5px;
     padding-bottom: 5px;
-    border-radius:  0 15px   15px  0 ;
+    border-radius:  0 15px   50%  0 ;
     background: #00ff26;
    margin-left: -5px;
   }
@@ -1247,7 +1258,8 @@ border: 0;
  
 #title_fotter_pagos{
   position:relative;
-  top:px;text-align: center;
+  top:15px;
+  text-align: center;
 }
 #fotter_pagos{
   
@@ -1255,7 +1267,7 @@ border: 0;
    height: 50px;
   width: 100%;
   text-align: center;
-  top:-10px;
+  top:10px;
   position:relative;
   
   
