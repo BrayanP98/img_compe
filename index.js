@@ -104,7 +104,7 @@ io.on("connection", function (socket) {
   socket.on("deleteprod", function (nombre, id) {
     const deleteprod= async()=>{
       
-      const notes= await Image.findOne({nombre});
+      const notes= await Image.findOne({user:nombre});
      
       let item_del= notes.carro.filter((item) =>item._id !=id)
       
