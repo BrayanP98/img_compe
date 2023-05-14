@@ -7,8 +7,19 @@ const taskSchema= new Schema({
     
     nombre:{
         type:String,
-        unique:true,
         required:true
+
+    },
+    user:{
+        type:String,
+        unique:true,
+        required:false
+
+    },
+    email:{
+        type:String,
+        unique:false,
+        required:false
 
     },
      password:{

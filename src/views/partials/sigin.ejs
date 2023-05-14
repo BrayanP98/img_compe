@@ -8,13 +8,16 @@
         <button class="close_view" id="close_view_log"> X salir</button>
         <i class="fa-solid fa-circle-xmark" id="close"></i>
         <div class="subs-content">
-           <h2>Inicio secion</h2>
+           <h2>Inicio de sesion</h2>
           <p>Ingresa tus datos</p>
           <form  action="/task/findUser" method="post">
-            <input type="text" class="subs-email" placeholder="ingersa tu correo" name="nombre" id="user"required>
+            <label for="user">Nombre de usuario*</label>
+            <input  type="text" class="subs-email" placeholder="ingersa tu usuario" name="nombre" id="user"required>
+            <label for="pwd">Contraseña*</label>
             <input type="password" class="sub-pass" placeholder="ingersa tu contraseña" name="password" id="pwd" required>
-            <button  class="subs-send" type="submit" id="ingreso">Ingresar</button>
-            <a href="#" id="crear_cuenta">crear cuenta</a>
+            
+            <button  class="subs-send" type="submit" id="ingreso">Entrar</button>
+            <a href="#" id="crear_cuenta">Registrarse</a>
           </form>
         </div>
       </div>
@@ -34,13 +37,17 @@
           <i class="fa-solid fa-circle-xmark" id="close-reg"></i>
           <div class="subs-content">
              <h2>Registro</h2>
-            <p>Ingresa tus datos</p>
+            <p>Datos de registro</p>
             <form  action="/task/addUser" method="post">
-              <input type="text" class="user-name" placeholder="ingersa tu nombre" name="nombre" required>
-              <input type="text" class="user-lastname" placeholder="ingersa tu apellido" name="" >
-              <input type="email" class="user-email" placeholder="ingersa tu correo" name="" >
+              <label for="user">Nombre y apellido*</label>
+              <input id="user-name" type="text" class="user-name" placeholder="ingersa tu nombre" name="nombre" required>
+              <label for="user">Nombre de usuario*</label>
+              <input type="text" class="user-lastname" placeholder="ingersa tu apellido" name="user" >
+              <label for="user">Correo</label>
+              <input type="email" class="user-email" placeholder="ingersa tu correo" name="email" >
+              <label for="user">Contraseña*</label>
               <input type="password" class="user-pass" placeholder="ingersa tu contraseña" name="password" required>
-              <button class="subs-send" type="submit" >Registrar</button>
+              <button class="subs-send" type="submit" id="reg_user" >Registrar</button>
              
              
             </form>
@@ -54,7 +61,7 @@
 
 
 .pop-up-sigin{
-    background: rgba(48, 48, 48, 0.5);
+  background: #8f58dd85;
     position: fixed;
     top: 20px;
     bottom: 0;
@@ -104,8 +111,8 @@
 .pop-up-sigin .close_view{
     position:relative;
    z-index: 999;
-   top: -28px;
-     left: 67%;
+   top: -5px;
+     left: 40%;
      width: 80px;
      height: 30px;
     color: #faf7f6;
@@ -116,22 +123,104 @@
    }
   .subscription_sigin{
 width: 400px;
+height: fit-content;
 position: relative;
 border-bottom: 4px solid #1877F2;
 border-top: 4px solid  #1877F2;;
-background: rgb(255, 255, 255);
 
+background: rgb(255, 255, 255);
+padding: 0;
 min-width: 300px;
 display: flex;
 flex-wrap: wrap;
-
-
-
-
-
+border-radius: 15px;
 justify-content: center;
 
 }
+.subs-content{
+  position: relative;
+  font-family: 'Comme', sans-serif;
+  padding: 0;
+  padding-bottom: 30px;
+  width: 100%;
+height: fit-content;
+text-align: center;
+margin-bottom: 18px;
+}
+.subs-content h2{
+  width: 100%;
+  padding: 0;
+  height: 30px;
+  position: relative;
+  top: 10px;
+ 
+}
+.subs-content p{
+  width: 100%;
+  padding: 0;
+  height: 30px;
+  position: relative;
+  top: 0;
+ 
+}
+.pop-wrap-sigin form{
+width:fit-content;
+height: fit-content;
+position: relative;
+left: 25%;
+display: flex;
+flex-direction: column;
+position: relative;
+
+ align-items: center;
+}
+.pop-wrap-sigin form input{
+width:fit-content;
+height: 14px;
+position: relative;
+  border-radius: 0;
+ align-items: center;
+ border: 0;
+ border-bottom: 1px solid rgb(141, 23, 23);
+}
+.pop-wrap-sigin form label{
+  font-size: 14px;
+}
+#ingreso{ 
+  font-size: 15px;
+  position: relative;
+  top: 20px;
+  background: green;
+  border-radius: 10px;
+  height: 25px;
+  width: 100%;
+  border: 0;
+}
+#crear_cuenta{
+  font-size: 15px;
+  color: black;
+  position: relative;
+  top: 30px;
+  text-decoration: none;
+  background: rgb(0, 128, 105);
+  border-radius: 10px;
+  height: 25px;
+  width: 100%;
+  border: 0;
+}
+#reg_user{
+  font-size: 15px;
+  color: black;
+  position: relative;
+  top: 30px;
+  text-decoration: none;
+  background: rgb(0, 128, 105);
+  border-radius: 10px;
+  height: 25px;
+  width: 100%;
+  border: 0;
+}
+
 @media only screen
   and (min-device-width: 120px)
   and (max-device-width:396px)
@@ -140,7 +229,7 @@ justify-content: center;
     position:relative;
    z-index: 999;
    top: -28px;
-     left: 73%;
+     left: 38%;
    
      
 

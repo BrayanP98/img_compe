@@ -37,7 +37,7 @@ router.get('/',isLogedIn, async(req,res)=>{
     const promo= await Promo.find().lean();
     let numwh=general[0].numWhatsapp
     const nom_user= req.session.passport;
-    console.log(req.session.passport)
+    
     var coche = JSON.stringify(nom_user);;
    var band;
     if(nom_user){
@@ -94,12 +94,12 @@ router.get('/adduser',async (req,res)=>{
 });
 router.post("/task/addUser", passport.authenticate('local-signup',{
     successRedirect:'/',
-
-    failure:{
-
-    },
+    failureRedirect:('/'),
+    failureMessage:true,
+   failureFlash:true
+   
     
-    failureFlash:true
+ 
 
 }) );
 router.post("/task/findUser", passport.authenticate('local-login',{

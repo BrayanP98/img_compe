@@ -101,7 +101,7 @@ socket.on("loadates", function(notes)   {
           button_mas.innerHTML="+"
           button_menos.innerHTML="-"
       car_prodName.innerHTML=car_cont[i].nombreProd
-      car_prodvalue.innerHTML=car_cont[i].valor;     
+      car_prodvalue.innerHTML=(parseFloat(car_cont[i].valor)/1000).toFixed(3) ;     
       div_cant_prod.appendChild(button_menos)
       div_cant_prod.appendChild(input)
       div_cant_prod.appendChild(button_mas)
@@ -113,41 +113,49 @@ socket.on("loadates", function(notes)   {
       carItem.appendChild(div_cant_prod)
 
       product_car.appendChild(carItem)
+    ///total carro------------------------------------------------------------
+
+      total_car=total_car+parseFloat(car_cont[i].valor)
+      
       button_mas.onclick=function(){
         let cant_prod=document.getElementById("cant_prod"+"_"+i)
        let label_total=document.querySelector("#label_total");
        cant_prod.style.background="white"
-       let total_car=label_total.innerHTML
+       var tot_car=parseFloat(label_total.innerHTML);
         let cant= cant_prod.value
         let new_cant =parseInt(cant)+1;
-        let new_valor=new_cant
+        let new_valor=tot_car*1000 
         cant_prod.value=new_cant
-        let new_total=parseFloat(total_car)+parseFloat(car_cont[i].valor)
+       
+        var new_total=new_valor+parseFloat(car_cont[i].valor)
+        console.log(new_total)
         cant_prod.value=new_cant
-        label_total.innerHTML=Math.round(new_total).toFixed(3)
-        console.log(new_valor)
+        label_total.innerHTML=parseFloat(new_total/1000).toFixed(3)
+       // console.log(new_valor)
       }
       button_menos.onclick=function(){
-       
         let cant_prod=document.getElementById("cant_prod"+"_"+i)
+
+
        let label_total=document.querySelector("#label_total");
-        
-       let total_car=label_total.innerHTML
+       cant_prod.style.background="white"
+       var tot_car=parseFloat(label_total.innerHTML);
         let cant= cant_prod.value
-        if(parseInt(cant)>0){
-         
+        if(cant>0){
           let new_cant =parseInt(cant)-1;
-          let new_valor=new_cant
+          let new_valor=tot_car*1000 
           cant_prod.value=new_cant
-          let new_total=parseFloat(total_car)-parseFloat(car_cont[i].valor)
+          var new_total=new_valor-parseInt(car_cont[i].valor)
+          console.log(new_total)
           cant_prod.value=new_cant
-          label_total.innerHTML=Math.round(new_total)
-          console.log(new_valor)
+          label_total.innerHTML=parseFloat(new_total/1000).toFixed(3)
+         // console.log(new_valor)
         }else{
-          cant_prod.style.background="red"
+          cant_prod.style="background:red;"
         }
-        
-      }
+        }
+       
+      
 
 
 
@@ -161,7 +169,7 @@ socket.on("loadates", function(notes)   {
       
        
       }
-      total_car=total_car+parseFloat(car_cont[i].valor)
+    
      var iter="1";
      var total= cont++;
      //console.log(car_cont[i])
@@ -170,7 +178,7 @@ socket.on("loadates", function(notes)   {
     console.log( )
     
     var label_total=document.querySelector("#label_total");
-    label_total.innerHTML=total_car.toFixed(3)
+    label_total.innerHTML=(total_car/1000).toFixed(3)
 
    
     var  item_car= document.querySelector("#item_car") 
@@ -197,7 +205,7 @@ function prod_clean(){
     var car_prodName=document.createElement("h2");
 
     car_prodName.id="car_prodName";
-    car_prodName.innerHTML="Tu carrito esta vacio...."
+    car_prodName.innerHTML="Upss!..  Tu carrito esta vacio...."
     var imgoff=document.createElement("img")
     imgoff.id="imgOff"
     imgoff.setAttribute("src","https://www.start.com.ar/Content/img/empty-cart.svg")

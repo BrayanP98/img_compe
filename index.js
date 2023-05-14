@@ -83,7 +83,7 @@ app.use(require('./src/routes/index_routes'));
 ////server
 //var notes=["sss","www"]
 io.on("connection", function (socket) {
-  console.log("Un cliente se ha conectado");
+  
   
 
   socket.on("idUser", function (nombre, carro) {

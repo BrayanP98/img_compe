@@ -1160,13 +1160,14 @@ border: 0;
   /*whatsapp*/
   .cont_shop_var{
     width: 100%;
-    height: 40px;
+    height: fit-content;
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
    justify-content: center;
     gap: 20px;
     top: 22px;
+    padding: 5px;
   }
   .cont-whatsapp{
     overflow: hidden;
@@ -1189,7 +1190,7 @@ border: 0;
     
     text-decoration: none;
    
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: row;
   
@@ -1233,7 +1234,7 @@ border: 0;
 
   .cont-car_icon{
     border-radius: 25px;
-    width: 100px;
+    width: 150px;
     height: 40px;
     background: #0099FF;
     padding: 0 5px 0 5px;
@@ -1252,8 +1253,10 @@ border: 0;
   .cont-car_icon a{
     position: relative;
     color: #0c0c0c;
-    
+    text-align: center;
     bottom: 15px;
+    left: 10px;
+   
   }
  
 #title_fotter_pagos{
@@ -1431,7 +1434,6 @@ hyphens: none;
       }
     .caja nav ul{
       visibility: hidden;
-    
     gap: 25px;
   }
   
