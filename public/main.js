@@ -1,5 +1,5 @@
 
-var socket = io.connect("ws://192.168.1.3:4000", { forceNew: true });
+var socket = io.connect("wss://competidor.store", { forceNew: true });
 
 const nombreuser= document.querySelector("#nombre_user") 
 
