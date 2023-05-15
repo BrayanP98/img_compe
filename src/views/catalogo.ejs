@@ -773,7 +773,7 @@ product_car.style=""
         
         label_porcent.style.visiblitily="hidden"
 
-          document.querySelector("#valor_view").innerHTML = valor;
+          document.querySelector("#valor_view").innerHTML = parseFloat(valor/1000).toFixed(3);
         }
         if(cantidad=="0"){
  
