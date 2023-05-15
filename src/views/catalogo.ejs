@@ -14,14 +14,10 @@
 
   <title>El Competidor</title>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<<<<<<< HEAD
+
   <script src="http://192.168.1.3:4000/socket.io/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-=======
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
- <script src="https://competidor.store/socket.io/socket.io.js"></script>
 
->>>>>>> b1b99c43c9f57b312e638e4f2c81317d4207383c
 </head>
 
 
@@ -52,7 +48,7 @@
      
       <img id="user_sigin" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAYdJREFUSEvllu1NA0EMRCeVECoBKglUAlRCqASoBKgE9KS15Oztx9wFKT+wFEXROX4e27Gz04VsdyGutoL3ku4lfZXX+1oBa8G3kl4kAc5GAs+Sjm4Ca8AoBDoy4E8O3AWj9K0EzOpQzrPHUgWePUialt4FAwWAXZe+ZmEk8JkSw2doLvinRBmVkhKjHNV/As5lpoy9Acp+d7NyO4pzGUfgPHytdpyU3gHzBfpHAgwNalqW52Aad+pQCNE/Prb6zM8Mxb3ni0RdMGoJHpPNAKH+W9IhLRRrsMjCBeNbw2sVQGkD71NbA45glP2mqI9d/eFurAiyBTxV4zi44LhGV40DERzU03N6f/bKnPW1J27a75HivImyqt7wxMRn39de73vgGjpaHFl1tISdjXWvVQ8cR4EvT/duo971GV0cjRZ4tqWcocUn7+7FtmuBnb3swPNgLjZaCxxl5vxxjc6xXL2Ti1WD3dvrJtO90SPwlqGqE7LB9CX+uk63jyG7G89dmQZjncv/A/8Cb/lcHzChMD8AAAAASUVORK5CYII="/>
       <div id="opciones_user">
-        <h4 id="nombre_user"><%= userlogin.nombre%></h4>
+        <h4 id="nombre_user"><%= userlogin.user%></h4>
         <ul>
           <li><a >Mis datos</a></li>
           <li><a href="/logout" >Cerrar Secion</a></li>
@@ -190,10 +186,7 @@ height: 0;
     flex-direction: column;
     visibility: visible;
     gap: 0;
-<<<<<<< HEAD
-=======
-    
->>>>>>> b1b99c43c9f57b312e638e4f2c81317d4207383c
+
   }
   #opciones_user li{
     padding: 3px;
@@ -501,10 +494,10 @@ product_car.style=""
               <input type="text" id="nombre_cliente1" required>
 
               <label for="nombre">Documento identidad*</label>
-              <input type="number" id="documento_cliente1" required>
+              <input type="text" id="documento_cliente1" required>
 
               <label for="direccion_cliente">Direcion de entrega*</label>
-              <input type="text" id="direccion_cliente" placeholder="cra 2#8-56">
+              <input type="text" id="direccion_cliente" placeholder="cra 2#8-56" required>
               <label for="contacto">Cantidad producto*</label>
               <div id="div_cant_prodPop">
                 <a id="button_menos">-</a>
@@ -593,8 +586,7 @@ product_car.style=""
           var valor_view = document.querySelector("#valor_view");
           
           
-         
-          cant_prod.style.border = "2px solid black";
+       
           doc_cliente.style.border = "2px solid black";
           nombre_cliente.style.border = "2px solid black";
           
@@ -603,9 +595,9 @@ product_car.style=""
          
           nombre_cliente.addEventListener('keydown', (event) => {
            btn_whatsap.style.cursor = "pointer"
-           cant_prod.style.border = "2px solid black";
+        
           doc_cliente.style.border = "2px solid black";
-          nombre_cliente.style.border = "2px solid black";
+          nombre_cliente.style.border = "1px solid black";
       
           
           })
@@ -618,7 +610,7 @@ product_car.style=""
               btn_whatsap.removeAttribute('href');
               doc_cliente.style.border = "2px solid red";
               doc_cliente.setAttribute('placeholder', "ingrese documento porfavor");
-              cant_prod.style.border = "2px solid red";
+              
               nombre_cliente.style.border = "2px solid red"
               nombre_cliente.setAttribute('placeholder', "ingrese nombre porfavor");
               btn_whatsap.style.cursor = "not-allowed"
@@ -650,7 +642,7 @@ product_car.style=""
             
              
               cant_prod.style.border = "2px solid black";
-              nombre_cliente.style.border = "2px solid black"
+              nombre_cliente.style.border = "1px solid black"
               nombre_cliente.setAttribute('placeholder', "");
               btn_whatsap.style.cursor = "pointer"
 
@@ -833,9 +825,9 @@ product_car.style=""
           
           document.querySelector("#pop-up").classList.toggle("active")
 
-          cant_prod.style.border = "2px solid black";
+         
           doc_cliente.style.border = "2px solid black";
-          nombre_cliente.style.border = "2px solid black";
+          nombre_cliente.style.border = "1px solid black";
         }
 
       }

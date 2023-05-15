@@ -1069,9 +1069,9 @@ border: 0;
   color: #4d4a4a;
   }
   #formulario_env{
-    width: 22%;
+    width: 28%;
     height: 500px;
-    background: white;
+    background: rgb(246, 245, 245);
     justify-content: center;
     position: sticky;
   }
@@ -1094,11 +1094,12 @@ border: 0;
    
    font-size: 14px;
  }
+
 .formulario_cliente input{
     caret-color: #0099FF;
      width: 70%;
-  
-     color: #000;
+   
+    
     border-radius: 5px;
    
      margin:0 0 10px;
@@ -1126,7 +1127,7 @@ border: 0;
   }
   #cant_prod, .cant_prod{
     position: relative;
-
+    border: .5px solid #c4c0c0;
     width:35px;
     height: 19px;
     text-align: center;
@@ -1134,7 +1135,7 @@ border: 0;
     outline: none;
     margin: 0;
     padding: 0;
-    border:0 ;
+    
   }
  
   #div_cant_prodPop a, #div_cant_prod a{
@@ -1142,7 +1143,7 @@ border: 0;
     cursor: pointer;
     font-weight: bold;
     border: 1px solid gray ;
-   
+ 
     text-align:center ;
     margin: 0;
     position: static;
@@ -1165,9 +1166,10 @@ border: 0;
     display: flex;
     flex-wrap: wrap;
    justify-content: center;
-    gap: 20px;
+    gap: 15px;
     top: 22px;
     padding: 5px;
+  
   }
   .cont-whatsapp{
     overflow: hidden;
