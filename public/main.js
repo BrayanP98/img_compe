@@ -73,8 +73,13 @@ socket.on("loadates", function(notes)   {
   var cont=1;
   var total_car=0;
   if(length >0 ){
+      var  buy_car=document.querySelector("#buy_car");
+  buy_car.style="display:flex;"
+    var  item_car= document.querySelector("#item_car") 
+  item_car.style="visibility:visible"
    var car_cont= Object.values(cart);
    var product_car=document.querySelector("#product_car");
+      product_car.style="height: 340px;"
    product_car.innerHTML=""
     for(let i=0; i< length; i++){
     var carItem= document.createElement("div")
