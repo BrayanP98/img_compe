@@ -1,5 +1,5 @@
 
-var socket = io.connect("wss://competidor.store/", { forceNew: true });
+var socket = io.connect("ws://192.168.1.3:4000", { forceNew: true });
 
 const nombreuser= document.querySelector("#nombre_user") 
 
@@ -63,18 +63,24 @@ var item_car= document.querySelector("#item_car")
 
 socket.on("loadates", function(notes)   {
   var cart=notes;
-  console.log(cart.length)
+ // console.log(cart.length)
   if(cart){
-   
-
-  var length = cart.length
-  //console.log(length);
+    
+  const length = cart.length
+  var  item_car= document.querySelector("#item_car") 
+    item_car.innerHTML=length
+;
   
   var cont=1;
   var total_car=0;
   if(length >0 ){
+    var  buy_car=document.querySelector("#buy_car");
+  buy_car.style="display:flex;"
+    var  item_car= document.querySelector("#item_car") 
+  item_car.style="visibility:visible"
    var car_cont= Object.values(cart);
    var product_car=document.querySelector("#product_car");
+   product_car.style="height: 340px;"
    product_car.innerHTML=""
     for(let i=0; i< length; i++){
     var carItem= document.createElement("div")
@@ -181,8 +187,7 @@ socket.on("loadates", function(notes)   {
     label_total.innerHTML=(total_car/1000).toFixed(3)
 
    
-    var  item_car= document.querySelector("#item_car") 
-    item_car.innerHTML=length
+    
   }else{
     var  item_car= document.querySelector("#item_car") 
   item_car.style="visibility:hidden"
