@@ -1,13 +1,13 @@
 
-var socket = io.connect("ws://192.168.1.3:4000", { forceNew: true });
+var socket = io.connect("wss://competidor.store", { forceNew: true });
 
 const nombreuser= document.querySelector("#nombre_user") 
 
 socket.on("messages", function (data) {
-  
+  //console.log(data)
 });
-socket.on("prodstatus", function(status) {
-  swal("Oops!", "El producto ya se encuentra en el carrito", "error");
+socket.on("prodstatus", function(message,status,) {
+  swal("eyy!", message, status);
  
 })
 /*socket.on("getprod", function(notes1) {
@@ -61,10 +61,26 @@ console.log()
     })*/
 var item_car= document.querySelector("#item_car") 
 
-socket.on("loadates", function(notes)   {
+socket.on("loadates", function(notes, data)   {
+  var notif_data_bar=document.querySelector("#notif_data-bar")
+  var notif_data=document.querySelector("#notif_data")
+  if(data.direccion){
+    if(data.direccion==""){
+      notif_data_bar.style="visibility:visible;"
+    notif_data.style="visibility:visible;"
+    }
+    
+  }else{
+    notif_data_bar.style="visibility:visible;"
+    notif_data.style="visibility:visible;"
+  }
+  //console.log(data.nombre)
+
+    pintarData(data)
+  
   var cart=notes;
- // console.log(cart.length)
-  if(cart){
+
+   if(cart){
     
   const length = cart.length
   var  item_car= document.querySelector("#item_car") 
@@ -74,15 +90,14 @@ socket.on("loadates", function(notes)   {
   var cont=1;
   var total_car=0;
   if(length >0 ){
-      var  buy_car=document.querySelector("#buy_car");
-
+    var  buy_car=document.querySelector("#buy_car");
   buy_car.style="display:flex;"
+
     var  item_car= document.querySelector("#item_car") 
   item_car.style="visibility:visible"
    var car_cont= Object.values(cart);
    var product_car=document.querySelector("#product_car");
-   product_car.style="height: 340px;"
-
+     product_car.style="height: 340px;"
    product_car.innerHTML=""
     for(let i=0; i< length; i++){
     var carItem= document.createElement("div")
@@ -126,7 +141,10 @@ socket.on("loadates", function(notes)   {
       total_car=total_car+parseFloat(car_cont[i].valor)
       
       button_mas.onclick=function(){
-        let cant_prod=document.getElementById("cant_prod"+"_"+i)
+
+       
+    
+       let cant_prod=document.getElementById("cant_prod"+"_"+i)
        let label_total=document.querySelector("#label_total");
        cant_prod.style.background="white"
        var tot_car=parseFloat(label_total.innerHTML);
@@ -134,12 +152,13 @@ socket.on("loadates", function(notes)   {
         let new_cant =parseInt(cant)+1;
         let new_valor=tot_car*1000 
         cant_prod.value=new_cant
-       
+        car_cont[i].cantidad= new_cant.toString()
+      
         var new_total=new_valor+parseFloat(car_cont[i].valor)
-        console.log(new_total)
+       // console.log(new_total)
         cant_prod.value=new_cant
         label_total.innerHTML=parseFloat(new_total/1000).toFixed(3)
-       // console.log(new_valor)
+       // console.log(new_valor)*/
       }
       button_menos.onclick=function(){
         let cant_prod=document.getElementById("cant_prod"+"_"+i)
@@ -156,15 +175,29 @@ socket.on("loadates", function(notes)   {
           var new_total=new_valor-parseInt(car_cont[i].valor)
           console.log(new_total)
           cant_prod.value=new_cant
+          car_cont[i].cantidad= new_cant.toString()
           label_total.innerHTML=parseFloat(new_total/1000).toFixed(3)
          // console.log(new_valor)
         }else{
           cant_prod.style="background:red;"
         }
         }
-       
+       //-----------------------------------------------------------comprar------------------------------------------------
       
+        var buy=document.querySelector("#buy")
 
+        buy.onclick=function(){
+         let nombre=data.nombre
+        
+        if(data.direccion){
+          sendwhatsapp(car_cont,nombre)
+        }else{
+          swal("Oops!", "Debes llenar tus datos de contacto primero", "error");
+        // 
+        }
+      
+         // sendwhatsapp(notes, data)
+        }
 
 
       //////borrar producto---------------------------------------------
@@ -226,10 +259,14 @@ function prod_clean(){
     product_car.style="height:400PX"
 }
 
+//-----------*********------------------*******----------
+
+function sendwhatsapp(valor, nombre){
+//console.log(" mi pedido tiene un valor de"+nombre)
 
 
-
-
+  socket.emit("saludo", valor, nombre)
+}
 
 
 
@@ -308,3 +345,46 @@ else {
   alert("Inside click detected!");
 }
 });
+
+//-----------------DATOS USUARIO-VISTA LATERAL------------------------------
+function pintarData(data){
+  var btn_dataUser=document.querySelector("#btn_dataUser")
+var lateral_data=document.querySelector("#lateral_data");
+btn_dataUser.onclick=function(){
+  if(data){
+    var nameDataUser=document.querySelector("#nameDataUser")
+  var celDataUser=document.querySelector("#celDataUser")
+  var addresDataUser=document.querySelector("#addresDataUser")
+  var emailDataUser=document.querySelector("#emailDataUser")
+  var update_dataUser=document.querySelector("#update_dataUser")
+  lateral_data.classList.toggle('active')
+  nameDataUser.value=data.nombre
+  celDataUser.value=data.telefono;
+  addresDataUser.value=data.direccion
+  emailDataUser.value=data.email;
+  if(addresDataUser.value=="undefined" || celDataUser.value=="undefined"){
+    addresDataUser.style="border:1px solid red;"
+    celDataUser.style="border:1px solid red;"
+   addresDataUser.value=""
+   
+   celDataUser.value=""
+   addresDataUser.setAttribute("placeholder","por llenar")
+   celDataUser.setAttribute("placeholder","por llenar")
+  }
+ 
+  update_dataUser.onclick=function(){
+    var form_dataUser=document.querySelector("#form_dataUser")
+    
+    form_dataUser.setAttribute("action","/updateUser/"+data._id)
+
+  }
+
+  }else{
+    
+   
+
+
+  }
+ 
+}
+}
