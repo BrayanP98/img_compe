@@ -26,51 +26,6 @@ const taskSchema= new Schema({
         type:String,
         required:true
      },
-     direccion:{
-        type:String,
-        required:false
-     },
-      telefono:{
-        type:String,
-        required:false
-     },
-    
-    carro:[{
-            
-
-                nombreProd:{
-                    type:String,
-                    required:false    },
-
-                 valor:{
-                    type:String,
-                    required:false
-                 },
-                 cantidad:{
-                    type:String,
-                    required:false
-                 },
-
-            
-},],
-pedidos:[{
-            
-
-    nombreProd:{
-        type:String,
-        required:false    },
-
-     valor:{
-        type:String,
-        required:false
-     },
-     cantidad:{
-        type:String,
-        required:false
-     },
-
-
-},],
      
      done: Boolean,},{
         timestamps:true,
@@ -124,4 +79,4 @@ taskSchema.methods.isCorrectPassword=  function(password, callback){
 
 
 
-module.exports=model('usuario', taskSchema);
+module.exports=model('admin', taskSchema);

@@ -1,5 +1,6 @@
 const express= require('express');
 require('dotenv').config()
+const mongoose=require('mongoose');
 const config= require('./config')
 const path= require('path');
 const morgan= require('morgan');
@@ -11,6 +12,7 @@ const session= require("express-session");
 const bodyParser =require("body-parser");
 const passport = require('passport');
 const Image=require('./src/models/users')
+const Pedido=require('./src/models/pedido')
 const ls = require('local-storage');
 var LocalStorage = require('node-localstorage').LocalStorage,
 localStorage = new LocalStorage('./scratch');
@@ -82,10 +84,77 @@ app.use(require('./src/routes/index_routes'));
 
 ////server
 //var notes=["sss","www"]
+
 io.on("connection", function (socket) {
   
-  
+  socket.on("getpedidos",async function(){
 
+    var allPedidos= await Pedido.find()
+    io.emit("pedido",allPedidos)
+    
+  })
+  socket.on("saludo", function (data, data1) {
+var pedidos=new Pedido();
+    const pedid= async()=>{
+   var onePedido= await Pedido.find().lean()
+   var onePedido1=""
+   for(let int=0; int< onePedido.length; int++){
+   if( onePedido[int].dataUser.nombre==data1){
+    onePedido1="existe"
+   }else{
+    onePedido1="no"
+    
+   }
+   }
+  //console.log(onePedido1)
+   if(onePedido1=="existe"){
+    socket.emit("prodstatus","ya tienes un pedido en proceso","error")
+    
+   }else{
+
+    try {
+      //var car_cont= Object.assign({}, da);
+      const user= await Image.findOne({nombre:data1});
+     // console.log(user.nombre)
+     pedidos.dataUser.nombre=user.nombre;
+     pedidos.dataUser.direccion=user.direccion;
+     pedidos.dataUser.telefono=user.telefono;
+     pedidos.dataUser.email=user.email
+        for(var i=0; i<data.length; i++){
+          pedidos.pedido.push(data[i])
+        }
+      await pedidos.save()
+      var allPedidos= await Pedido.find()
+      let carro=user.carro
+      for(var i=0; i<carro.length; i++){
+        user.pedidos.push(data[i])
+      }
+      //console.log(carro)
+    //  user.pedidos.push(carro)
+     user.carro=[];
+      user.save()
+      ///*---------emitir pedidos y info user
+      io.emit("pedido",allPedidos)
+      socket.emit("prodstatus","Tu pedido fue realizado con exito","success")
+        }
+        
+      
+     catch (error) {
+      console.error(error)
+    }
+    
+   }
+
+  ///***----------vaciar carro */
+ 
+ 
+    }
+    pedid()
+
+   
+ 
+ 
+})
   socket.on("idUser", function (nombre, carro) {
     const img=new Image();
     const prods= async()=>{
@@ -95,7 +164,7 @@ io.on("connection", function (socket) {
     // notes1.save();
   //console.log(notes1.carro);
 
-      socket.emit("loadates",notes1.carro)
+      socket.emit("loadates",notes1.carro, notes1)
     
     }
    prods();
@@ -136,7 +205,7 @@ io.on("connection", function (socket) {
        }else{
        notes.carro.push(carro)
        notes.save();
-       socket.emit("loadates",notes.carro)
+       socket.emit("loadates",notes.carro,notes)
        }
       }else{
       

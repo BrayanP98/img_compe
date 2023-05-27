@@ -23,7 +23,7 @@ function isLogedIn(req, res, next){
 
     if(req.isAuthenticated()){
       
-  
+  console.log()
       return next();
     }else{
         return next();
@@ -186,7 +186,7 @@ try{
     promo.mensaje=req.body.mensajeProm;
     promo.imagen='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
 
-    await promo.save();
+    await promo.save    ();
   
     res.redirect('/promo')
 }catch{
@@ -280,14 +280,32 @@ res.render("update", { producto });
 
 
 });
-router.get('/image/:id',async(req, res)=>{
+router.get('/pedidos',async(req, res)=>{
 
     const {id}= req.params;
 const producto= await Image.findById(id).lean();
-res.render("image.ejs", { producto });
+res.render("image");
 
 
 });
+router.post('/updateUser/:id',async(req, res)=>{
+    const id2=req.params.id;
+  // console.log(req.body)
+var user= new User();
+ try{
+
+    var data= await User.findByIdAndUpdate(id2,req.body)
+   
+    
+     
+     
+        res.redirect('/')
+    }catch(err){
+     //   res.send('<script>window.history.go(-1)</script>');
+        console.log(err)
+    }
+ 
+ });
 router.post('/update/:id',async(req, res)=>{
     const id2=req.params.id;
    

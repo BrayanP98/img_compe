@@ -1,0 +1,80 @@
+<div id="lateral_data">
+
+    <h3>Datos personales y de contacto</h3>
+
+    <form id="form_dataUser" method="post">
+        <label for="">Nombre y apellido*</label>
+        <input id="nameDataUser" type="text" name="nombre" required>
+        <label for="">Numero Celular*</label>
+        <input  id="celDataUser" type="text" name="telefono" required >
+        <label for="">Direccion De Envios*</label>
+        <input  id="addresDataUser" type="text" name="direccion" required>
+        <label for="">Correo Electronico</label>
+        <input  id="emailDataUser" type="text" name="email">
+        <button type="submit" id="update_dataUser">Actualizar</button>
+    </form>
+    
+
+
+</div>
+
+
+<style>
+  @keyframes lateral{
+
+from    { 
+    width: 0;
+ }
+
+to  { 
+   width: 300px;
+ }
+
+}
+
+
+    #lateral_data{
+        width:0;
+        height:500px;
+        background-color: rgb(249, 252, 252);
+        border: 1px solid black;
+        position: fixed;
+        float: right;
+        right: 0;
+        top:100%;
+        z-index: -200;
+        text-align: center;
+        font-family: 'Tajawal', sans-serif;
+    }
+    #lateral_data.active{
+        width: 300px;
+        animation:lateral .5s  ease-in;
+    }
+
+    #form_dataUser{
+        position: relative;
+       
+        width: fit-content;
+        height: fit-content;
+       text-align: center;
+       align-items: center;
+       left:15px ;
+    }
+    #form_dataUser label{
+        width: 250px;
+       color: rgb(21, 21, 133);
+       text-align: center;
+       
+    }
+    #form_dataUser input{
+      position: relative;
+        width: 60%;
+        height: fit-content;
+        left: 20%;
+        border: 0px;
+        outline: none;
+        border-bottom: 1px solid gray;
+        align-items: center;
+}
+  
+</style>
