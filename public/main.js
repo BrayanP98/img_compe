@@ -12,6 +12,16 @@ function pintarProd(prods){
   var length= prods.length;
  
   for(let i=0; i< length; i++){
+    var listop=document.getElementById("box-search")
+    var buscar_btn=document.getElementById("input_buscar")
+  var li_options1= document.createElement("li");
+  var a_options1= document.createElement("a");
+////llenando li de busqueda
+  a_options1.innerHTML=prods[i].nombre;
+  li_options1.appendChild(a_options1)
+  listop.appendChild(li_options1)
+
+  ////creando card-------
     var secc_prod=document.getElementById("seccion_"+prods[i].categoria)
     var card=document.createElement("div");
     card.id="catalogo"
@@ -20,8 +30,41 @@ function pintarProd(prods){
     img_prod.id=prods[i].nombre
     img_prod.setAttribute("loading", "lazy")
     img_prod.setAttribute("src", prods[i].imagen)
-    card.appendChild(img_prod)
-    secc_prod.appendChild(card)
+    var revisar=document.createElement("button");
+  revisar.id="revisar"
+  var descipcion=document.createElement("div");
+  descipcion.id="descript"
+  var nombre_prod=document.createElement("h3");
+  
+   nombre_prod.className="nombre-prod";
+   var codigo=document.createElement("p");
+   var prod_valor=document.createElement("h4");
+   codigo.innerHTML=prods[i].codigo
+   prod_valor.innerHTML=prods[i].valor
+  
+
+
+  revisar.setAttribute("onclick","mostrar('"+prods[i].nombre+"','"+prods[i].valor+"','"+prods[i].promo+"','"+prods[i].imagen+"','"+prods[i].descripcion+"','"+prods[i].medida+"','"+prods[i].cantidad+"')");
+  if(prods[i].promo){
+    if(prods[i].promo=="0"){
+
+    }else{
+     
+      var label_prom=document.createElement("a");
+      label_prom.id="etiq_descuento";
+      label_prom.innerHTML=prods[i].promo+"%OFF"
+      revisar.appendChild(label_prom)   
+    }
+  }
+   
+ nombre_prod.innerHTML=prods[i].nombre
+  descipcion.appendChild(nombre_prod)
+  descipcion.appendChild(codigo)
+  descipcion.appendChild(prod_valor)
+  card.appendChild(revisar)
+  card.appendChild(img_prod)
+  card.appendChild(descipcion) 
+  secc_prod.appendChild(card)
    // console.log(prods[i])
   }
 }
