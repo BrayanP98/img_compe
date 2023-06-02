@@ -12,6 +12,7 @@ const session= require("express-session");
 const bodyParser =require("body-parser");
 const passport = require('passport');
 const Image=require('./src/models/users')
+const General=require('./src/models/generals')
 const Pedido=require('./src/models/pedido')
 const ls = require('local-storage');
 var LocalStorage = require('node-localstorage').LocalStorage,
@@ -90,7 +91,8 @@ io.on("connection", function (socket) {
   socket.on("getpedidos",async function(){
 
     var allPedidos= await Pedido.find()
-    io.emit("pedido",allPedidos)
+    var general= await General.find()
+    io.emit("pedido",allPedidos,general)
     
   })
   socket.on("saludo", function (data, data1) {
