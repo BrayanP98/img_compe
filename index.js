@@ -204,7 +204,7 @@ var pedidos=new Pedido();
          }
        
        if(cont.includes(carro.nombreProd)){
-        socket.emit("prodstatus","ya existe en carrito")
+        socket.emit("prodstatus","Este producto ya existe en carrito","error")
        
        }else{
        notes.carro.push(carro)

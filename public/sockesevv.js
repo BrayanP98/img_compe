@@ -94,7 +94,12 @@ function new_pedido(alert){
     var pop_notfc=document.querySelector("#pop_notfc");
     var text_alert=document.querySelector("#text_alert");
     text_alert.innerHTML=alert
-    pop_notfc.classList.toggle("active")
+    pop_notfc.style="background:"+color;
+
+    pop_notfc.classList.add("active")
+    setTimeout(function(){
+      pop_notfc.classList.remove("active")
+  }, 6000)
 
   /* swal({
         title: "Inicie secion por favor!!",
@@ -142,6 +147,7 @@ function new_pedido(alert){
               })
               .then(res => {
                 if(res.error){
+                  new_pedido("Numero sin whatsapp","red")
                   console.log(res.error.message)
                 }else{
                   console.log(res)
