@@ -1005,74 +1005,7 @@ product_car.style=""
       </section>
       
        
-        <!--% prods.forEach(function(prod) { %>
-<script>
-
-
-var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= prod.categoria %>'; var imagen='<%= prod.imagen %>'
- var descripcion='<%= prod.descripcion %>'; var promo="<%= prod.promo %>"
- var secc_prod=document.getElementById("seccion_"+cate)
- var secc=document.getElementById(cate)
- var title_section=document.createElement("h1");
- title_section.id="title_section"
-
- var listop=document.getElementById("box-search")
- 
-
-  var buscar_btn=document.getElementById("input_buscar")
-  var li_options1= document.createElement("li");
-  var a_options1= document.createElement("a");
-////llenando li de busqueda
-  a_options1.innerHTML='<%= prod.nombre %>'
-  li_options1.appendChild(a_options1)
-  listop.appendChild(li_options1)
-
-   ///////CREANDO CARD DE PRODUCTO
-  var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos","cosmetica","aseo"]
-  var cont_prod= document.querySelector(".seccion")
-  if(cats.includes(cate)){ 
-   var card=document.createElement("div");
-   card.id="catalogo"
-  
-   var img_prod=document.createElement("img")
-   img_prod.id=nombre
-   img_prod.setAttribute("loading", "lazy")
-   img_prod.setAttribute("src", imagen)
-   var revisar=document.createElement("button");
-  revisar.id="revisar"
-  var descipcion=document.createElement("div");
-  descipcion.id="descript"
-  var nombre_prod=document.createElement("h3");
-  
-   nombre_prod.className="nombre-prod";
-   var codigo=document.createElement("p");
-   var prod_valor=document.createElement("h4");
-   revisar.setAttribute("onclick","mostrar('<%= prod.nombre %>',"+valor+",'<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')");
-  if(promo){
-    if(promo=="0"){
-
-    }else{
-      var label_prom=document.createElement("a");
-      label_prom.id="etiq_descuento";
-      label_prom.innerHTML=promo+"%OFF"
-      revisar.appendChild(label_prom)   
-    }
-  }
-   codigo.innerHTML="<%= prod.codigo %>"
-   prod_valor.innerHTML="$"+valor
-   //let new_name = nombre.replace("y", "&");
-   nombre_prod.innerHTML=nombre
-  descipcion.appendChild(nombre_prod)
-  descipcion.appendChild(codigo)
-  descipcion.appendChild(prod_valor)
-  card.appendChild(revisar)
-  card.appendChild(img_prod)
-  card.appendChild(descipcion) 
-  secc_prod.appendChild(card)
-}
-  
-</script>
-<% }) %-->
+    
       
 
     <script>
