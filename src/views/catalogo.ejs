@@ -1036,6 +1036,7 @@ var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= pr
   
    var img_prod=document.createElement("img")
    img_prod.id=nombre
+   img_prod.setAttribute("loading", "lazy")
    img_prod.setAttribute("src", imagen)
    var revisar=document.createElement("button");
   revisar.id="revisar"
@@ -1403,10 +1404,6 @@ document.addEventListener("scroll", () => {
     </div>
   </div>
 </footer>
-<<<<<<< HEAD
 <!--script type="text/javascript" src="jspdf.min.js"></script-->
-=======
-
->>>>>>> c615ae1454e08c828ac6b0e6e2840c2ba513c743
 <script src="/main.js"></script>
 </html>
