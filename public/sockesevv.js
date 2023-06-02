@@ -90,7 +90,7 @@ let phone=phone_user.value;
 
             new_pedido(data)
          })
-function new_pedido(alert){
+function new_pedido(alert, color){
     var pop_notfc=document.querySelector("#pop_notfc");
     var text_alert=document.querySelector("#text_alert");
     text_alert.innerHTML=alert
