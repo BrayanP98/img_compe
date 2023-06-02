@@ -5,8 +5,8 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 socket.on("pedido", function(data, data1){
    
     var car_cont= Object.values(data);
-    console.log(data1)
-   // const bartocken=data1[0].tocken
+    //console.log(data1)
+    const bartocken=data1[0].tocken
   const cant_pedidos= data.length
 var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
@@ -80,7 +80,7 @@ conf_ped.onclick=function(){
    event.preventDefault();
 let phone=phone_user.value;
 
-   send_whatsapp("57"+phone)
+   send_whatsapp("57"+phone, bartocken)
 }
 
    
