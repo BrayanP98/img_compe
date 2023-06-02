@@ -219,6 +219,7 @@ try{
      const general1= new General();
        general1.numWhatsapp=req.body.numWhatsapp
        general1.color=req.body.color;
+       general1.tocken=req.body.tocken;
        let favicon='data:image/jpeg;base64,'+fs.readFileSync(filein, 'base64');
        
       
