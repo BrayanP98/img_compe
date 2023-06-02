@@ -5,7 +5,7 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 socket.on("pedido", function(data, data1){
    
     var car_cont= Object.values(data);
- // console.log(car_cont)
+    const bartocken=data1[0].tocken
   const cant_pedidos= data.length
 var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
@@ -73,6 +73,14 @@ pop_notif.appendChild(title_not);
 
 notificacion.appendChild(pop_notif);*/
 
+var conf_ped=document.querySelector("#conf_ped");
+var phone_user=document.querySelector("#phone_user");
+conf_ped.onclick=function(){
+   event.preventDefault();
+let phone=phone_user.value;
+
+   send_whatsapp("57"+phone,bartocken)
+}
 
    
     
@@ -95,24 +103,16 @@ function new_pedido(alert){
 });*/
 }
        
-var conf_ped=document.querySelector("#conf_ped");
-var phone_user=document.querySelector("#phone_user");
-conf_ped.onclick=function(){
-   event.preventDefault();
-let phone=phone_user.value;
-
-   send_whatsapp("57"+phone)
-}
 
          window.addEventListener("load",function(){
 
             socket.emit("getpedidos")
          })
 
-         function send_whatsapp(phoneNbr){
+         function send_whatsapp(phoneNbr, bearerToken){
             var botId = '104139039369000';
            // var phoneNbr = '573026055289';
-            var bearerToken = 'EAAH55QLPNwcBAE05SQrtLZAgDLvyELqd2XsHmSzTQiOaXfZCpZBV8CiCZBd1MFsjFO61me6jbsiQzynXprNh0iCDAPbwy2gbTvZA2tBpFgHGU1GjXuvo67L7RmSHEBRQOoQPkTZAlCwjlUCYEHK34uUaa2ONAWhiaUDNkQB05vpmrqpCYFAmR0';
+            //var bearerToken = 'EAAH55QLPNwcBAE05SQrtLZAgDLvyELqd2XsHmSzTQiOaXfZCpZBV8CiCZBd1MFsjFO61me6jbsiQzynXprNh0iCDAPbwy2gbTvZA2tBpFgHGU1GjXuvo67L7RmSHEBRQOoQPkTZAlCwjlUCYEHK34uUaa2ONAWhiaUDNkQB05vpmrqpCYFAmR0';
             
             var url = 'https://graph.facebook.com/v16.0/' + botId + '/messages';
             var data = {
