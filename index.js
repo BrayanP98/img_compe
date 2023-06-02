@@ -169,7 +169,7 @@ var pedidos=new Pedido();
   socket.on("idUser", function (nombre, carro) {
     const img=new Image();
     const prods= async()=>{
-      const notes1= await Image.findById({_id:nombre});
+      const notes1= await User.findById({_id:nombre});
       
      // notes1.carro.product2=carro
     // notes1.save();
