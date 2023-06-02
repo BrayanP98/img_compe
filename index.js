@@ -11,7 +11,7 @@ const cookieParser =require("cookie-parser");
 const session= require("express-session");
 const bodyParser =require("body-parser");
 const passport = require('passport');
-const Image=require('./src/models/users')
+const Image=require('./src/models/IMAGE')
 const General=require('./src/models/generals')
 const Pedido=require('./src/models/pedido')
 const ls = require('local-storage');
@@ -88,6 +88,12 @@ app.use(require('./src/routes/index_routes'));
 
 io.on("connection", function (socket) {
   
+  const getprods= async()=>{
+    const prods11= await Image.find().lean();
+ 
+ socket.emit("getprods",prods11)
+  }
+  getprods()
   socket.on("getpedidos",async function(){
 
     var allPedidos= await Pedido.find()

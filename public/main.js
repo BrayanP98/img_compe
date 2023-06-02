@@ -3,8 +3,8 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 
 const nombreuser= document.querySelector("#nombre_user") 
 
-socket.on("messages", function (data) {
-  //console.log(data)
+socket.on("getprods", function (prods) {
+  console.log(prods)
 });
 socket.on("prodstatus", function(message,status,) {
   swal("eyy!", message, status);
