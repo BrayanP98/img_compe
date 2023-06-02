@@ -16,11 +16,20 @@
     <script src="https://competidor.store/socket.io/socket.io.js"></script>
 </head>
 <body>
-  <h1>gestion pedidos</h1>
+  <h1>Gestion de pedidos</h1>
 <div class="container">
+  <div id="pop_notfc">
+    <a id="text_alert"></a>
+  </div>
 
  
-  <div id="notificacion"></div>
+  <div id="notificacion">
+  <div id="bar_notifc">
+    <a id="" >Numero pedidos:</a>  <a id="cant_pedid"></a>
+  </div>
+  <div id="cont_notifc"></div>
+  </div>
+  
   <div id="view_pedido">
 
     <table>
@@ -58,31 +67,166 @@
       <input id="name_user" type="text" readonly >
       <label for="addres_user">Direccion</label>
       <input id="addres_user" type="text" readonly >
-      <label for="email_user">Telefono</label>
-      <input id="phone_user" type="text" readonly >
+      <label for="phone_user">Telefono</label>
+      <input id="phone_user" type="text"  >
       <label for="email_user">email</label>
       <input id="email_user" type="text" readonly >
-     <button>Confirmar</button>
+     <button type="button">Confirmar</button><button id="conf_ped">whatsapp</button>
     </form>
 
   </div>
   </div>
+<script>
+ const URL_API='https://graph.facebook.com/v16.0/114781451626599/messages';
+  var conf_ped=document.querySelector("#conf_ped");
 
+
+
+ /*conf_ped.onclick=function(){
+   
+   var xhr = new XMLHttpRequest();
+xhr.open("POST", URL_API);
+xhr.setRequestHeader("Accept", "application/json");
+xhr.setRequestHeader("Content-Type", "application/json");
+
+xhr.onreadystatechange = function () {
+  if (xhr.readyState === 4) {
+    console.log(xhr.status);
+    console.log(xhr.responseText);
+  }};
+  let data = {
+  "messaging_product": "whatsapp", 
+  "to": "573026055289", 
+  "type": "template", 
+  "template": { "name": "hello_world",
+  "language": { "code": "en_US" } } }
+
+  
+
+xhr.send(data);
+
+    
+  }*/
+  /*const pedid= async()=>{
+  
+
+  
+
+var botId = '104139039369000';
+var phoneNbr = '573026055289';
+var bearerToken = 'EAAH55QLPNwcBAFNLRYfLPvqP2iIONW3eqqJZCgCeI4ACbe4pqgeTOKI6bm18m91ax1RSkj6Qlqh8xKzdsjD49kuvPYoeBZCM42o4MbtYQhCtVTYqTztsaoM5NhyhZCDZCfi0G5VqADLJ8sb94KuDVpc5nMfZC4Ei8pZBIAV42FRKZAvxdwtE4lFY85ZCUIaiyVf0gv5x3ccYyAZDZD';
+
+var url = 'https://graph.facebook.com/v16.0/' + botId + '/messages';
+var data = {
+  messaging_product: 'whatsapp',
+  to: phoneNbr,
+  type: 'template',
+  template: {
+    name:'hello_world',
+    language:{ code: 'en_US' }
+  }
+};
+
+var postReq = {
+  method: 'POST',
+  headers: {
+    'Authorization': 'Bearer ' + bearerToken,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(data),
+  json: true
+};
+
+fetch(url, postReq)
+  .then(data => {
+    return data.json()
+  })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(error => console.log(error));
+}
+pedid()*/
+
+</script>
 <style>
+  h1{
+    color: brown;
+    text-align: center;
+  }
 .container{
+ 
   display: flex;
   flex-direction: row;
   width: 100%;
   height: fit-content;
+  justify-content: center;
+  font-family: 'Tajawal', sans-serif;
+}
+@keyframes show_notfc {
+    from {
+        opacity:.50;
+    }
+    25%, 45% {
+        opacity: .75;
+    }
+    75%, 75% {
+        opacity: .85;
+    }
+    100%, 75% {
+        opacity: 10;
+    }
+    to {
+    opacity: .5;
+    }
+}
+
+
+#pop_notfc{
+ opacity: 0;
+  position: fixed;
+  width: 170PX;
+  height: 80PX;
+  background: rgba(12, 227, 12, 0.558);
+  right: 50PX;
+  top: 0;
+  border-radius: 5px;
+  text-align: center ;
+}
+#pop_notfc.active{
+ 
+  animation: show_notfc  5s ease-in;
+}
+#pop_notfc a{
+  position: relative;
+top: 35%
+
 }
   #notificacion{
 
     width: 300px;
     height: 400px;
-    background: gray;
+   
+    flex-direction: column;
   }
-
+  #bar_notifc{
+    width: 100%;
+    height: 50px;
+   
+  }
+  #cant_pedid{
+    color: rgb(46, 165, 42);
+    font-size: 20px;
+  }
+  #cont_notifc{
+    width: 100%px;
+    height: 400px;
+    background: rgba(128, 128, 128, 0.586);
+    overflow: scroll;
+  }
   #pop_notific{
+    cursor: pointer;
+    font-size: 13px;
     width: 100%;
     height: 70px;
     background: white;
@@ -90,10 +234,10 @@
   #view_pedido{
     width: 75%;
     height: 400px;
-    background: rgb(0, 145, 255);
+   
     display: flex;
     flex-direction: row;
-
+   
 
   }
 
@@ -119,7 +263,16 @@ text-decoration: solid;
 #info_user{
 width: 300px;
 height: 400px;
-background: yellow;
+background: rgb(213, 213, 208);
+text-align: center;
+justify-content: center;
+}
+#info_user input{
+  position: relative;
+  left: 18%;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid gray;
 
 }
 </style>
@@ -127,5 +280,5 @@ background: yellow;
                                                                                  
 
 </body>
-<script src="/sockesevv.js"></script>
+<script type="module" src="/sockesevv.js"></script>
 </html>

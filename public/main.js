@@ -10,55 +10,7 @@ socket.on("prodstatus", function(message,status,) {
   swal("eyy!", message, status);
  
 })
-/*socket.on("getprod", function(notes1) {
-console.log()
-  /////creando div item carro
-  var  item_car= document.querySelector("#item_car") 
-  item_car.style="visibility:visible"
-  var product_car=document.querySelector("#product_car");
-  var carItem= document.createElement("div")
-  carItem.id="carItem"
-    var car_prodName=document.createElement("h3");
-    car_prodName.id="car_prodName";
-    var car_prodvalue=document.createElement("a");
-    var div_cant_prod=document.createElement("div")
-    div_cant_prod.id="div_cant_prodCar";
-    var button_menos=document.createElement("a")
-    button_menos.id="button_menos"
-    var input=document.createElement("input")
-    input.id="cant_prod"
-    var button_mas=document.createElement("a")
-    button_mas.id="button_mas"
-        input.value=notes1.cantidad
-        button_mas.innerHTML="+"
-        button_menos.innerHTML="-"
-    car_prodvalue.id="car_prodvalue";
-    car_prodvalue.innerHTML=notes1.valor;
-    car_prodName.innerHTML=notes1.nombreProd;
-    div_cant_prod.appendChild(button_menos)
-    div_cant_prod.appendChild(input)
-    div_cant_prod.appendChild(button_mas)
-   
-    carItem.appendChild(car_prodName)
-    carItem.appendChild(car_prodvalue)
-    carItem.appendChild(div_cant_prod)
-    product_car.appendChild(carItem)
 
-    ///////numero items carro
-    
-
-    if(num_itmes==""){
-      var card_none=document.querySelector("#carItemnone");
-      card_none.style="display:none;"
-      num_itmes=0
-      item_car.innerHTML= parseInt(num_itmes)+1
-    }else{
-      item_car.innerHTML= parseInt(num_itmes)+1
-    }
-   
-    
-  
-    })*/
 var item_car= document.querySelector("#item_car") 
 
 socket.on("loadates", function(notes, data)   {
@@ -332,25 +284,30 @@ user_sigin.onclick=function(){
  
 document.getElementById("container-fluid").addEventListener("mouseup", function(event) {
   var cont_buy=document.getElementById("cont_buy");
+  var lateral_data=document.getElementById("lateral_data");
+  var opciones_user=document.getElementById("opciones_user");
 //  var obj = document.getElementById("container");
 if (!cont_buy.contains(event.target)) {
-    if(cont_buy.classList=="active"){
+    if(cont_buy.classList=="active" ||lateral_data.classList=="active" || opciones_user.classList=="active"){
       cont_buy.classList.remove("active")
+      lateral_data.classList.remove("active")
+      opciones_user.classList.remove("active")
     }
 
-
- 
 }
 else {
   alert("Inside click detected!");
 }
 });
 
+
 //-----------------DATOS USUARIO-VISTA LATERAL------------------------------
 function pintarData(data){
   var btn_dataUser=document.querySelector("#btn_dataUser")
+var  opciones_user=document.querySelector("#opciones_user")
 var lateral_data=document.querySelector("#lateral_data");
 btn_dataUser.onclick=function(){
+  opciones_user.classList.remove("active")
   if(data){
     var nameDataUser=document.querySelector("#nameDataUser")
   var celDataUser=document.querySelector("#celDataUser")

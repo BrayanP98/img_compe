@@ -135,6 +135,7 @@ var pedidos=new Pedido();
       user.save()
       ///*---------emitir pedidos y info user
       io.emit("pedido",allPedidos)
+      io.emit("notific","Hay un nuevo pedido")
       socket.emit("prodstatus","Tu pedido fue realizado con exito","success")
         }
         

@@ -1,20 +1,22 @@
+
 var socket = io.connect("wss://competidor.store", { forceNew: true });
 
 
 socket.on("pedido", function(data, data1){
+   
     var car_cont= Object.values(data);
  // console.log(car_cont)
-  
-var notificacion=document.querySelector("#notificacion");
+  const cant_pedidos= data.length
+var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
 for(let i=0; i< data.length; i++){
-
+    
     var pop_notif=document.createElement("div");
     pop_notif.id="pop_notific"
     var title_not=document.createElement("h2");
     title_not.id="title_not"
     
-    title_not.innerHTML="nuevo pedido de"+data[i].dataUser.nombre
+    title_not.innerHTML="Nuevo pedido de:"+" "+data[i].dataUser.nombre
     pop_notif.appendChild(title_not);
     
     notificacion.appendChild(pop_notif);
@@ -56,8 +58,10 @@ for(let i=0; i< data.length; i++){
     
      total_table.innerHTML="$"+total
     })
+   
 }
-
+var cant_pedid=document.querySelector("#cant_pedid")
+cant_pedid.innerHTML=cant_pedidos
 
 /*var pop_notif=document.createElement("div");
 pop_notif.id="pop_notific"
@@ -73,8 +77,75 @@ notificacion.appendChild(pop_notif);*/
    
     
          })
+         socket.on("notific", function(data){
+
+            new_pedido(data)
+         })
+function new_pedido(alert){
+    var pop_notfc=document.querySelector("#pop_notfc");
+    var text_alert=document.querySelector("#text_alert");
+    text_alert.innerHTML=alert
+    pop_notfc.classList.toggle("active")
+
+  /* swal({
+        title: "Inicie secion por favor!!",
+        text: "para poder agregar al carrito",
+        timer: 3000,
+        showConfirmButton: false
+});*/
+}
+       
+var conf_ped=document.querySelector("#conf_ped");
+var phone_user=document.querySelector("#phone_user");
+conf_ped.onclick=function(){
+   event.preventDefault();
+let phone=phone_user.value;
+
+   send_whatsapp("57"+phone)
+}
 
          window.addEventListener("load",function(){
 
             socket.emit("getpedidos")
          })
+
+         function send_whatsapp(phoneNbr){
+            var botId = '104139039369000';
+           // var phoneNbr = '573026055289';
+            var bearerToken = 'EAAH55QLPNwcBAA0ZA7exdIzoFAchm3l7iV2DmuyZAjz81x5ZCNUc9ZA7ui5z9ZC8vPG80EZCCvyWIYFn8sV2bBC35uwObExjUkJN7GG4QCwc41kHKyGOtbrwlrsUwKVxnNyFeCVpi3iQ1OGjXu9pXvdl3oFvXQCJuSnqUna20ZB3hoKbaRC132rV6xEZCOtI7qqnhfuoNOjJMJZBltKo57tztZCT1fYINuNSIZD';
+            
+            var url = 'https://graph.facebook.com/v16.0/' + botId + '/messages';
+            var data = {
+              messaging_product: 'whatsapp',
+              to: phoneNbr,
+              type: 'template',
+              template: {
+                name:'hello_world',
+                language:{ code: 'en_US' }
+              }
+            };
+            
+            var postReq = {
+              method: 'POST',
+              headers: {
+                'Authorization': 'Bearer ' + bearerToken,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data),
+              json: true
+            };
+            
+            fetch(url, postReq)
+              .then(data => {
+                return data.json()
+              })
+              .then(res => {
+                if(res.error){
+                  console.log(res.error.message)
+                }else{
+                  console.log(res)
+                }
+                
+              })
+              .catch(error => console.log(error));
+            }

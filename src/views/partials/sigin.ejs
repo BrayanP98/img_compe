@@ -7,7 +7,7 @@
       <div class="subscription_sigin">
         <button class="close_view" id="close_view_log"> X salir</button>
         <i class="fa-solid fa-circle-xmark" id="close"></i>
-        <div class="subs-content">
+        <div class="subs-contentSigin">
            <h2>Inicio de sesion</h2>
           <p>Ingresa tus datos</p>
           <form  action="/task/findUser" method="post">
@@ -35,7 +35,7 @@
         <div class="subscription_sigin">
           <button class="close_view"id="close_view_reg"> X salir</button>
           <i class="fa-solid fa-circle-xmark" id="close-reg"></i>
-          <div class="subs-content">
+          <div class="subs-contentSigin">
              <h2>Registro</h2>
             <p>Datos de registro</p>
             <form  action="/task/addUser" method="post">
@@ -86,7 +86,7 @@
     visibility: hidden;
     display: flex;
     transform: scale(0.5);
-   width:90%; 
+   
    justify-content: center;
    
    top: 100px;
@@ -122,6 +122,7 @@
     border-radius: 0px 15px 0px 0px;
    }
   .subscription_sigin{
+    visibility: hidden;
 width: 400px;
 height: fit-content;
 position: relative;
@@ -137,17 +138,22 @@ border-radius: 15px;
 justify-content: center;
 
 }
-.subs-content{
+.pop-up-sigin.active .subscription_sigin{
+  visibility: visible;
+}
+.subs-contentSigin{
   position: relative;
   font-family: 'Comme', sans-serif;
-  padding: 0;
-  padding-bottom: 30px;
+  padding: 8px;
+  padding-bottom: 50px;
   width: 100%;
 height: fit-content;
 text-align: center;
+
 margin-bottom: 18px;
+
 }
-.subs-content h2{
+.subs-contentSigin h2{
   width: 100%;
   padding: 0;
   height: 30px;
@@ -155,7 +161,7 @@ margin-bottom: 18px;
   top: 10px;
  
 }
-.subs-content p{
+.subs-contentSigin p{
   width: 100%;
   padding: 0;
   height: 30px;
@@ -164,19 +170,20 @@ margin-bottom: 18px;
  
 }
 .pop-wrap-sigin form{
-width:fit-content;
+width:100%;
 height: fit-content;
 position: relative;
-left: 25%;
+
 display: flex;
 flex-direction: column;
 position: relative;
-
- align-items: center;
+justify-content: center;
+align-items: center;
+ text-align: center;
 }
+
 .pop-wrap-sigin form input{
-width:fit-content;
-height: 14px;
+
 position: relative;
   border-radius: 0;
  align-items: center;
@@ -192,7 +199,7 @@ position: relative;
   top: 20px;
   background: green;
   border-radius: 10px;
-  height: 25px;
+  height: 30px;
   width: 100%;
   border: 0;
 }
@@ -207,8 +214,10 @@ position: relative;
   height: 25px;
   width: 100%;
   border: 0;
+  padding-top:8px ;
 }
 #reg_user{
+  
   font-size: 15px;
   color: black;
   position: relative;
