@@ -4,8 +4,27 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 const nombreuser= document.querySelector("#nombre_user") 
 
 socket.on("getprods", function (prods) {
-  console.log(prods)
+
+  pintarProd(prods)
+  
 });
+function pintarProd(prods){
+  var length= prods.length;
+ 
+  for(let i=0; i< length; i++){
+    var secc_prod=document.getElementById("seccion_"+prods[i].categoria)
+    var card=document.createElement("div");
+    card.id="catalogo"
+   
+    var img_prod=document.createElement("img")
+    img_prod.id=prods[i].nombre
+    img_prod.setAttribute("loading", "lazy")
+    img_prod.setAttribute("src", prods[i].imagen)
+    card.appendChild(img_prod)
+    secc_prod.appendChild(card)
+   // console.log(prods[i])
+  }
+}
 socket.on("prodstatus", function(message,status,) {
   swal("eyy!", message, status);
  
