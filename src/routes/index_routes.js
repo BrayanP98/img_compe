@@ -32,7 +32,7 @@ function isLogedIn(req, res, next){
    }
  
 router.get('/',isLogedIn, async(req,res)=>{
-    const prods= await Image.find().lean();
+  //  const prods= await Image.find().lean();
     const general= await General.find().lean();
     const promo= await Promo.find().lean();
     let numwh=general[0].numWhatsapp
@@ -44,13 +44,13 @@ router.get('/',isLogedIn, async(req,res)=>{
         band=true;
         const userlogin= await User.findById(nom_user.user).lean();
        
-        res.render("catalogo.ejs", { prods, promo, general,numwh,userlogin, band});
+        res.render("catalogo.ejs", { promo, general,numwh,userlogin, band});
         
     }else{
         band=false
         const userlogin= "";
         console.log("no hay sesion")
-        res.render("catalogo.ejs", { prods, promo, general,numwh,userlogin ,band});
+        res.render("catalogo.ejs", { promo, general,numwh,userlogin ,band});
     }
     
     
