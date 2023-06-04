@@ -123,7 +123,7 @@ var pedidos=new Pedido();
 
     try {
       //var car_cont= Object.assign({}, da);
-      const user= await Image.findOne({nombre:data1});
+      const user= await User.findOne({nombre:data1});
      // console.log(user.nombre)
      pedidos.dataUser.nombre=user.nombre;
      pedidos.dataUser.direccion=user.direccion;
@@ -167,7 +167,7 @@ var pedidos=new Pedido();
  
 })
   socket.on("idUser", function (nombre, carro) {
-    const img=new Image();
+    const img=new User();
     const prods= async()=>{
       const notes1= await User.findById({_id:nombre});
       
@@ -184,7 +184,7 @@ var pedidos=new Pedido();
   socket.on("deleteprod", function (nombre, id) {
     const deleteprod= async()=>{
       
-      const notes= await Image.findOne({user:nombre});
+      const notes= await User.findOne({user:nombre});
      
       let item_del= notes.carro.filter((item) =>item._id !=id)
       
@@ -200,7 +200,7 @@ var pedidos=new Pedido();
 
     const img=new Image();
     const prods= async()=>{
-      const notes= await Image.findOne({user:nombre});
+      const notes= await User.findOne({user:nombre});
       //const prods1= await notes.carro.findOne( { $text: { $search: "\"CINTA\"" } }).lean();
       var car_cont= Object.values(notes.carro);
       var cont=[];
