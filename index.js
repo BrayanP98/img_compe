@@ -127,6 +127,9 @@ var pedidos=new Pedido();
       //var car_cont= Object.assign({}, da);
       const user= await User.findOne({user:data1});
      pedidos.status="en cola"
+
+     // console.log(user.nombre)
+
      pedidos.dataUser.nombre=user.nombre;
      pedidos.dataUser.nombreUser=user.user;
      pedidos.dataUser.direccion=user.direccion;
@@ -172,12 +175,17 @@ var pedidos=new Pedido();
  
 })
   socket.on("idUser", function (nombre, carro) {
+
    
     const prods= async()=>{
       const notes1= await User.findById({_id:nombre});
     var name=notes1.user;
       var onePedido= await Pedido.find().lean()
       var onePedido1=""
+    const img=new User();
+
+  
+
       
      
 
@@ -233,7 +241,7 @@ var pedidos=new Pedido();
 
     const img=new Image();
     const prods= async()=>{
-     
+
       const notes= await User.findOne({user:nombre});
       //const prods1= await notes.carro.findOne( { $text: { $search: "\"CINTA\"" } }).lean();
     
@@ -246,7 +254,9 @@ var pedidos=new Pedido();
          }
        
        if(cont.includes(carro.nombreProd)){
-        socket.emit("prodstatus","ya existe en carrito","error")
+
+
+        socket.emit("prodstatus","Este producto ya existe en carrito","error")
        
        }else{
        notes.carro.push(carro)

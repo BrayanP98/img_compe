@@ -12,7 +12,8 @@ const generalSchema= new Schema({
         required:false,
         unique:false,
     }, 
-    tocken:{
+     tocken:{
+
         type:String,
         required:false,
         unique:false,
