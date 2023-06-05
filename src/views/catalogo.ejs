@@ -22,7 +22,13 @@
 
 <body>
 
-
+  <script>
+    if ("loading" in HTMLImageElement.prototype) {
+      console.log("El navegador soporta `lazy-loading`...");
+    } else {
+      console.log("`lazy-loading` no soportado...");
+    }
+  </script>
   <div class="caja">
 
     <!--<h1 class="logo"><img src="img/logo.png" alt=""></h1>-->
@@ -50,7 +56,8 @@
       <div id="opciones_user">
         <h4 id="nombre_user"><%= userlogin.user%></h4>
         <ul>
-          <li><a id="btn_dataUser">Mis datos</a><a id="notif_data" ></a></li>
+          <li><a id="btn_dataUser">Mis datos</a><a id="notif_data"></a></li>
+        
           <li><a href="/logout" >Cerrar Secion</a></li>
         </ul>
       </div>
@@ -115,6 +122,7 @@
   if(nombre){
  
     item_car.style="visibility:visible"
+    item_car.style.background="red"
   socket.emit("idUser", nombre, carro)
 
   
@@ -251,6 +259,39 @@ height: 0;
       max-height: 400px;
       overflow-y: scroll;
       position: static;
+    }
+    #items_pedido{
+      width: 100%;
+      height: fit-content;
+      background: #92c2dbcb;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    #item_pedido{
+      
+      width: 90%;
+      height: fit-content;
+      
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      padding-left: 5px;
+    }
+    #div_status{
+      width: 100%;
+      height: fit-content;
+     position: relative;
+     padding: auto;
+    }
+    #en_cola{
+      position: relative;
+      font-size: 18px;
+     width: 50px;
+     height: 50px;
+     border-top: 2px solid  red;
+     top: -10px;
     }
      #cont_buy{
      width: 30vw;
@@ -774,6 +815,7 @@ product_car.style=""
 
 
       function mostrar(nombre, valor,promo, image, descrip, medida, cantidad) {
+        console.log(nombre)
         var cart= document.getElementById(nombre);
         var nombrecliente = document.querySelector("#nombre_cliente1");
         var direccion_cliente = document.querySelector("#direccion_cliente");
@@ -1005,73 +1047,7 @@ product_car.style=""
       </section>
       
        
-        <% prods.forEach(function(prod) { %>
-<script>
 
-
-var nombre='<%= prod.nombre %>'; var valor='<%= prod.valor %>'; var cate='<%= prod.categoria %>'; var imagen='<%= prod.imagen %>'
- var descripcion='<%= prod.descripcion %>'; var promo="<%= prod.promo %>"
- var secc_prod=document.getElementById("seccion_"+cate)
- var secc=document.getElementById(cate)
- var title_section=document.createElement("h1");
- title_section.id="title_section"
-
- var listop=document.getElementById("box-search")
- 
-
-  var buscar_btn=document.getElementById("input_buscar")
-  var li_options1= document.createElement("li");
-  var a_options1= document.createElement("a");
-////llenando li de busqueda
-  a_options1.innerHTML='<%= prod.nombre %>'
-  li_options1.appendChild(a_options1)
-  listop.appendChild(li_options1)
-
-   ///////CREANDO CARD DE PRODUCTO
-  var cats=["ferreteria","hogar","papeleria","varios", "aseo personal","salud","alimentos","cosmetica","aseo"]
-  var cont_prod= document.querySelector(".seccion")
-  if(cats.includes(cate)){ 
-   var card=document.createElement("div");
-   card.id="catalogo"
-  
-   var img_prod=document.createElement("img")
-   img_prod.id=nombre
-   img_prod.setAttribute("src", imagen)
-   var revisar=document.createElement("button");
-  revisar.id="revisar"
-  var descipcion=document.createElement("div");
-  descipcion.id="descript"
-  var nombre_prod=document.createElement("h3");
-  
-   nombre_prod.className="nombre-prod";
-   var codigo=document.createElement("p");
-   var prod_valor=document.createElement("h4");
-   revisar.setAttribute("onclick","mostrar('<%= prod.nombre %>',"+valor+",'<%= prod.promo %>','<%= prod.imagen %>','<%= prod.descripcion %>','<%= prod.medida %>','<%= prod.cantidad %>')");
-  if(promo){
-    if(promo=="0"){
-
-    }else{
-      var label_prom=document.createElement("a");
-      label_prom.id="etiq_descuento";
-      label_prom.innerHTML=promo+"%OFF"
-      revisar.appendChild(label_prom)   
-    }
-  }
-   codigo.innerHTML="<%= prod.codigo %>"
-   prod_valor.innerHTML="$"+valor
-   //let new_name = nombre.replace("y", "&");
-   nombre_prod.innerHTML=nombre
-  descipcion.appendChild(nombre_prod)
-  descipcion.appendChild(codigo)
-  descipcion.appendChild(prod_valor)
-  card.appendChild(revisar)
-  card.appendChild(img_prod)
-  card.appendChild(descipcion) 
-  secc_prod.appendChild(card)
-}
-  
-</script>
-<% }) %>
       
 
     <script>
@@ -1403,10 +1379,6 @@ document.addEventListener("scroll", () => {
     </div>
   </div>
 </footer>
-<<<<<<< HEAD
 <!--script type="text/javascript" src="jspdf.min.js"></script-->
-=======
-
->>>>>>> c615ae1454e08c828ac6b0e6e2840c2ba513c743
 <script src="/main.js"></script>
 </html>

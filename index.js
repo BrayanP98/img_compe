@@ -11,7 +11,9 @@ const cookieParser =require("cookie-parser");
 const session= require("express-session");
 const bodyParser =require("body-parser");
 const passport = require('passport');
-const Image=require('./src/models/users')
+const Image=require('./src/models/IMAGE')
+const User=require('./src/models/users')
+const General=require('./src/models/generals')
 const Pedido=require('./src/models/pedido')
 const ls = require('local-storage');
 var LocalStorage = require('node-localstorage').LocalStorage,
@@ -23,7 +25,7 @@ const store= new session.MemoryStore;
 
 ////
 const http = require('http');
-const { findById } = require('./src/models/IMAGE');
+const { findById } = require('./src/models/users');
 var server = require("http").Server(app);
 var io = require("socket.io")(server);
 
@@ -71,15 +73,8 @@ const upload = app.use(multer( {
 return err},
     storage:storage}).single('image'));
 
-
-
-
 ////routes
-
 app.use(require('./src/routes/index_routes'));
-
- 
-  
 
 
 ////server
@@ -87,19 +82,35 @@ app.use(require('./src/routes/index_routes'));
 
 io.on("connection", function (socket) {
   
+  const getprods= async()=>{
+    const prods11= await Image.find().lean();
+ 
+ socket.emit("getprods",prods11)
+  }
+  getprods()
   socket.on("getpedidos",async function(){
 
     var allPedidos= await Pedido.find()
-    io.emit("pedido",allPedidos)
+    var general= await General.find()
+    io.emit("pedido",allPedidos,general)
     
   })
+  socket.on("updateStatus",async function(id){
+
+    var allPedidos= await Pedido.findByIdAndUpdate(id,{status:"confirmado"})
+   
+   
+   // io.emit("pedido",allPedidos,general)
+    
+  })
+
   socket.on("saludo", function (data, data1) {
 var pedidos=new Pedido();
     const pedid= async()=>{
    var onePedido= await Pedido.find().lean()
    var onePedido1=""
    for(let int=0; int< onePedido.length; int++){
-   if( onePedido[int].dataUser.nombre==data1){
+   if( onePedido[int].dataUser.nombreUser==data1){
     onePedido1="existe"
    }else{
     onePedido1="no"
@@ -114,9 +125,10 @@ var pedidos=new Pedido();
 
     try {
       //var car_cont= Object.assign({}, da);
-      const user= await Image.findOne({nombre:data1});
-     // console.log(user.nombre)
+      const user= await User.findOne({user:data1});
+     pedidos.status="en cola"
      pedidos.dataUser.nombre=user.nombre;
+     pedidos.dataUser.nombreUser=user.user;
      pedidos.dataUser.direccion=user.direccion;
      pedidos.dataUser.telefono=user.telefono;
      pedidos.dataUser.email=user.email
@@ -125,16 +137,19 @@ var pedidos=new Pedido();
         }
       await pedidos.save()
       var allPedidos= await Pedido.find()
-      let carro=user.carro
+      let carro=user.carro;
+      user.pedidos=[];
       for(var i=0; i<carro.length; i++){
-        user.pedidos.push(data[i])
+      user.pedidos.push(data[i])
       }
       //console.log(carro)
+
     //  user.pedidos.push(carro)
      user.carro=[];
       user.save()
       ///*---------emitir pedidos y info user
-      io.emit("pedido",allPedidos)
+      var general= await General.find()
+      io.emit("pedido",allPedidos,general)
       io.emit("notific","Hay un nuevo pedido")
       socket.emit("prodstatus","Tu pedido fue realizado con exito","success")
         }
@@ -157,24 +172,52 @@ var pedidos=new Pedido();
  
 })
   socket.on("idUser", function (nombre, carro) {
-    const img=new Image();
+   
     const prods= async()=>{
-      const notes1= await Image.findById({_id:nombre});
+      const notes1= await User.findById({_id:nombre});
+    var name=notes1.user;
+      var onePedido= await Pedido.find().lean()
+      var onePedido1=""
       
-     // notes1.carro.product2=carro
-    // notes1.save();
-  //console.log(notes1.carro);
+     
 
-      socket.emit("loadates",notes1.carro, notes1)
+      for(let int=0; int< onePedido.length; int++){
+
+
+       
+      if(onePedido[int].dataUser.nombreUser==name){
+      onePedido1="existe"
+       var pedido= onePedido[int];
+        
+     
+      }else{
+       onePedido1="no existe"
+      //socket.emit("loadates",notes1.carro, notes1)
+
+      }
+      }
+      if(onePedido1=="existe"){
+        socket.emit("loadates",notes1.carro, notes1, pedido
+        )
+        
+      }else{
+        socket.emit("loadates",notes1.carro, notes1)
+      }
+      
+   
     
-    }
+  
+  }
+  
+    
+    
    prods();
     
   });
   socket.on("deleteprod", function (nombre, id) {
     const deleteprod= async()=>{
       
-      const notes= await Image.findOne({user:nombre});
+      const notes= await User.findOne({user:nombre});
      
       let item_del= notes.carro.filter((item) =>item._id !=id)
       
@@ -190,9 +233,11 @@ var pedidos=new Pedido();
 
     const img=new Image();
     const prods= async()=>{
-      const notes= await Image.findOne({user:nombre});
+     
+      const notes= await User.findOne({user:nombre});
       //const prods1= await notes.carro.findOne( { $text: { $search: "\"CINTA\"" } }).lean();
-      var car_cont= Object.values(notes.carro);
+    
+    //  var car_cont= Object.values(notes.carro);
       var cont=[];
     //  console.log(notes.carro.length)
       if(notes.carro){
@@ -201,7 +246,7 @@ var pedidos=new Pedido();
          }
        
        if(cont.includes(carro.nombreProd)){
-        socket.emit("prodstatus","ya existe en carrito")
+        socket.emit("prodstatus","ya existe en carrito","error")
        
        }else{
        notes.carro.push(carro)
@@ -239,11 +284,7 @@ var pedidos=new Pedido();
 });
 
 
-app.get("/" ,async (req,res)=>{
-  const nom_user= req.session.passport;
-   
-    
-  })
+
 
 //app.listen(process.env.PORT, () => { console.log(`Hello World Application is running on port ${process.env.PORT}`) })
 

@@ -3,9 +3,71 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 
 const nombreuser= document.querySelector("#nombre_user") 
 
-socket.on("messages", function (data) {
-  //console.log(data)
+socket.on("getprods", function (prods) {
+
+  pintarProd(prods)
+  
 });
+function pintarProd(prods){
+  var length= prods.length;
+ 
+  for(let i=0; i< length; i++){
+    var listop=document.getElementById("box-search")
+    var buscar_btn=document.getElementById("input_buscar")
+  var li_options1= document.createElement("li");
+  var a_options1= document.createElement("a");
+////llenando li de busqueda
+  a_options1.innerHTML=prods[i].nombre;
+  li_options1.appendChild(a_options1)
+  listop.appendChild(li_options1)
+
+  ////creando card-------
+    var secc_prod=document.getElementById("seccion_"+prods[i].categoria)
+    var card=document.createElement("div");
+    card.id="catalogo"
+   
+    var img_prod=document.createElement("img")
+    img_prod.id=prods[i].nombre
+    img_prod.setAttribute("loading", "lazy")
+    img_prod.setAttribute("src", prods[i].imagen)
+    var revisar=document.createElement("button");
+  revisar.id="revisar"
+  var descipcion=document.createElement("div");
+  descipcion.id="descript"
+  var nombre_prod=document.createElement("h3");
+  
+   nombre_prod.className="nombre-prod";
+   var codigo=document.createElement("p");
+   var prod_valor=document.createElement("h4");
+   codigo.innerHTML=prods[i].codigo
+   prod_valor.innerHTML=prods[i].valor
+  
+
+
+  revisar.setAttribute("onclick","mostrar('"+prods[i].nombre+"','"+prods[i].valor+"','"+prods[i].promo+"','"+prods[i].imagen+"','"+prods[i].descripcion+"','"+prods[i].medida+"','"+prods[i].cantidad+"')");
+  if(prods[i].promo){
+    if(prods[i].promo=="0"){
+
+    }else{
+     
+      var label_prom=document.createElement("a");
+      label_prom.id="etiq_descuento";
+      label_prom.innerHTML=prods[i].promo+"%OFF"
+      revisar.appendChild(label_prom)   
+    }
+  }
+   
+ nombre_prod.innerHTML=prods[i].nombre
+  descipcion.appendChild(nombre_prod)
+  descipcion.appendChild(codigo)
+  descipcion.appendChild(prod_valor)
+  card.appendChild(revisar)
+  card.appendChild(img_prod)
+  card.appendChild(descipcion) 
+  secc_prod.appendChild(card)
+   // console.log(prods[i])
+  }
+}
 socket.on("prodstatus", function(message,status,) {
   swal("eyy!", message, status);
  
@@ -13,9 +75,10 @@ socket.on("prodstatus", function(message,status,) {
 
 var item_car= document.querySelector("#item_car") 
 
-socket.on("loadates", function(notes, data)   {
+socket.on("loadates", function(notes, data, pedidos)   {
   var notif_data_bar=document.querySelector("#notif_data-bar")
   var notif_data=document.querySelector("#notif_data")
+
   if(data.direccion){
     if(data.direccion==""){
       notif_data_bar.style="visibility:visible;"
@@ -28,7 +91,7 @@ socket.on("loadates", function(notes, data)   {
   }
   //console.log(data.nombre)
 
-    pintarData(data)
+  //  pintarData(data)
   
   var cart=notes;
 
@@ -36,6 +99,7 @@ socket.on("loadates", function(notes, data)   {
     
   const length = cart.length
   var  item_car= document.querySelector("#item_car") 
+     item_car.style.background="red"
     item_car.innerHTML=length
 ;
   
@@ -43,10 +107,11 @@ socket.on("loadates", function(notes, data)   {
   var total_car=0;
   if(length >0 ){
     var  buy_car=document.querySelector("#buy_car");
-  buy_car.style="display:flex;"
+   buy_car.style="display:flex;"
 
     var  item_car= document.querySelector("#item_car") 
-  item_car.style="visibility:visible"
+    item_car.style.background="red"
+   item_car.style="visibility:visible"
    var car_cont= Object.values(cart);
    var product_car=document.querySelector("#product_car");
      product_car.style="height: 340px;"
@@ -139,9 +204,9 @@ socket.on("loadates", function(notes, data)   {
         var buy=document.querySelector("#buy")
 
         buy.onclick=function(){
-         let nombre=data.nombre
-        
+         let nombre=data.user
         if(data.direccion){
+        
           sendwhatsapp(car_cont,nombre)
         }else{
           swal("Oops!", "Debes llenar tus datos de contacto primero", "error");
@@ -176,9 +241,90 @@ socket.on("loadates", function(notes, data)   {
    
     
   }else{
-    var  item_car= document.querySelector("#item_car") 
-  item_car.style="visibility:hidden"
-  prod_clean()
+    
+    if(pedidos){
+      var item_car= document.querySelector("#item_car");
+      item_car.innerHTML="$"
+      item_car.style.background="green"
+
+      var product_car=document.querySelector("#product_car");
+  var  buy_car=document.querySelector("#buy_car");
+  buy_car.style="display:none;"
+  var carItem= document.createElement("div")
+  carItem.id="carItemnone"
+    var car_prodName=document.createElement("h2");
+
+    car_prodName.id="car_prodName";
+    var n_pedido=document.createElement("a");
+    n_pedido.id="n_pedido";
+    car_prodName.innerHTML="Tienes un  pedido en proceso"
+      
+      carItem.appendChild(car_prodName);
+     carItem.appendChild(n_pedido);
+   
+     var total=0
+    
+       
+      
+      
+        
+        var itemspedido= document.createElement("div")
+       itemspedido.id="items_pedido"
+       for(let i=0; i< pedidos.pedido.length; i++){
+        
+        total=total+parseFloat(pedidos.pedido[i].valor)
+        n_pedido.innerHTML="pedido n°"
+       var itempedido= document.createElement("div")
+       itempedido.id="item_pedido"
+       var nombreitem= document.createElement("a")
+       nombreitem.id="name_itemPed"
+       var valueitem= document.createElement("a")
+       valueitem.id="value_itemPed"
+       var cantitem= document.createElement("a")
+       cantitem.id="cant_itemPed"
+       nombreitem.innerHTML="Nombre:"+" "+pedidos.pedido[i].nombreProd;
+       valueitem.innerHTML="Valor:"+" "+pedidos.pedido[i].valor;
+       cantitem.innerHTML="Cantidad:"+" "+pedidos.pedido[i].cantidad;
+        itempedido.appendChild(nombreitem)
+        itempedido.appendChild(valueitem)
+        itempedido.appendChild(cantitem)
+        itemspedido.appendChild(itempedido)
+        var total_pedido= document.createElement("a")
+        total_pedido.id="Total_pedido"
+        total_pedido.innerHTML="Total pedido:"+" "+"$"+total;
+        
+        var status= document.createElement("div")
+        status.id="div_status"
+        var encola= document.createElement("a")
+        encola.id="en_cola"
+        var title_status= document.createElement("h2")
+        title_status.id="title_status"
+        title_status.innerHTML="Estado"
+        encola.innerHTML=pedidos.status;
+        if(pedidos.status=="confirmado"){
+          encola.style="border-top: 2px solid green;"
+        }
+          
+        
+      } 
+
+      itemspedido.appendChild(total_pedido)
+       
+        status.appendChild(title_status)
+        status.appendChild(encola)
+        itemspedido.appendChild(status)
+        carItem.appendChild(itemspedido)
+       // console.log(data.pedidos[i])
+     
+   
+    product_car.appendChild(carItem)
+    }else{
+      var  item_car= document.querySelector("#item_car") 
+      item_car.style="visibility:hidden"
+      prod_clean()
+    }
+   
+   /* v*/
   }
   
 }else{
