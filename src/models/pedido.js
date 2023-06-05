@@ -4,10 +4,21 @@ const bcrypt =require( "bcrypt");
 const saltRounds=10;
 
 const taskSchema= new Schema({
-    
-   dataUser:{
+    status:{
+        
+        type:String,
+        required:false
 
-        nombre:{
+    },
+   dataUser:{
+   
+  nombre:{
+        
+        type:String,
+        required:true
+
+    },
+nombreUser:{
         
         type:String,
         required:true
@@ -36,7 +47,6 @@ const taskSchema= new Schema({
     },
 pedido:[{
             
-
     nombreProd:{
         type:String,
         required:false    },

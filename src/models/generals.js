@@ -12,6 +12,11 @@ const generalSchema= new Schema({
         required:false,
         unique:false,
     }, 
+    tocken:{
+        type:String,
+        required:false,
+        unique:false,
+    }, 
   favicon:{
        
        

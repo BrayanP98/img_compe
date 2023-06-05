@@ -5,7 +5,7 @@ var socket = io.connect("wss://competidor.store", { forceNew: true });
 socket.on("pedido", function(data, data1){
    
     var car_cont= Object.values(data);
- // console.log(car_cont)
+      const bartocken=data1[0].tocken
   const cant_pedidos= data.length
 var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
@@ -54,11 +54,19 @@ for(let i=0; i< data.length; i++){
             body_prods.appendChild(tr)
     
            total=total+parseFloat(data[i].pedido[int].valor)
+           var conf_ped=document.querySelector("#conf_ped");
+          conf_ped.onclick=function(){
+            var id=data[i]._id;
+            socket.emit("updateStatus",id)
+
+          // console.log(data[i]._id)
+      
+    }
         }
     
      total_table.innerHTML="$"+total
     })
-   
+    
 }
 var cant_pedid=document.querySelector("#cant_pedid")
 cant_pedid.innerHTML=cant_pedidos
@@ -74,18 +82,34 @@ pop_notif.appendChild(title_not);
 notificacion.appendChild(pop_notif);*/
 
 
-   
+
+var conf_whatsapp=document.querySelector("#conf_whatsapp");
+
+var phone_user=document.querySelector("#phone_user");
+conf_whatsapp.onclick=function(){
+   event.preventDefault();
+let phone=phone_user.value;
+
+   send_whatsapp("57"+phone,bartocken)
+}
     
          })
          socket.on("notific", function(data){
 
             new_pedido(data)
          })
-function new_pedido(alert){
+function new_pedido(alert, color){
     var pop_notfc=document.querySelector("#pop_notfc");
     var text_alert=document.querySelector("#text_alert");
     text_alert.innerHTML=alert
-    pop_notfc.classList.toggle("active")
+    pop_notfc.style="background:"+color;
+
+    pop_notfc.classList.add("active")
+    setTimeout(function(){
+      pop_notfc.classList.remove("active")
+  }, 6000);
+   
+   
 
   /* swal({
         title: "Inicie secion por favor!!",
@@ -95,24 +119,17 @@ function new_pedido(alert){
 });*/
 }
        
-var conf_ped=document.querySelector("#conf_ped");
-var phone_user=document.querySelector("#phone_user");
-conf_ped.onclick=function(){
-   event.preventDefault();
-let phone=phone_user.value;
 
-   send_whatsapp("57"+phone)
-}
 
          window.addEventListener("load",function(){
 
             socket.emit("getpedidos")
          })
 
-         function send_whatsapp(phoneNbr){
+         function send_whatsapp(phoneNbr, bearerToken){
             var botId = '104139039369000';
            // var phoneNbr = '573026055289';
-            var bearerToken = 'EAAH55QLPNwcBAA0ZA7exdIzoFAchm3l7iV2DmuyZAjz81x5ZCNUc9ZA7ui5z9ZC8vPG80EZCCvyWIYFn8sV2bBC35uwObExjUkJN7GG4QCwc41kHKyGOtbrwlrsUwKVxnNyFeCVpi3iQ1OGjXu9pXvdl3oFvXQCJuSnqUna20ZB3hoKbaRC132rV6xEZCOtI7qqnhfuoNOjJMJZBltKo57tztZCT1fYINuNSIZD';
+            //var bearerToken = 'EAAH55QLPNwcBAE05SQrtLZAgDLvyELqd2XsHmSzTQiOaXfZCpZBV8CiCZBd1MFsjFO61me6jbsiQzynXprNh0iCDAPbwy2gbTvZA2tBpFgHGU1GjXuvo67L7RmSHEBRQOoQPkTZAlCwjlUCYEHK34uUaa2ONAWhiaUDNkQB05vpmrqpCYFAmR0';
             
             var url = 'https://graph.facebook.com/v16.0/' + botId + '/messages';
             var data = {
@@ -141,6 +158,7 @@ let phone=phone_user.value;
               })
               .then(res => {
                 if(res.error){
+                  new_pedido("Numero sin whatsapp","red")
                   console.log(res.error.message)
                 }else{
                   console.log(res)

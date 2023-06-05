@@ -55,7 +55,6 @@ const taskSchema= new Schema({
 },],
 pedidos:[{
             
-
     nombreProd:{
         type:String,
         required:false    },

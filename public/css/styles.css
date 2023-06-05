@@ -751,7 +751,7 @@ padding-top: 10px;
     .seccion{
       margin-top: 20px;
       width:100%;
-      height: 230px;
+      height: fit-content;
       overflow: hidden;
      justify-content: center;
      padding-bottom: 20px;
