@@ -44,7 +44,7 @@ function pintarProd(prods){
   
 
 
-  revisar.setAttribute("onclick","mostrar('"+prods[i].nombre+"','"+prods[i].valor+"','"+prods[i].promo+"','"+prods[i].imagen+"','"+prods[i].descripcion+"','"+prods[i].medida+"','"+prods[i].cantidad+"')");
+   revisar.setAttribute("onclick","mostrar('"+prods[i].nombre+"','"+prods[i].valor+"','"+prods[i].promo+"','"+prods[i].imagen+"','"+prods[i].descripcion+"','"+prods[i].medida+"','"+prods[i].cantidad+"')");
   if(prods[i].promo){
     if(prods[i].promo=="0"){
 
