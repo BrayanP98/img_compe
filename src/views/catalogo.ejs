@@ -831,7 +831,7 @@ function mostrar(nombre, valor,promo, image, descrip, medida, cantidad) {
         let padre= cart.parentNode;
         padre.style="border=0;"
         if(promo){
-         if(promo=="undefined"){
+         if(promo=="0"|| promo=="undefined" ){
          label_porcent.style.visiblitily="hidden"
 
          document.querySelector("#valor_view").innerHTML = parseFloat(valor/1000).toFixed(3);
