@@ -40,7 +40,7 @@ function pintarProd(prods){
    var codigo=document.createElement("p");
    var prod_valor=document.createElement("h4");
    codigo.innerHTML=prods[i].codigo
-   prod_valor.innerHTML="$"+prods[i].valor
+   prod_valor.innerHTML="$"+(parseFloat(prods[i].valor)/1000).toFixed(3)
   
 
 
