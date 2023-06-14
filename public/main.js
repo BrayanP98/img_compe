@@ -461,6 +461,7 @@ var  opciones_user=document.querySelector("#opciones_user")
 var lateral_data=document.querySelector("#lateral_data");
 btn_dataUser.onclick=function(){
   opciones_user.classList.remove("active")
+}
   if(data){
     var nameDataUser=document.querySelector("#nameDataUser")
   var celDataUser=document.querySelector("#celDataUser")
@@ -497,4 +498,4 @@ btn_dataUser.onclick=function(){
   }
  
 }
-}
+
