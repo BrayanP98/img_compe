@@ -459,9 +459,9 @@ function pintarData(data){
   var btn_dataUser=document.querySelector("#btn_dataUser")
 var  opciones_user=document.querySelector("#opciones_user")
 var lateral_data=document.querySelector("#lateral_data");
-btn_dataUser.onclick=function(){
-  opciones_user.classList.remove("active")
-}
+
+ 
+
   if(data){
     var nameDataUser=document.querySelector("#nameDataUser")
   var celDataUser=document.querySelector("#celDataUser")
@@ -489,7 +489,7 @@ btn_dataUser.onclick=function(){
     form_dataUser.setAttribute("action","/updateUser/"+data._id)
 
   }
-
+ opciones_user.classList.remove("active")
   }else{
     
    
