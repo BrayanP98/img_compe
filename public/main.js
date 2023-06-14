@@ -78,6 +78,11 @@ socket.on("prodstatus", function(message,status,) {
 var item_car= document.querySelector("#item_car") 
 
 socket.on("loadates", function(notes, data, pedidos)   {
+    var btn_dataUser=document.querySelector("#btn_dataUser");
+  btn_dataUser.onclick=function(){
+
+    pintarData(data)
+  }
   var notif_data_bar=document.querySelector("#notif_data-bar")
   var notif_data=document.querySelector("#notif_data")
 
