@@ -231,7 +231,7 @@ var pedidos=new Pedido();
       
      await notes.updateOne({carro:item_del})
     
-     socket.emit("loadates",item_del)
+     socket.emit("loadates",item_del,notes)
     
     }
    deleteprod()
