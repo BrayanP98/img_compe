@@ -101,7 +101,7 @@ io.on("connection", function (socket) {
     
   });
 
-  
+
   socket.on("updateStatus",async function(id){
 
     var allPedidos= await Pedido.findByIdAndUpdate(id,{status:"confirmado"})
@@ -120,7 +120,6 @@ var pedidos=new Pedido();
    if( onePedido[int].dataUser.nombreUser==data1){
     onePedido1="existe"
    }else{
-    onePedido1="no"
     
    }
    }
@@ -206,7 +205,7 @@ var pedidos=new Pedido();
         
      
       }else{
-       onePedido1="no existe"
+      
       //socket.emit("loadates",notes1.carro, notes1)
 
       }
