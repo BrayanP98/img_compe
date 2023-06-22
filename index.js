@@ -94,7 +94,14 @@ io.on("connection", function (socket) {
     var general= await General.find()
     io.emit("pedido",allPedidos,general)
     
-  })
+  });
+  socket.on("deleteAllPed",async function(){
+
+    var allPedidos= await Pedido.deleteMany()
+    
+  });
+
+  
   socket.on("updateStatus",async function(id){
 
     var allPedidos= await Pedido.findByIdAndUpdate(id,{status:"confirmado"})

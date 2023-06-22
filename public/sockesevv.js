@@ -16,6 +16,7 @@ for(let i=0; i< data.length; i++){
     pop_notif.id="pop_notific"
     var title_not=document.createElement("h2");
     title_not.id="title_not"
+    if(data[i].status=="en cola"){
     
     title_not.innerHTML="Nuevo pedido de:"+" "+data[i].dataUser.nombre
     pop_notif.appendChild(title_not);
@@ -67,6 +68,9 @@ for(let i=0; i< data.length; i++){
     
      total_table.innerHTML="$"+total
     })
+  }else{
+    console.log("confirmado")
+  }
     
 }
 var cant_pedid=document.querySelector("#cant_pedid")
@@ -126,6 +130,11 @@ function new_pedido(alert, color){
         timer: 3000,
         showConfirmButton: false
 });*/}
+var delete_pedidos=document.querySelector("#delete_pedidos");
+  delete_pedidos.onclick=function(){
+    socket.emit("deleteAllPed")
+
+  }
          window.addEventListener("load",function(){
 
             socket.emit("getpedidos")
