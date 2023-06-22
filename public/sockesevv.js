@@ -7,7 +7,7 @@ socket.on("pedido", function(data, data1){
     var car_cont= Object.values(data);
     //console.log(data1)
     const bartocken=data1[0].tocken
-  const cant_pedidos= data.length
+  const cant_pedidos= 0;
 var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
 for(let i=0; i< data.length; i++){
@@ -17,7 +17,7 @@ for(let i=0; i< data.length; i++){
     var title_not=document.createElement("h2");
     title_not.id="title_not"
     if(data[i].status=="en cola"){
-    
+      cant_pedidos =cant_pedidos+1;
     title_not.innerHTML="Nuevo pedido de:"+" "+data[i].dataUser.nombre
     pop_notif.appendChild(title_not);
     
