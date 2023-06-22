@@ -7,7 +7,7 @@ socket.on("pedido", function(data, data1){
     var car_cont= Object.values(data);
     //console.log(data1)
     const bartocken=data1[0].tocken
-  const cant_pedidos= 0;
+  var cant_pedidos= 0;
 var notificacion=document.querySelector("#cont_notifc");
 notificacion.innerHTML="    "
 for(let i=0; i< data.length; i++){
